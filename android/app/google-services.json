@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "234781397834",
+    "project_id": "scenic-spots-89c04",
+    "storage_bucket": "scenic-spots-89c04.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:234781397834:android:ef6bde01c866da39bbe7b3",
+        "android_client_info": {
+          "package_name": "com.wanderview"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "234781397834-u0tcebtj1lqo8an4nrbh4odrtoe66jpq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVFy7MRdb1WrlZA4alb7ZA9QGpdrE-pEk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "234781397834-gvbennm8i5itp1eduq0k4ki55o7ds447.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
