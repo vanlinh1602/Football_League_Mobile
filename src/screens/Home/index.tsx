@@ -1,26 +1,113 @@
-import { Button, Text, VStack } from 'native-base';
+import {
+  Button,
+  HStack,
+  Image,
+  ScrollView,
+  Text,
+  VStack,
+  View,
+} from 'native-base';
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import HomeFeature from '../../features/HomeFeature';
 import type { RootStackScreenProps } from '../type';
+
+import S from './styles';
+import { MatchCard, UpcomingCard } from '../../features/Home/components';
+import { Ionicons } from '../../lib/icons';
+import { ImageBackground } from 'react-native';
+import { images, logos } from '../../lib/assets';
+import moment from 'moment';
+import ListLeagues from '../../features/Home/components/ListLeagues';
 
 type Props = RootStackScreenProps<'Home'>;
 
+const upcoming = [
+  {
+    teamA: {
+      name: 'Man - Uni',
+      logo: logos.Manchester_United,
+    },
+    teamB: {
+      name: 'Arsenal',
+      logo: logos.Arsenal,
+    },
+    schedule: {
+      date: moment.now(),
+    },
+  },
+  {
+    teamA: {
+      name: 'Chelsea',
+      logo: logos.Chelsea,
+    },
+    teamB: {
+      name: 'FC_Barcelona',
+      logo: logos.FC_Barcelona,
+    },
+    schedule: {
+      date: moment.now(),
+    },
+  },
+  {
+    teamA: {
+      name: 'Liverpool',
+      logo: logos.Liverpool,
+    },
+    teamB: {
+      name: 'Chelsea',
+      logo: logos.Chelsea,
+    },
+    schedule: {
+      date: moment.now(),
+    },
+  },
+  {
+    teamA: {
+      name: 'Man - Uni',
+      logo: logos.Manchester_United,
+    },
+    teamB: {
+      name: 'Man_City',
+      logo: logos.Manchester_City,
+    },
+    schedule: {
+      date: moment.now(),
+    },
+  },
+];
+
 const Home = ({ navigation }: Props) => {
   return (
-    <SafeAreaView>
-      <VStack>
-        <Text>Home page</Text>
-        <HomeFeature />
-        <Button
-          onPress={() => {
-            navigation.navigate('Details');
-          }}>
-          Click me
-        </Button>
-      </VStack>
-    </SafeAreaView>
+    <ImageBackground style={S.background} source={images.homeBackgound}>
+      <ScrollView>
+        <VStack style={S.container} space={2}>
+          <HStack alignItems="center" justifyContent="space-between">
+            <HStack alignItems="center" space={3} marginLeft={3}>
+              <Ionicons style={S.icon} name="notifications-outline" />
+              <Text style={S.wellcome}>
+                Welcome, <Text color="yellow.400">Linh</Text>
+              </Text>
+            </HStack>
+            <Image
+              source={{
+                uri: 'https://www.pngkey.com/png/detail/32-325199_afc-cup-logo-download-logo-afc-cup-2018.png',
+              }}
+              alt=""
+              style={S.image}
+            />
+          </HStack>
+          <Text style={S.title}>Top Leagues</Text>
+          <ListLeagues />
+          <Text style={S.title}>Current Match</Text>
+          <MatchCard />
+          <Text style={S.title}>Upcoming Match</Text>
+          {upcoming.map((card, index) => (
+            <UpcomingCard key={index} {...card} />
+          ))}
+        </VStack>
+      </ScrollView>
+    </ImageBackground>
   );
 };
 export default Home;

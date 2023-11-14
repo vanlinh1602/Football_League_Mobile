@@ -56,10 +56,10 @@ const TabNavigation = ({ tabs }: Props) => {
         tabBarStyle: {
           ...defautTabStyles.tabBarStyle,
         },
-      }}
-      sceneContainerStyle={{ paddingBottom: 100, backgroundColor: 'white' }}>
-      {tabs.map(({ name, render, icon, tabBarButton }) => (
+      }}>
+      {tabs.map(({ name, render, icon, tabBarButton }, index) => (
         <Tab.Screen
+          key={index}
           name={name}
           component={render}
           options={{

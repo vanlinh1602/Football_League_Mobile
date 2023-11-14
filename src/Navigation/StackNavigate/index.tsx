@@ -16,8 +16,8 @@ const StackNavigate = ({ stacks }: Props) => {
       screenOptions={{
         headerShown: false,
       }}>
-      {stacks.map(({ name, render }) => (
-        <Stack.Screen name={name} component={render} />
+      {stacks.map(({ name, render }, index) => (
+        <Stack.Screen key={index} name={name} component={render} />
       ))}
     </Stack.Navigator>
   );

@@ -2,12 +2,13 @@
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 
-import { AntDesign } from '../lib/icons';
+import { AntDesign, Feather, MaterialIcons, Octicons } from '../lib/icons';
 import { TabNavigation } from '../Navigation';
-import Details from './Details';
 import Home from './Home';
 import Profile from './Profile';
-import Settings from './Settings';
+import Statistic from './Statistic';
+import Search from './Search';
+import Schedule from './Schedule';
 
 function Workspace() {
   return (
@@ -18,21 +19,28 @@ function Workspace() {
             name: 'Home',
             render: Home,
             icon: ({ color, size }) => (
-              <AntDesign name="home" color={color} size={size} />
+              <Octicons name="home" color={color} size={size} />
             ),
           },
           {
-            name: 'Details',
-            render: Details,
+            name: 'Search',
+            render: Search,
             icon: ({ color, size }) => (
-              <AntDesign name="form" color={color} size={size} />
+              <AntDesign name="search1" color={color} size={size} />
             ),
           },
           {
-            name: 'Settings',
-            render: Settings,
+            name: 'Statistic',
+            render: Statistic,
             icon: ({ color, size }) => (
-              <AntDesign name="setting" color={color} size={size} />
+              <Feather name="pie-chart" color={color} size={size} />
+            ),
+          },
+          {
+            name: 'Schedule',
+            render: Schedule,
+            icon: ({ color, size }) => (
+              <MaterialIcons name="access-time" color={color} size={size} />
             ),
           },
           {

@@ -20,8 +20,8 @@ export const defautTabStyles = StyleSheet.create({
     left: 20,
     right: 20,
     backgroundColor: '#ffffff',
-    borderRadius: 15,
-    height: 70,
+    borderRadius: 28,
+    height: 60,
     ...TabStyles.shadow,
   },
 });

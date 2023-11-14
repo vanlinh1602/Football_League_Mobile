@@ -13,77 +13,25 @@ export const FontFamily = {
   thinItalic: 'Roboto-ThinItalic',
 };
 
-export const categories = [
+export const leagues = [
   {
-    imgUrl: 'https://cdn-icons-png.flaticon.com/512/10397/10397062.png',
-    title: 'Camping',
-    icon: 'tent',
+    img: require('../assets/images/leagues/AFC_Cup.png'),
+    title: 'AFC Cup',
   },
   {
-    imgUrl: 'https://cdn-icons-png.flaticon.com/512/4336/4336883.png',
-    title: 'Beach',
-    icon: 'island',
+    img: require('../assets/images/leagues/AFC_Champions_League.png'),
+    title: 'AFC Champions',
   },
   {
-    imgUrl: 'https://cdn-icons-png.flaticon.com/512/10180/10180302.png',
-    title: 'Kayak',
-    icon: 'sait-boat',
+    img: require('../assets/images/leagues/Europa_League.png'),
+    title: 'Europa league',
   },
   {
-    imgUrl: 'https://cdn-icons-png.flaticon.com/512/2847/2847264.png',
-    title: 'Mount',
-    icon: 'area-chart',
+    img: require('../assets/images/leagues/CAF.png'),
+    title: 'CAF',
   },
   {
-    imgUrl: 'https://cdn-icons-png.flaticon.com/512/2321/2321588.png',
-    title: 'Forest',
-    icon: 'holiday-village',
-  },
-];
-
-export const dataCitySelectList = [
-  { key: 'C1', value: 'Ho Chi Minh' },
-  { key: 'C2', value: 'Ha Noi' },
-  { key: 'C3', value: 'Da Nang' },
-  { key: 'C4', value: 'Vung Tau' },
-  { key: 'C5', value: 'Da Lat' },
-];
-
-export const weather_field = [
-  {
-    name: 'Wind',
-    icon: 'weather-windy',
-    extend: 'km/h',
-    key: 'wind_kph',
-  },
-  {
-    name: 'Pressure',
-    icon: 'car-brake-low-pressure',
-    extend: 'mb',
-    key: 'pressure_mb',
-  },
-  {
-    name: 'Humidity',
-    icon: 'water',
-    extend: '%',
-    key: 'humidity',
-  },
-  {
-    name: 'Precipitation',
-    icon: 'water',
-    extend: 'mm',
-    key: 'precip_mm',
-  },
-  {
-    name: 'Clound',
-    icon: 'weather-cloudy',
-    extend: '%',
-    key: 'cloud',
-  },
-  {
-    name: 'UV',
-    icon: 'sun-wireless',
-    extend: '',
-    key: 'uv',
+    img: require('../assets/images/leagues/UEFA.png'),
+    title: 'UEFA',
   },
 ];
