@@ -36,3 +36,9 @@ export const card_BG: CustomObject<any> = {
   card7: require('../assets/images/cardBG/7.png'),
   card8: require('../assets/images/cardBG/8.png'),
 };
+
+export const categories_images = {
+  leagues: require('../assets/images/categories/leagues.jpg'),
+  players: require('../assets/images/categories/players.jpg'),
+  teams: require('../assets/images/categories/teams.jpg'),
+};
