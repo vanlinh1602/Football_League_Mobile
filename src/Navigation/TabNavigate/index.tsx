@@ -7,8 +7,10 @@ import { View } from 'native-base';
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 
+import { RootTabParamList } from '../type';
 import { defautTabStyles, TabStyles } from './styles';
-const Tab = createBottomTabNavigator();
+
+const Tab = createBottomTabNavigator<RootTabParamList>();
 
 const CustomTabBarButton = ({ children, onPress }: BottomTabBarButtonProps) => {
   return (
@@ -35,7 +37,7 @@ const CustomTabBarButton = ({ children, onPress }: BottomTabBarButtonProps) => {
 
 type Props = {
   tabs: {
-    name: string;
+    name: keyof RootTabParamList;
     render: any;
     tabBarButton?: boolean;
     icon?: (props: {

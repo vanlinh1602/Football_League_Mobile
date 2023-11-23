@@ -7,10 +7,7 @@ import { MatchCard, UpcomingCard } from '../../features/Home/components';
 import ListLeagues from '../../features/Home/components/ListLeagues';
 import { images, logos } from '../../lib/assets';
 import { Ionicons } from '../../lib/icons';
-import type { RootStackScreenProps } from '../type';
 import S from './styles';
-
-export type Props = RootStackScreenProps<'Home'>;
 
 const upcoming = [
   {

@@ -1,11 +1,13 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 
-const Stack = createStackNavigator();
+import { RootStackParamList } from '../type';
+
+const Stack = createStackNavigator<RootStackParamList>();
 
 type Props = {
   stacks: {
-    name: string;
+    name: keyof RootStackParamList;
     render: any;
   }[];
 };
