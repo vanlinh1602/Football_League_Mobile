@@ -1,7 +1,16 @@
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
-import type { CompositeScreenProps } from '@react-navigation/native';
+import {
+  BottomTabNavigationProp,
+  BottomTabScreenProps,
+} from '@react-navigation/bottom-tabs';
+import type {
+  CompositeNavigationProp,
+  CompositeScreenProps,
+} from '@react-navigation/native';
 import { NavigatorScreenParams } from '@react-navigation/native';
-import type { StackScreenProps } from '@react-navigation/stack';
+import type {
+  StackNavigationProp,
+  StackScreenProps,
+} from '@react-navigation/stack';
 
 // Bottom Tab
 export type RootTabParamList = {
@@ -9,11 +18,17 @@ export type RootTabParamList = {
   Search: undefined;
   Statistic: undefined;
   Schedule: undefined;
-  Profile: { test: string };
+  Profile: undefined;
 };
 
 type RootTabScreenProps<T extends keyof RootTabParamList> =
   BottomTabScreenProps<RootTabParamList, T>;
+
+export type TabScreenNavigationProp<T extends keyof RootTabParamList> =
+  CompositeNavigationProp<
+    BottomTabNavigationProp<RootTabParamList, T>,
+    StackNavigationProp<RootStackParamList>
+  >;
 
 export type HomeTabScreenProps<T extends keyof RootTabParamList> =
   CompositeScreenProps<
@@ -24,8 +39,14 @@ export type HomeTabScreenProps<T extends keyof RootTabParamList> =
 // Stack
 export type RootStackParamList = {
   HomeTabs: NavigatorScreenParams<RootTabParamList>;
-  Login: { email: string };
+  Login: undefined;
 };
+
+export type StackScreenNavigationProp<T extends keyof RootStackParamList> =
+  CompositeNavigationProp<
+    StackNavigationProp<RootStackParamList, T>,
+    BottomTabNavigationProp<RootTabParamList>
+  >;
 
 type RootStackScreenProps<T extends keyof RootStackParamList> =
   StackScreenProps<RootStackParamList, T>;

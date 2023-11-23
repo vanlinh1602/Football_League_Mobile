@@ -7,6 +7,7 @@ import { View } from 'native-base';
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 
+import { Authenticate } from '../../components';
 import { RootTabParamList } from '../type';
 import { defautTabStyles, TabStyles } from './styles';
 
@@ -45,6 +46,7 @@ type Props = {
       color: string;
       size: number;
     }) => JSX.Element;
+    auth?: boolean;
   }[];
 };
 
@@ -59,19 +61,33 @@ const TabNavigation = ({ tabs }: Props) => {
           ...defautTabStyles.tabBarStyle,
         },
       }}>
-      {tabs.map(({ name, render, icon, tabBarButton }, index) => (
-        <Tab.Screen
-          key={index}
-          name={name}
-          component={render}
-          options={{
-            tabBarIcon: icon,
-            tabBarButton: tabBarButton
-              ? props => <CustomTabBarButton {...props} />
-              : undefined,
-          }}
-        />
-      ))}
+      {tabs.map(({ name, auth, render, icon, tabBarButton }, index) =>
+        auth ? (
+          <Tab.Screen
+            key={index}
+            name={name}
+            options={{
+              tabBarIcon: icon,
+              tabBarButton: tabBarButton
+                ? props => <CustomTabBarButton {...props} />
+                : undefined,
+            }}>
+            {props => <Authenticate>{render(props)}</Authenticate>}
+          </Tab.Screen>
+        ) : (
+          <Tab.Screen
+            key={index}
+            name={name}
+            component={render}
+            options={{
+              tabBarIcon: icon,
+              tabBarButton: tabBarButton
+                ? props => <CustomTabBarButton {...props} />
+                : undefined,
+            }}
+          />
+        ),
+      )}
     </Tab.Navigator>
   );
 };

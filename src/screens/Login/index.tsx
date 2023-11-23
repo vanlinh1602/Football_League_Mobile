@@ -4,14 +4,22 @@ import { Button, Text } from 'native-base';
 import React, { useCallback } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const Login = () => {
+import { HomeStackScreenProps } from '../../Navigation/type';
+
+type Props = HomeStackScreenProps<'Login'>;
+
+const Login = ({ navigation }: Props) => {
   const googleSignIn = useCallback(async () => {
     await GoogleSignin.hasPlayServices({
       showPlayServicesUpdateDialog: true,
     });
     const { idToken } = await GoogleSignin.signIn();
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-    return auth().signInWithCredential(googleCredential);
+    auth()
+      .signInWithCredential(googleCredential)
+      .then(() => {
+        navigation.goBack();
+      });
   }, []);
 
   return (

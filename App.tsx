@@ -1,7 +1,6 @@
-import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { extendTheme, NativeBaseProvider } from 'native-base';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Provider } from 'react-redux';
 
 import { CLIENT_ID } from './src/lib/config';
@@ -21,12 +20,6 @@ function App() {
   GoogleSignin.configure({
     webClientId: CLIENT_ID,
   });
-
-  useEffect(() => {
-    auth().onAuthStateChanged(user => {
-      console.log(user);
-    });
-  }, []);
 
   return (
     <Provider store={store}>

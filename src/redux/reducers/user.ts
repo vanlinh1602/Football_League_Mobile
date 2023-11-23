@@ -1,17 +1,26 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import type { UserState } from '../types/users';
+import type { SignInAction, UserData, UserState } from '../types/users';
 
 export const initialState: UserState = {
-  info: {},
-  admin: false,
-  loading: false,
+  handling: false,
 };
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    fetchUser(state, action: PayloadAction<UserData>) {
+      state.handling = false;
+      state.data = action.payload;
+    },
+    signIn(state, _action: SignInAction) {
+      state.handling = true;
+    },
+    signOut(state) {
+      state.data = undefined;
+    },
+  },
 });
 
 export const { actions, reducer } = userSlice;

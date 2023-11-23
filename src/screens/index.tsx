@@ -1,8 +1,11 @@
+import auth from '@react-native-firebase/auth';
 import { NavigationContainer } from '@react-navigation/native';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { AntDesign, Feather, MaterialIcons, Octicons } from '../lib/icons';
 import { StackNavigate, TabNavigation } from '../Navigation';
+import { actions as userActions } from '../redux/reducers/user';
 import Home from './Home';
 import Login from './Login';
 import Profile from './Profile';
@@ -55,6 +58,15 @@ const HomeTabs = () => {
 };
 
 const Workspace = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    auth().onAuthStateChanged(user => {
+      if (user) {
+        dispatch(userActions.signIn(user));
+      }
+    });
+  }, []);
   return (
     <NavigationContainer>
       <StackNavigate

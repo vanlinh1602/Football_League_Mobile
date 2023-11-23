@@ -2,11 +2,13 @@ import moment from 'moment';
 import { HStack, Image, ScrollView, Text, VStack } from 'native-base';
 import React from 'react';
 import { ImageBackground } from 'react-native';
+import { useSelector } from 'react-redux';
 
 import { MatchCard, UpcomingCard } from '../../features/Home/components';
 import ListLeagues from '../../features/Home/components/ListLeagues';
 import { images, logos } from '../../lib/assets';
 import { Ionicons } from '../../lib/icons';
+import { selectUser } from '../../redux/selectors/user';
 import S from './styles';
 
 const upcoming = [
@@ -65,6 +67,8 @@ const upcoming = [
 ];
 
 const Home = () => {
+  const user = useSelector(selectUser);
+
   return (
     <ImageBackground style={S.background} source={images.homeBackgound}>
       <ScrollView>
@@ -73,12 +77,14 @@ const Home = () => {
             <HStack alignItems="center" space={3} marginLeft={3}>
               <Ionicons style={S.icon} name="notifications-outline" />
               <Text style={S.wellcome}>
-                Welcome, <Text color="yellow.400">Linh</Text>
+                Welcome, <Text color="yellow.400">{user?.name || 'Guest'}</Text>
               </Text>
             </HStack>
             <Image
               source={{
-                uri: 'https://www.pngkey.com/png/detail/32-325199_afc-cup-logo-download-logo-afc-cup-2018.png',
+                uri:
+                  user?.photoURL ||
+                  'https://www.pngkey.com/png/detail/32-325199_afc-cup-logo-download-logo-afc-cup-2018.png',
               }}
               alt=""
               style={S.image}
