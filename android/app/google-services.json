@@ -12,7 +12,20 @@
           "package_name": "com.leaguemanagement"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "951610431420-4lt2duhdu6fjgh1hk8tc0eoqbqgpto0v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.leaguemanagement",
+            "certificate_hash": "354cc6272d51ab5e3eb764551f7e36f97a1411ea"
+          }
+        },
+        {
+          "client_id": "951610431420-4elkd2rts8pn2dgt44dg450mp4fk4ecs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAnXLB70GofqIBeNWqa7_5wID2IZ6Ex3gU"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "951610431420-4elkd2rts8pn2dgt44dg450mp4fk4ecs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

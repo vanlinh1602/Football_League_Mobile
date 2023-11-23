@@ -19,7 +19,7 @@ const Statistic = () => {
             console.log(reslute.data);
           }
         }}>
-        Click me
+        Fetch Data
       </Button>
     </SafeAreaView>
   );
