@@ -1,1 +1,3 @@
-export type UserState = {};
+export type UserState = {
+  handling: boolean;
+};

@@ -1,10 +1,12 @@
-import { HStack, Input, ScrollView, Text, VStack, View } from 'native-base';
+import { chunk } from 'lodash';
+import { HStack, Input, ScrollView, Text, View, VStack } from 'native-base';
+import React from 'react';
 import { ImageBackground } from 'react-native';
-import S from './styles';
+
+import CategoriesCard from '../../features/search/components/CategotiesCard';
 import { categories_images, images } from '../../lib/assets';
 import { AntDesign } from '../../lib/icons';
-import CategoriesCard from '../../features/search/components/CategotiesCard';
-import { chunk } from 'lodash';
+import S from './styles';
 
 const categories = [
   { name: 'Leagues', image: categories_images.leagues },
@@ -38,15 +40,15 @@ const Search = () => {
           />
           <HStack mt={0} space={2} width="90%">
             {categories.map(category => (
-              <View style={S.categotyList}>
+              <View key={category.name} style={S.categotyList}>
                 <Text style={S.categotyListText}>{category.name}</Text>
               </View>
             ))}
           </HStack>
           <Text style={S.title}>Categories</Text>
           <VStack space={3}>
-            {chunk(categories, 2).map(group => (
-              <HStack space={5} w="100%">
+            {chunk(categories, 2).map((group, gIndex) => (
+              <HStack key={gIndex} space={5} w="100%">
                 {group.map((category, index) => (
                   <CategoriesCard key={index} {...category} />
                 ))}

@@ -3,3 +3,6 @@ package-lock.json
 dist/*
 .eslintrc.js
 .vscode/*
+babel.config.js
+metro.config.js
+react-native.config.js

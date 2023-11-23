@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unstable-nested-components */
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 
@@ -6,9 +5,9 @@ import { AntDesign, Feather, MaterialIcons, Octicons } from '../lib/icons';
 import { TabNavigation } from '../Navigation';
 import Home from './Home';
 import Profile from './Profile';
-import Statistic from './Statistic';
-import Search from './Search';
 import Schedule from './Schedule';
+import Search from './Search';
+import Statistic from './Statistic';
 
 function Workspace() {
   return (

@@ -27,7 +27,7 @@ export const createNotification = async (
         title,
         body,
         android: {
-          channelId: 'your-channel-id',
+          channelId: CHANNEL_NOTIFY,
         },
       },
       trigger,

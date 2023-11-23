@@ -1,26 +1,16 @@
-import {
-  Button,
-  HStack,
-  Image,
-  ScrollView,
-  Text,
-  VStack,
-  View,
-} from 'native-base';
-import React from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
-
-import type { RootStackScreenProps } from '../type';
-
-import S from './styles';
-import { MatchCard, UpcomingCard } from '../../features/Home/components';
-import { Ionicons } from '../../lib/icons';
-import { ImageBackground } from 'react-native';
-import { images, logos } from '../../lib/assets';
 import moment from 'moment';
-import ListLeagues from '../../features/Home/components/ListLeagues';
+import { HStack, Image, ScrollView, Text, VStack } from 'native-base';
+import React from 'react';
+import { ImageBackground } from 'react-native';
 
-type Props = RootStackScreenProps<'Home'>;
+import { MatchCard, UpcomingCard } from '../../features/Home/components';
+import ListLeagues from '../../features/Home/components/ListLeagues';
+import { images, logos } from '../../lib/assets';
+import { Ionicons } from '../../lib/icons';
+import type { RootStackScreenProps } from '../type';
+import S from './styles';
+
+export type Props = RootStackScreenProps<'Home'>;
 
 const upcoming = [
   {
@@ -77,7 +67,7 @@ const upcoming = [
   },
 ];
 
-const Home = ({ navigation }: Props) => {
+const Home = () => {
   return (
     <ImageBackground style={S.background} source={images.homeBackgound}>
       <ScrollView>
