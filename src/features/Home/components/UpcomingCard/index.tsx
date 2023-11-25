@@ -1,11 +1,11 @@
-import { HStack, Image, Text, VStack, View } from 'native-base';
-
-import S from './styles';
-import moment from 'moment';
-
-import { ImageBackground } from 'react-native';
-import { card_BG } from '../../../../lib/assets';
 import { random } from 'lodash';
+import moment from 'moment';
+import { HStack, Image, Text, View, VStack } from 'native-base';
+import React from 'react';
+import { ImageBackground } from 'react-native';
+
+import { card_BG } from '../../../../lib/assets';
+import S from './styles';
 
 type Props = {
   teamA: {

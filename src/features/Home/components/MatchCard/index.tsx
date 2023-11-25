@@ -1,31 +1,35 @@
-import { HStack, Image, Text, VStack, View } from 'native-base';
-
-import S from './styles';
+import { random } from 'lodash';
+import { HStack, Image, Text, View, VStack } from 'native-base';
+import React from 'react';
 import { ImageBackground } from 'react-native';
-import { card_BG, logos } from '../../../../lib/assets';
 
-const MatchCard = () => {
+import { card_BG, logos } from '../../../../lib/assets';
+import S from './styles';
+
+type Props = {
+  mini?: boolean;
+};
+
+const MatchCard = ({ mini }: Props) => {
   return (
     <ImageBackground
-      imageStyle={{ margin: '5%', borderRadius: 28 }}
-      source={card_BG.card6}>
-      <View style={S.view} padding={5}>
-        <VStack alignItems="center" paddingBottom={5}>
-          <Text fontSize={24} fontWeight="bold" color="white">
+      imageStyle={mini ? S.backgroundMini : S.background}
+      source={card_BG[`card${random(1, 8)}`]}>
+      <View style={mini ? S.viewMini : S.view} padding={5}>
+        <VStack alignItems={mini ? 'flex-start' : 'center'} paddingBottom={5}>
+          <Text fontSize={mini ? 16 : 24} fontWeight="bold" color="white">
             Premier League
           </Text>
           <Text color="white" fontWeight="bold">
             England
           </Text>
         </VStack>
-        <HStack space={12}>
+        <HStack space={mini ? 6 : 12}>
           <VStack alignItems="center">
             <Image
-              source={{
-                uri: 'https://www.pngkey.com/png/detail/32-325199_afc-cup-logo-download-logo-afc-cup-2018.png',
-              }}
+              source={logos.Chelsea}
               alt=""
-              style={S.image}
+              style={mini ? S.imageMini : S.image}
             />
             <Text color="white">Chelsea</Text>
           </VStack>
@@ -33,10 +37,14 @@ const MatchCard = () => {
             <Text fontSize={30} color="white" fontWeight="bold">
               0 : 1
             </Text>
-            <Text style={S.date}>10 - 9</Text>
+            <Text style={mini ? S.dateMini : S.date}>10 - 9</Text>
           </VStack>
           <VStack alignItems="center">
-            <Image source={logos.Arsenal} alt="" style={S.image} />
+            <Image
+              source={logos.Arsenal}
+              alt=""
+              style={mini ? S.imageMini : S.image}
+            />
             <Text color="white">Arsenal</Text>
           </VStack>
         </HStack>

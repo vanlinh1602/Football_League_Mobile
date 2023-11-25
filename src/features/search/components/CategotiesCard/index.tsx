@@ -1,6 +1,7 @@
+import { Text, View } from 'native-base';
 import React from 'react';
 import { ImageBackground, TouchableOpacity } from 'react-native';
-import { Text, View } from 'native-base';
+
 import S from './styles';
 
 type Props = {

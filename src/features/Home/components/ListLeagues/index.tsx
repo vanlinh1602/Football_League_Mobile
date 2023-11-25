@@ -1,13 +1,11 @@
 import { ScrollView, View } from 'native-base';
 import React from 'react';
-import { Image, Text, TouchableOpacity } from 'react-native';
+import { Image, TouchableOpacity } from 'react-native';
 
 import { leagues } from '../../../../lib/options';
 import S from './styles';
 
-type Props = {};
-
-const ListLeagues = ({}: Props) => {
+const ListLeagues = () => {
   return (
     <ScrollView
       horizontal
