@@ -20,7 +20,7 @@ const Login = ({ navigation }: Props) => {
       .then(() => {
         navigation.goBack();
       });
-  }, []);
+  }, [navigation]);
 
   return (
     <SafeAreaView>
