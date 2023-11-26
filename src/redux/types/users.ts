@@ -6,6 +6,7 @@ export type UserData = {
   email: string;
   name: string;
   photoURL?: string;
+  role?: string;
 };
 
 export type UserState = {
