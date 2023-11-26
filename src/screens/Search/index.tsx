@@ -39,7 +39,7 @@ const Search = () => {
             placeholder="Search Leagues, Team, Player"
           />
           <HStack mt={0} space={2} width="90%">
-            {categories.map(category => (
+            {categories.map((category) => (
               <View key={category.name} style={S.categotyList}>
                 <Text style={S.categotyListText}>{category.name}</Text>
               </View>

@@ -48,6 +48,7 @@ const HomeTabs = () => {
         {
           name: 'Profile',
           render: Profile,
+          auth: true,
           icon: ({ color, size }) => (
             <AntDesign name="user" color={color} size={size} />
           ),
@@ -61,7 +62,7 @@ const Workspace = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    auth().onAuthStateChanged(user => {
+    auth().onAuthStateChanged((user) => {
       if (user) {
         dispatch(userActions.signIn(user));
       }

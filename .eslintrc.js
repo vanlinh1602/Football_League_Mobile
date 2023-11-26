@@ -30,6 +30,7 @@ module.exports = {
     'simple-import-sort',
     'unused-imports',
     'react-hooks',
+    'prettier',
   ],
   rules: {
     indent: 'off',
@@ -53,5 +54,6 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
+    'arrow-parens': ['error', 'always'],
   },
 };
