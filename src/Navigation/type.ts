@@ -39,7 +39,7 @@ export type HomeTabScreenProps<T extends keyof RootTabParamList> =
 // Stack
 export type RootStackParamList = {
   HomeTabs: NavigatorScreenParams<RootTabParamList>;
-  Login: undefined;
+  Login: { authScreen: keyof (RootTabParamList & RootStackParamList) };
 };
 
 export type StackScreenNavigationProp<T extends keyof RootStackParamList> =

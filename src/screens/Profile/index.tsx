@@ -1,6 +1,6 @@
 import auth from '@react-native-firebase/auth';
 import { Divider, HStack, Image, Text, View, VStack } from 'native-base';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { SectionSelect } from '../../features/Profile/components';
@@ -16,6 +16,14 @@ const Profile = ({ navigation }: Props) => {
   const dispatch = useDispatch();
 
   const user = useSelector(selectUser);
+
+  const { name, email, avatar } = useMemo(() => {
+    return {
+      name: user?.name,
+      email: user?.email,
+      avatar: user?.photoURL,
+    };
+  }, [user]);
   return (
     <View style={{ padding: 20, backgroundColor: '#fff', height: '100%' }}>
       <VStack space={5}>
@@ -31,7 +39,7 @@ const Profile = ({ navigation }: Props) => {
           <Image
             source={{
               uri:
-                user?.photoURL ||
+                avatar ||
                 'https://www.pngkey.com/png/detail/32-325199_afc-cup-logo-download-logo-afc-cup-2018.png',
             }}
             alt=""
@@ -39,9 +47,9 @@ const Profile = ({ navigation }: Props) => {
           />
           <VStack>
             <Text fontWeight="bold" fontSize={24}>
-              {user?.name}
+              {name}
             </Text>
-            <Text>{user?.email}</Text>
+            <Text>{email}</Text>
           </VStack>
           <MaterialIcons
             style={[S.icon, { position: 'absolute', right: 10 }]}

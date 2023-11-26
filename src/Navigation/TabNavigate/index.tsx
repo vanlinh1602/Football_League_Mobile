@@ -72,7 +72,9 @@ const TabNavigation = ({ tabs }: Props) => {
                 ? (props) => <CustomTabBarButton {...props} />
                 : undefined,
             }}>
-            {(props) => <Authenticate>{render(props)}</Authenticate>}
+            {(props) => (
+              <Authenticate authScreen={name}>{render(props)}</Authenticate>
+            )}
           </Tab.Screen>
         ) : (
           <Tab.Screen
