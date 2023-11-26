@@ -1,27 +1,105 @@
-import { Button, Text } from 'native-base';
+import { range } from 'lodash';
+import { HStack, ScrollView, Text, View, VStack } from 'native-base';
 import React from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { ImageBackground } from 'react-native';
 
-import { backendService } from '../../services';
+import ListLeagues from '../../features/Home/components/ListLeagues';
+import {
+  MatchAnalysisCard,
+  PopularPlayerCard,
+  PopularTeamCard,
+} from '../../features/Statistic/components';
+import { images } from '../../lib/assets';
+import { EvilIcons, Ionicons } from '../../lib/icons';
+import S from './styles';
 
-// type Props = HomeTabScreenProps<'home'>;
+const colorLinerTeam = [
+  ['#e9ec3d', '#c4c29d', '#c6c2f1'],
+  ['#f25cff', '#dfafd6', '#ded6cd'],
+];
+const colorLinerPlayer = [
+  ['#31f9f9', '#bffafa', '#ffffff'],
+  ['#52c749', '#bedcc2', '#ffffff'],
+  ['#fe4040', '#fca5a5', '#ffffff'],
+];
 
 const Statistic = () => {
   return (
-    <SafeAreaView>
-      <Text>Statistic page</Text>
-      <Button
-        onPress={async () => {
-          const reslute = await backendService.post('/api/users', {
-            email: 'vanlinh14121@gmail.com',
-          });
-          if (reslute.kind === 'ok') {
-            console.log(reslute.data);
-          }
-        }}>
-        Fetch Data
-      </Button>
-    </SafeAreaView>
+    <ImageBackground source={images.homeBackgound}>
+      <VStack space={5} pb={5}>
+        <View>
+          <HStack justifyContent="space-between" p={3} alignItems="center">
+            <Text color="#fff" fontWeight="bold" fontSize={30}>
+              Statistic
+            </Text>
+            <HStack justifyContent="flex-end" space={3}>
+              <Ionicons name="search" color="#fff" size={30} />
+              <Ionicons name="notifications" color="#fff" size={30} />
+            </HStack>
+          </HStack>
+          <Text color="#fff" fontSize={24} pl={5}>
+            Choose League
+          </Text>
+          <ListLeagues />
+        </View>
+        <View style={S.statistic}>
+          <ScrollView>
+            <VStack space={2}>
+              <View>
+                <HStack p={1} alignItems="center" space={2}>
+                  <EvilIcons name="trophy" size={35} color="grey" />
+                  <Text color="grey" pt={2} fontWeight="bold">
+                    AFC CUP
+                  </Text>
+                </HStack>
+              </View>
+              <Text fontWeight="bold" fontSize={24}>
+                Popular Team
+              </Text>
+              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                <View height="auto">
+                  <HStack space={5}>
+                    {range(0, 5).map((key) => (
+                      <PopularTeamCard
+                        key={key}
+                        colorLiner={colorLinerTeam[key % 2]}
+                      />
+                    ))}
+                  </HStack>
+                </View>
+              </ScrollView>
+              <Text fontWeight="bold" fontSize={24}>
+                Popular Player
+              </Text>
+              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                <View height="auto">
+                  <HStack space={7}>
+                    {range(0, 5).map((key) => (
+                      <PopularPlayerCard
+                        key={key}
+                        colorLiner={colorLinerPlayer[key % 3]}
+                      />
+                    ))}
+                  </HStack>
+                </View>
+              </ScrollView>
+              <Text fontWeight="bold" fontSize={24}>
+                Match Analysis
+              </Text>
+              <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                <View height="auto">
+                  <HStack space={5}>
+                    {range(0, 5).map((key) => (
+                      <MatchAnalysisCard key={key} />
+                    ))}
+                  </HStack>
+                </View>
+              </ScrollView>
+            </VStack>
+          </ScrollView>
+        </View>
+      </VStack>
+    </ImageBackground>
   );
 };
 export default Statistic;
