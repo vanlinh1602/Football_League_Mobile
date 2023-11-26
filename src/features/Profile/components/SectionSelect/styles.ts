@@ -2,14 +2,12 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   image: {
-    width: 70,
-    height: 70,
+    width: 60,
+    height: 60,
     borderRadius: 48,
-    borderWidth: 1,
-    borderColor: '#000',
   },
-  icon: {
-    fontSize: 24,
+  text: {
+    fontSize: 18,
     color: '#000',
   },
 });

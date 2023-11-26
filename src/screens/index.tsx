@@ -47,8 +47,8 @@ const HomeTabs = () => {
         },
         {
           name: 'Profile',
-          render: Profile,
           auth: true,
+          render: Profile,
           icon: ({ color, size }) => (
             <AntDesign name="user" color={color} size={size} />
           ),
@@ -67,7 +67,7 @@ const Workspace = () => {
         dispatch(userActions.signIn(user));
       }
     });
-  }, []);
+  }, [dispatch]);
   return (
     <NavigationContainer>
       <StackNavigate

@@ -69,10 +69,10 @@ const TabNavigation = ({ tabs }: Props) => {
             options={{
               tabBarIcon: icon,
               tabBarButton: tabBarButton
-                ? props => <CustomTabBarButton {...props} />
+                ? (props) => <CustomTabBarButton {...props} />
                 : undefined,
             }}>
-            {props => <Authenticate>{render(props)}</Authenticate>}
+            {(props) => <Authenticate>{render(props)}</Authenticate>}
           </Tab.Screen>
         ) : (
           <Tab.Screen
@@ -82,7 +82,7 @@ const TabNavigation = ({ tabs }: Props) => {
             options={{
               tabBarIcon: icon,
               tabBarButton: tabBarButton
-                ? props => <CustomTabBarButton {...props} />
+                ? (props) => <CustomTabBarButton {...props} />
                 : undefined,
             }}
           />

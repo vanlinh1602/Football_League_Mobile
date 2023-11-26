@@ -8,8 +8,6 @@ import { MatchCard } from '../../features/Home/components';
 import { images } from '../../lib/assets';
 import { Ionicons } from '../../lib/icons';
 
-// type Props = HomeTabScreenProps<'home'>;
-
 const Schedule = () => {
   return (
     <ImageBackground source={images.homeBackgound}>
@@ -23,7 +21,7 @@ const Schedule = () => {
         </Text>
         <HStack>
           <ScrollView horizontal>
-            {range(0, 6).map(num => (
+            {range(0, 6).map((num) => (
               <View key={num} width={300}>
                 <MatchCard mini />
               </View>
@@ -32,7 +30,7 @@ const Schedule = () => {
         </HStack>
         <View style={{ borderTopLeftRadius: 24, borderTopRightRadius: 24 }}>
           <CustomWeekCalendar
-            onDayChange={date => {
+            onDayChange={(date) => {
               console.log(date);
             }}
           />

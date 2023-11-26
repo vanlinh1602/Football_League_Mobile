@@ -42,3 +42,11 @@ export const categories_images = {
   players: require('../assets/images/categories/players.jpg'),
   teams: require('../assets/images/categories/teams.jpg'),
 };
+
+export const profile_asset = {
+  personal_setting: require('../assets/images/profile/persion.png'),
+  notification: require('../assets/images/profile/notification.png'),
+  general: require('../assets/images/profile/setting.png'),
+  help: require('../assets/images/profile/help.png'),
+  logout: require('../assets/images/profile/logout.png'),
+};
