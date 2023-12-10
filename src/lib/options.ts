@@ -35,3 +35,22 @@ export const leagues = [
     title: 'UEFA',
   },
 ];
+
+export const comments = [
+  {
+    ava: require('../assets/images/categories/players.jpg'),
+    userName: 'Van Linh',
+    comment:
+      ' Được coi là một trong những cầu thủ giỏi nhất thế giới, anh nổi tiếng với tốc độ, sức mạnh và khả năng dứt điểm trong vòng cấm',
+  },
+  {
+    ava: require('../assets/images/categories/players.jpg'),
+    userName: 'Gia Hy',
+    comment: 'Im so sad',
+  },
+  {
+    ava: require('../assets/images/categories/players.jpg'),
+    userName: 'Nhu Phi',
+    comment: 'Lech rate roiii',
+  },
+];

@@ -7,11 +7,12 @@ import { AntDesign, Feather, MaterialIcons, Octicons } from '../lib/icons';
 import { StackNavigate, TabNavigation } from '../Navigation';
 import { actions as userActions } from '../redux/reducers/user';
 import Home from './Home';
-import Login from './Login';
+//import Login from './Login';
 import Profile from './Profile';
 import Schedule from './Schedule';
 import Search from './Search';
 import Statistic from './Statistic';
+import PlayerInfo from './PlayerInfo';
 
 const HomeTabs = () => {
   return (
@@ -72,8 +73,9 @@ const Workspace = () => {
     <NavigationContainer>
       <StackNavigate
         stacks={[
-          { name: 'HomeTabs', render: HomeTabs },
-          { name: 'Login', render: Login },
+          { name: 'PlayerInfo', render: PlayerInfo},
+          //{ name: 'HomeTabs', render: HomeTabs },
+          // { name: 'Login', render: Login },
         ]}
       />
     </NavigationContainer>
