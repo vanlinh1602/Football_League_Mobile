@@ -53,7 +53,6 @@ export default StyleSheet.create({
     color:'darkblue'
   },
   infoPara:{
-    backgroundColor:'#ebebeb',
     paddingHorizontal:10,
     marginHorizontal:15,
     borderRadius:20,
@@ -61,11 +60,12 @@ export default StyleSheet.create({
     marginTop:15
   },
   infoText:{
-    fontSize:18,
+    fontSize:20,
     overflow:'hidden',
     paddingVertical:20,
     paddingHorizontal:10,
-    fontWeight:'500'
+    fontWeight:'500',
+    marginTop:-10
   },
   divider2:{
     height:2,

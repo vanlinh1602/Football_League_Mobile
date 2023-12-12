@@ -46,11 +46,11 @@ export const comments = [
   {
     ava: require('../assets/images/categories/players.jpg'),
     userName: 'Gia Hy',
-    comment: 'Im so sad',
+    comment: 'Nhà mình còn gì đâu ...',
   },
   {
     ava: require('../assets/images/categories/players.jpg'),
     userName: 'Nhu Phi',
-    comment: 'Lech rate roiii',
+    comment: 'Chien dau het minh cung doi tuyen MU, tu hao MU!',
   },
 ];

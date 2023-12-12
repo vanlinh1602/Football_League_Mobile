@@ -5,32 +5,33 @@ export default StyleSheet.create({
     flex:1,
   },
   ava: {
-    height:50,
-    width: 50,
+    height:45,
+    width: 45,
     borderRadius:90,
     marginHorizontal:15,
-    marginTop:10
+    marginTop:20
   },
   username: {
-    fontSize: 21,
-    paddingTop:23,
+    fontSize: 17,
+    paddingTop:2,
     fontWeight:'800',
-    marginLeft:2
+    marginLeft:4
   },
   commentContainer: {
     backgroundColor:'#ebebeb',
     padding:10,
     marginVertical:10,
     borderRadius:10,
-    marginLeft:50,
-    marginRight:20,
-    elevation:3
+    marginLeft:5,
+    elevation:3,
+    width:290,
+    marginTop:20
   },
   commentText:{
-    fontSize:18,
+    fontSize:16,
     color:'black',
-    fontWeight:'600',
-    padding:10,
+    fontWeight:'300',
+    padding:7,
   },
   iconheart: {
     fontSize:20,
@@ -41,6 +42,6 @@ export default StyleSheet.create({
     fontSize:20,
     marginTop:7,
     color:'black',
-    marginLeft:10
+    marginLeft:15
   }
 });

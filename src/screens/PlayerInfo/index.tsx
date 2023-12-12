@@ -10,8 +10,8 @@ import {
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 
+import ListComments from '../../features/search/components/ListComments';
 import PlayerInfoCard from '../../features/search/components/PlayerInfoCard';
-import ListComments from '../../features/search/components/userComment';
 import { logos } from '../../lib/assets';
 import { playersPicture } from '../../lib/assets';
 import { AntDesign } from '../../lib/icons';
@@ -65,7 +65,7 @@ const PlayerInfo = () => {
             </Text>
           </View>
           <Divider style={S.divider2} />
-          <HStack marginBottom={2}>
+          <HStack marginBottom={2} marginTop={1}>
           <Text style={S.playerInfo}>Comment</Text>
           <AntDesign style={S.iconComment} name="edit" />
           </HStack>

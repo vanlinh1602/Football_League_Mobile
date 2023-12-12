@@ -11,19 +11,19 @@ const ListComments = () => {
     <View marginBottom={2}>
       {comments.map((comment, index) => (
         <View key={index} style={S.container}>
-          <VStack marginTop={-4}>
+          <VStack marginTop={-1}>
             <HStack>
               <Image source={comment.ava} style={S.ava} />
-              <Text style={S.username}>{comment.userName}</Text>
-            </HStack>
-            <View style={S.commentContainer}>
-              <Text style={S.commentText}>{comment.comment}</Text>
-            </View>
-            <HStack>
-            <AntDesign style={S.iconheart} name="heart" />
-            <AntDesign style={S.iconheart2} name="edit" />
-            </HStack>
 
+              <View style={S.commentContainer}>
+                <Text style={S.username}>{comment.userName}</Text>
+                <Text style={S.commentText}>{comment.comment}</Text>
+              </View>
+            </HStack>
+            <HStack>
+              <AntDesign style={S.iconheart} name="heart" />
+              <AntDesign style={S.iconheart2} name="edit" />
+            </HStack>
           </VStack>
         </View>
       ))}

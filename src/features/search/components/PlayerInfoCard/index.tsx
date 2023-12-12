@@ -11,7 +11,6 @@ type Props = {
 const PlayerInfoCard = ({ name, score }: Props) => {
   return (
     <View style={S.container} alignItems="center">
-      {}
       <Text style={S.text}>{name}</Text>
       <View marginTop={10}>
         <Text style={S.scoreText}> {score} </Text>
