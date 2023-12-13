@@ -54,3 +54,7 @@ export const profile_asset = {
 export const playersPicture = {
   e_haaland: require('../assets/images/playersPicture/E_Haaland.png'),
 };
+
+export const leaguesName = {
+  AFC_champions: require('../assets/images/leagues/AFC_Champions_League.png'),
+};
