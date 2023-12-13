@@ -40,6 +40,7 @@ export type HomeTabScreenProps<T extends keyof RootTabParamList> =
 export type RootStackParamList = {
   HomeTabs: NavigatorScreenParams<RootTabParamList>;
   Login: { authScreen: keyof (RootTabParamList & RootStackParamList) };
+  PlayerInfo: undefined;
 };
 
 export type StackScreenNavigationProp<T extends keyof RootStackParamList> =
