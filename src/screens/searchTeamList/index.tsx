@@ -1,17 +1,9 @@
-import {
-  HStack,
-  Image,
-  Input,
-  ScrollView,
-  Text,
-  View,
-  VStack,
-} from 'native-base';
+import { HStack, Input, ScrollView, Text, View, VStack } from 'native-base';
 import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 
 import LeaguesCard from '../../features/search/components/LeaguesCard';
-import { arrow, leagueLogos } from '../../lib/assets';
+import { leagueLogos } from '../../lib/assets';
 import { AntDesign } from '../../lib/icons';
 import S from './styles';
 
@@ -43,12 +35,14 @@ const SearchTeamList = ({ navigation }) => {
     <ScrollView>
       <VStack>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <HStack style={S.goBack}>
-            <Image source={arrow.goBack_arrow} alt="arrow" height="90%" />
+          <HStack style={S.goBackPart}>
+            <View style={S.goBackArrow}>
+              <AntDesign name="arrowleft" size={20} color="#7000FF" />
+            </View>
             <View>
               <Text
                 height={50}
-                fontSize={30}
+                fontSize={28}
                 color="#7000FF"
                 fontWeight="bold"
                 marginLeft={3}>
