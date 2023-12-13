@@ -226,7 +226,7 @@ const CustomWeekCalendar = ({ onDayChange, currentDate }: Props) => {
         <CalendarProvider
           key="calendar_porvider"
           date={moment(currentDate).toISOString()}
-          onDateChanged={dateString => {
+          onDateChanged={(dateString) => {
             const date = moment(dateString).valueOf();
             onDayChange(date);
           }}>
