@@ -8,6 +8,7 @@ import { StackNavigate, TabNavigation } from '../Navigation';
 import { actions as userActions } from '../redux/reducers/user';
 import Home from './Home';
 import Login from './Login';
+import PlayerInfo from './PlayerInfo';
 import Profile from './Profile';
 import Schedule from './Schedule';
 import Search from './Search';
@@ -74,6 +75,7 @@ const Workspace = () => {
         stacks={[
           { name: 'HomeTabs', render: HomeTabs },
           { name: 'Login', render: Login },
+          { name: 'PlayerInfo', render: PlayerInfo},
         ]}
       />
     </NavigationContainer>

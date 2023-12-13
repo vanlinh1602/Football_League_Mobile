@@ -50,3 +50,7 @@ export const profile_asset = {
   help: require('../assets/images/profile/help.png'),
   logout: require('../assets/images/profile/logout.png'),
 };
+
+export const playersPicture = {
+  e_haaland: require('../assets/images/playersPicture/E_Haaland.png'),
+};
