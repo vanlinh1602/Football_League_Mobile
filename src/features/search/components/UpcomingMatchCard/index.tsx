@@ -43,7 +43,7 @@ const UpcomingMatchCard = () => {
               </View>
               <View style={{ position: 'absolute', top: 10, right: 10 }}>
                 <TouchableOpacity>
-                  <Text color={theme.red}>edit</Text>
+                  <Text color={theme.red}>delete</Text>
                 </TouchableOpacity>
               </View>
             </HStack>

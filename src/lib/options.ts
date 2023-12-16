@@ -54,3 +54,22 @@ export const comments = [
     comment: 'Chien dau het minh cung doi tuyen MU, tu hao MU!',
   },
 ];
+
+export const playerCard = [
+  {
+    ava: require('../assets/images/categories/players.jpg'),
+    name: 'Ronaldo'
+  },
+  {
+    ava: require('../assets/images/categories/players.jpg'),
+    name: 'Ronaldo'
+  },
+  {
+    ava: require('../assets/images/categories/players.jpg'),
+    name: 'Ronaldo'
+  },
+  {
+    ava: require('../assets/images/categories/players.jpg'),
+    name: 'Ronaldo'
+  },
+];
