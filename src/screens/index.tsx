@@ -13,7 +13,8 @@ import Login from './Login';
 import PlayerInfo from './PlayerInfo';
 import Profile from './Profile';
 import Schedule from './Schedule';
-import Search from './Search';
+// import Search from './Search';
+import SearchTeamList from './searchTeamList';
 import Statistic from './Statistic';
 import TeamInfo from './TeamInfo';
 
@@ -30,7 +31,7 @@ const HomeTabs = () => {
         },
         {
           name: 'Search',
-          render: Search,
+          render: SearchTeamList,
           icon: ({ color, size }) => (
             <AntDesign name="search1" color={color} size={size} />
           ),
