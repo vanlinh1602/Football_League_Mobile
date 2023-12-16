@@ -54,3 +54,14 @@ export const profile_asset = {
 export const playersPicture = {
   e_haaland: require('../assets/images/playersPicture/E_Haaland.png'),
 };
+export const leagueLogos = {
+  AFC: require('../assets/images/leagues/AFC_Champions_League.png'),
+  AFF: require('../assets/images/leagues/AFC_Cup.png'),
+  CAF: require('../assets/images/leagues/CAF.png'),
+  UEFA: require('../assets/images/leagues/UEFA.png'),
+  UEFAEU: require('../assets/images/leagues/Europa_League.png'),
+};
+
+export const arrow = {
+  goBack_arrow: require('../assets/images/arrow/goBackArrow.png'),
+};
