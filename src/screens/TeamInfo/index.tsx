@@ -13,70 +13,69 @@ import { TouchableOpacity } from 'react-native';
 import ListComments from '../../features/search/components/ListComments';
 import PlayerInfoCard from '../../features/search/components/PlayerInfoCard';
 import { logos } from '../../lib/assets';
-import { playersPicture } from '../../lib/assets';
 import { AntDesign } from '../../lib/icons';
 import { HomeStackScreenProps } from '../../Navigation/type';
 import S from './styles';
 
-type Props = HomeStackScreenProps<'PlayerInfo'>;
+type Props = HomeStackScreenProps<'TeamInfo'>;
 
-const PlayerInfo = ({ navigation }: Props) => {
+const TeamInfo = ({ navigation }: Props) => {
   return (
     <View style={S.background}>
       <ScrollView>
         <VStack>
           <Image
-            source={playersPicture.e_haaland}
+            source={logos.Manchester_United}
             height={250}
             alt="kuma"
             borderBottomRadius={20}
           />
           <View style={S.backButton}>
-          <TouchableOpacity >
-              <AntDesign name='left' size={30}/>
-          </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('PlayerInfo')}>
+              <AntDesign name="left" size={30} />
+            </TouchableOpacity>
           </View>
           <HStack justifyContent="space-between">
             <View>
-              <Text style={S.playerName}>Erling Haaland</Text>
+              <Text style={S.playerName}>Manchester United</Text>
             </View>
             <AntDesign style={S.iconHeart} name="book" />
           </HStack>
           <HStack marginTop={3}>
-            <PlayerInfoCard name="Age" score={'33'} />
-            <PlayerInfoCard name="Games" score={'15'} />
-            <PlayerInfoCard name="Role" score={'GK'} />
+            <PlayerInfoCard name="Year" score={'33'} />
+            <PlayerInfoCard name="Players" score={'45'} />
+            <PlayerInfoCard name="Country" score={'Eng'} />
           </HStack>
-          <TouchableOpacity onPress={()=>navigation.navigate('TeamInfo')}>
-          <HStack margin={5}>
-            <Image
-              source={logos.Manchester_United}
-              height={50}
-              width={50}
-              alt="kuma"
-            />
-            <Text style={S.teamName}>Manchester United</Text>
-            <AntDesign style={S.iconRight} name="right" />
-          </HStack>
+          <TouchableOpacity>
+            <HStack margin={5}>
+              <Image
+                source={logos.Manchester_United}
+                height={50}
+                width={50}
+                alt="kuma"
+              />
+              <Text style={S.teamName}>All Players</Text>
+              <AntDesign style={S.iconRight} name="right" />
+            </HStack>
           </TouchableOpacity>
           <Divider style={S.divider} />
           <Text style={S.playerInfo}>Infomation</Text>
           <View style={S.infoPara}>
             <Text style={S.infoText}>
-              Erling Braut Haaland là một cầu thủ bóng đá chuyên nghiệp người Na
-              Uy thi đấu ở vị trí tiền đạo cắm cho câu lạc bộ Premier League
-              Manchester City và Đội tuyển bóng đá quốc gia Na Uy.
+              Manchester United Football Club is an English professional
+              football club, based in Old Trafford, Greater Manchester, that
+              plays in the Premier League.
             </Text>
           </View>
           <Divider style={S.divider2} />
           <HStack marginBottom={2} marginTop={1}>
-          <Text style={S.playerInfo}>Comment</Text>
-          <AntDesign style={S.iconComment} name="edit" />
+            <Text style={S.playerInfo}>Comment</Text>
+            <AntDesign style={S.iconComment} name="edit" />
           </HStack>
-          <ListComments/>
+          <ListComments />
         </VStack>
       </ScrollView>
     </View>
   );
 };
-export default PlayerInfo;
+export default TeamInfo;

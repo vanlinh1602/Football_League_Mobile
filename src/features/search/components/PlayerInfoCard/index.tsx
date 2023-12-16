@@ -5,7 +5,7 @@ import S from './styles';
 
 type Props = {
   name: string;
-  score: number;
+  score: string;
 };
 
 const PlayerInfoCard = ({ name, score }: Props) => {
