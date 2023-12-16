@@ -9,11 +9,13 @@ import { actions as userActions } from '../redux/reducers/user';
 import Home from './Home';
 import Login from './Login';
 import PlayerInfo from './PlayerInfo';
+import PlayerStatictics from './PlayerStatistics';
 // import TeamStaticticsComparison from './TeamStatistics/TeamStatisticsComparison';
 import Profile from './Profile';
 import Schedule from './Schedule';
 // import Search from './Search';
-import SearchTeamList from './SearchTeamList';
+import SearchTeamList from './searchTeamList';
+import TeamStatictics from './TeamStatistics/TeamStatistics';
 // import PlayerStatictics from './PlayerStatistics';
 // import TeamStatictics from './TeamStatistics/TeamStatistics';
 import TeamStaticticsComparison from './TeamStatistics/TeamStatisticsComparison';
@@ -80,6 +82,17 @@ const Workspace = () => {
           { name: 'HomeTabs', render: HomeTabs },
           { name: 'Login', render: Login },
           { name: 'PlayerInfo', render: PlayerInfo },
+          //{ name: 'Login', render: Login },
+          //{ name: 'PlayerInfo', render: PlayerInfo},
+          //{ name: 'TeamInfo', render: TeamInfo},
+          //{ name: 'LeaguesInfo', render: LeaguesInfo },
+          //{ name: 'EditAccount', render: EditAccount}
+          { name: 'PlayerStatictics', render: PlayerStatictics },
+          { name: 'TeamStatictics', render: TeamStatictics },
+          {
+            name: 'TeamStaticticsComparison',
+            render: TeamStaticticsComparison,
+          },
         ]}
       />
     </NavigationContainer>

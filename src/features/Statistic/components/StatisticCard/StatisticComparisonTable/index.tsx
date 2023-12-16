@@ -3,13 +3,20 @@ import React from 'react';
 
 import StatisticComparisonLine from './StatisticComparisonLine';
 type Props = {
-  shots: number;
-  goals: number;
-  errors: number;
-  yelloCard: number;
-  redCard: number;
-  offSide: number;
-  cornerKick: number;
+  shotsTeam1: number;
+  shotsTeam2: number;
+  goalsTeam1: number;
+  goalsTeam2: number;
+  errorsTeam1: number;
+  errorsTeam2: number;
+  yelloCardTeam1: number;
+  yelloCardTeam2: number;
+  redCardTeam1: number;
+  redCardTeam2: number;
+  offSideTeam1: number;
+  offSideTeam2: number;
+  cornerKickTeam1: number;
+  cornerKickTeam2: number;
 };
 
 const StatisticComparisonTable = ({

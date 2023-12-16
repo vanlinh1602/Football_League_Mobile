@@ -3,7 +3,8 @@ import { HStack, Text, View } from 'native-base';
 import S from './styles';
 type Props = {
   StatisticName: string;
-  StatisticValue: number;
+  StatisticValue1: number;
+  StatisticValue2: number;
 };
 
 const StatisticComparisonLine = ({
