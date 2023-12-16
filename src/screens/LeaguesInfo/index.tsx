@@ -12,7 +12,7 @@ import { TouchableOpacity } from 'react-native';
 
 import ListComments from '../../features/search/components/ListComments';
 import UpcomingMatchCard from '../../features/search/components/UpcomingMatchCard';
-import { leaguesName } from '../../lib/assets';
+import { leagueLogos } from '../../lib/assets';
 import { AntDesign } from '../../lib/icons';
 import { HomeStackScreenProps } from '../../Navigation/type';
 import S from './styles';
@@ -26,7 +26,7 @@ const LeaguesInfo = ({ navigation }: Props) => {
         <VStack>
           <View marginX={16} padding={7}>
             <Image
-              source={leaguesName.AFC_champions}
+              source={leagueLogos.AFC}
               height={200}
               alt="kuma"
               borderBottomRadius={20}
@@ -47,7 +47,7 @@ const LeaguesInfo = ({ navigation }: Props) => {
           <TouchableOpacity>
             <HStack margin={5}>
               <Image
-                source={leaguesName.AFC_champions}
+                source={leagueLogos.AFC}
                 height={50}
                 width={50}
                 alt="kuma"
