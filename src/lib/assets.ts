@@ -65,3 +65,7 @@ export const leagueLogos = {
 export const arrow = {
   goBack_arrow: require('../assets/images/arrow/goBackArrow.png'),
 };
+
+export const teamPicture = {
+  MU: require('../assets/images/teambackground/mubackground.jpg'),
+};

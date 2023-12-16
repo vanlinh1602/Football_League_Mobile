@@ -9,11 +9,14 @@ import { actions as userActions } from '../redux/reducers/user';
 import Home from './Home';
 import Login from './Login';
 import PlayerInfo from './PlayerInfo';
+// import TeamStaticticsComparison from './TeamStatistics/TeamStatisticsComparison';
 import Profile from './Profile';
 import Schedule from './Schedule';
 // import Search from './Search';
-import SearchTeamList from './searchTeamList';
-import Statistic from './Statistic';
+import SearchTeamList from './SearchTeamList';
+// import PlayerStatictics from './PlayerStatistics';
+// import TeamStatictics from './TeamStatistics/TeamStatistics';
+import TeamStaticticsComparison from './TeamStatistics/TeamStatisticsComparison';
 
 const HomeTabs = () => {
   return (
@@ -35,7 +38,7 @@ const HomeTabs = () => {
         },
         {
           name: 'Statistic',
-          render: Statistic,
+          render: TeamStaticticsComparison,
           icon: ({ color, size }) => (
             <Feather name="pie-chart" color={color} size={size} />
           ),
@@ -76,7 +79,7 @@ const Workspace = () => {
         stacks={[
           { name: 'HomeTabs', render: HomeTabs },
           { name: 'Login', render: Login },
-          { name: 'PlayerInfo', render: PlayerInfo},
+          { name: 'PlayerInfo', render: PlayerInfo },
         ]}
       />
     </NavigationContainer>
