@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { AntDesign, Feather, MaterialIcons, Octicons } from '../lib/icons';
 import { StackNavigate, TabNavigation } from '../Navigation';
 import { actions as userActions } from '../redux/reducers/user';
+import EditAccount from './EditAccount';
 import Home from './Home';
 import LeaguesInfo from './LeaguesInfo';
 import Login from './Login';
@@ -15,6 +16,7 @@ import Schedule from './Schedule';
 import Search from './Search';
 import Statistic from './Statistic';
 import TeamInfo from './TeamInfo';
+
 const HomeTabs = () => {
   return (
     <TabNavigation
@@ -79,7 +81,7 @@ const Workspace = () => {
           //{ name: 'PlayerInfo', render: PlayerInfo},
           //{ name: 'TeamInfo', render: TeamInfo},
           //{ name: 'LeaguesInfo', render: LeaguesInfo },
-
+          //{ name: 'EditAccount', render: EditAccount}
         ]}
       />
     </NavigationContainer>

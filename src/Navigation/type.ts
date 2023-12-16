@@ -43,6 +43,7 @@ export type RootStackParamList = {
   PlayerInfo: undefined;
   TeamInfo: undefined;
   LeaguesInfo: undefined;
+  EditAccount: undefined;
 };
 
 export type StackScreenNavigationProp<T extends keyof RootStackParamList> =
