@@ -6,14 +6,11 @@ import { useDispatch } from 'react-redux';
 import { AntDesign, Feather, MaterialIcons, Octicons } from '../lib/icons';
 import { StackNavigate, TabNavigation } from '../Navigation';
 import { actions as userActions } from '../redux/reducers/user';
-<<<<<<< HEAD
-=======
-import EditAccount from './EditAccount';
-import Favorite from './Favorite';
->>>>>>> master
+// import EditAccount from './EditAccount';
+// import Favorite from './Favorite';
 import Home from './Home';
 import Login from './Login';
-import Notification from './Notification';
+// import Notification from './Notification';
 import PlayerInfo from './PlayerInfo';
 import PlayerStatictics from './PlayerStatistics';
 // import TeamStaticticsComparison from './TeamStatistics/TeamStatisticsComparison';
