@@ -7,9 +7,11 @@ import { AntDesign, Feather, MaterialIcons, Octicons } from '../lib/icons';
 import { StackNavigate, TabNavigation } from '../Navigation';
 import { actions as userActions } from '../redux/reducers/user';
 import EditAccount from './EditAccount';
+import Favorite from './Favorite';
 import Home from './Home';
 import LeaguesInfo from './LeaguesInfo';
 import Login from './Login';
+import Notification from './Notification';
 import PlayerInfo from './PlayerInfo';
 import Profile from './Profile';
 import Schedule from './Schedule';
@@ -83,6 +85,8 @@ const Workspace = () => {
           //{ name: 'TeamInfo', render: TeamInfo},
           //{ name: 'LeaguesInfo', render: LeaguesInfo },
           //{ name: 'EditAccount', render: EditAccount}
+          //{ name: 'Notification', render: Notification},
+          //{ name: 'Favorite', render: Favorite},
         ]}
       />
     </NavigationContainer>

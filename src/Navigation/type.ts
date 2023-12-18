@@ -44,6 +44,8 @@ export type RootStackParamList = {
   TeamInfo: undefined;
   LeaguesInfo: undefined;
   EditAccount: undefined;
+  Notification: undefined;
+  Favorite: undefined;
 };
 
 export type StackScreenNavigationProp<T extends keyof RootStackParamList> =
