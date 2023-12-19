@@ -5,6 +5,7 @@ import { TouchableOpacity } from 'react-native';
 import LeaguesCard from '../../features/search/components/LeaguesCard';
 import { leagueLogos } from '../../lib/assets';
 import { AntDesign } from '../../lib/icons';
+import { HomeStackScreenProps } from '../../Navigation/type';
 import S from './styles';
 
 const leagueList = [
@@ -20,7 +21,9 @@ const leagueList = [
   { name: 'AFC Champions Cup', logo: leagueLogos.CAF },
 ];
 
-const SearchTeamList = ({ navigation }) => {
+type Props = HomeStackScreenProps<'SearchLeague'>;
+
+const SearchLeague = ({ navigation }: Props) => {
   const [filterData, setFilterData] = useState('');
 
   const handleFilterData = (text: string) => {
@@ -86,4 +89,4 @@ const SearchTeamList = ({ navigation }) => {
   );
 };
 
-export default SearchTeamList;
+export default SearchLeague;

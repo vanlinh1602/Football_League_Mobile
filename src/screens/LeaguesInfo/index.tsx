@@ -34,7 +34,7 @@ const LeaguesInfo = ({ navigation }: Props) => {
             />
           </View>
           <View style={S.backButton}>
-            <TouchableOpacity onPress={() => navigation.navigate('PlayerInfo')}>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
               <AntDesign name="left" size={30} />
             </TouchableOpacity>
           </View>

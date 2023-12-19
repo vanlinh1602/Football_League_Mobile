@@ -32,9 +32,9 @@ const PlayerInfo = ({ navigation }: Props) => {
             borderBottomRadius={20}
           />
           <View style={S.backButton}>
-          <TouchableOpacity >
-              <AntDesign name='left' size={30}/>
-          </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <AntDesign name="left" size={30} />
+            </TouchableOpacity>
           </View>
           <HStack justifyContent="space-between">
             <View>
@@ -47,17 +47,17 @@ const PlayerInfo = ({ navigation }: Props) => {
             <PlayerInfoCard name="Games" score={'15'} />
             <PlayerInfoCard name="Role" score={'GK'} />
           </HStack>
-          <TouchableOpacity onPress={()=>navigation.navigate('TeamInfo')}>
-          <HStack margin={5}>
-            <Image
-              source={logos.Manchester_United}
-              height={50}
-              width={50}
-              alt="kuma"
-            />
-            <Text style={S.teamName}>Manchester United</Text>
-            <AntDesign style={S.iconRight} name="right" />
-          </HStack>
+          <TouchableOpacity onPress={() => navigation.navigate('TeamInfo')}>
+            <HStack margin={5}>
+              <Image
+                source={logos.Manchester_United}
+                height={50}
+                width={50}
+                alt="kuma"
+              />
+              <Text style={S.teamName}>Manchester United</Text>
+              <AntDesign style={S.iconRight} name="right" />
+            </HStack>
           </TouchableOpacity>
           <Divider style={S.divider} />
           <Text style={S.playerInfo}>Infomation</Text>
@@ -70,10 +70,10 @@ const PlayerInfo = ({ navigation }: Props) => {
           </View>
           <Divider style={S.divider2} />
           <HStack marginBottom={2} marginTop={1}>
-          <Text style={S.playerInfo}>Comment</Text>
-          <AntDesign style={S.iconComment} name="edit" />
+            <Text style={S.playerInfo}>Comment</Text>
+            <AntDesign style={S.iconComment} name="edit" />
           </HStack>
-          <ListComments/>
+          <ListComments />
         </VStack>
       </ScrollView>
     </View>

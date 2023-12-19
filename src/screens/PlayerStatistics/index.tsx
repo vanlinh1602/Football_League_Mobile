@@ -7,15 +7,21 @@ import StatisticCard from '../../features/Statistic/components/StatisticCard/Sta
 import { playersPicture } from '../../lib/assets';
 import { logos } from '../../lib/assets';
 import { AntDesign, Fontisto } from '../../lib/icons';
+import { HomeStackScreenProps } from '../../Navigation/type';
 import S from './styles';
-const PlayerStatictics = ({ navigation }) => {
+
+type Props = HomeStackScreenProps<'PlayerStatictics'>;
+
+const PlayerStatictics = ({ navigation }: Props) => {
   return (
     <ScrollView>
       <VStack>
         <ImageBackground
           style={S.imageBackground}
           source={playersPicture.e_haaland}>
-          <TouchableOpacity style={S.goBack}>
+          <TouchableOpacity
+            style={S.goBack}
+            onPress={() => navigation.goBack()}>
             <AntDesign name="arrowleft" size={20} color="black" />
           </TouchableOpacity>
         </ImageBackground>

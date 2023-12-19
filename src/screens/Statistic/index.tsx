@@ -11,6 +11,7 @@ import {
 } from '../../features/Statistic/components';
 import { images } from '../../lib/assets';
 import { EvilIcons, Ionicons } from '../../lib/icons';
+import { HomeTabScreenProps } from '../../Navigation/type';
 import S from './styles';
 
 const colorLinerTeam = [
@@ -23,7 +24,9 @@ const colorLinerPlayer = [
   ['#fe4040', '#fca5a5', '#ffffff'],
 ];
 
-const Statistic = () => {
+type Props = HomeTabScreenProps<'Statistic'>;
+
+const Statistic = ({ navigation }: Props) => {
   return (
     <ImageBackground source={images.homeBackgound}>
       <VStack space={5} pb={5}>
@@ -40,7 +43,7 @@ const Statistic = () => {
           <Text color="#fff" fontSize={24} pl={5}>
             Choose League
           </Text>
-          <ListLeagues />
+          <ListLeagues onPress={() => navigation.navigate('LeaguesInfo')} />
         </View>
         <View style={S.statistic}>
           <ScrollView>
@@ -63,6 +66,7 @@ const Statistic = () => {
                       <PopularTeamCard
                         key={key}
                         colorLiner={colorLinerTeam[key % 2]}
+                        onPress={() => navigation.navigate('TeamStatictics')}
                       />
                     ))}
                   </HStack>
@@ -78,6 +82,7 @@ const Statistic = () => {
                       <PopularPlayerCard
                         key={key}
                         colorLiner={colorLinerPlayer[key % 3]}
+                        onPress={() => navigation.navigate('PlayerStatictics')}
                       />
                     ))}
                   </HStack>
@@ -90,7 +95,12 @@ const Statistic = () => {
                 <View height="auto">
                   <HStack space={5}>
                     {range(0, 5).map((key) => (
-                      <MatchAnalysisCard key={key} />
+                      <MatchAnalysisCard
+                        key={key}
+                        onPress={() =>
+                          navigation.navigate('TeamStaticticsComparison')
+                        }
+                      />
                     ))}
                   </HStack>
                 </View>

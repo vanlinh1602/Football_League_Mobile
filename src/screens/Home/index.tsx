@@ -8,6 +8,7 @@ import { MatchCard, UpcomingCard } from '../../features/Home/components';
 import ListLeagues from '../../features/Home/components/ListLeagues';
 import { images, logos } from '../../lib/assets';
 import { Ionicons } from '../../lib/icons';
+import { HomeTabScreenProps } from '../../Navigation/type';
 import { selectUser } from '../../redux/selectors/user';
 import S from './styles';
 
@@ -66,7 +67,9 @@ const upcoming = [
   },
 ];
 
-const Home = () => {
+type Props = HomeTabScreenProps<'Home'>;
+
+const Home = ({ navigation }: Props) => {
   const user = useSelector(selectUser);
 
   return (
@@ -91,7 +94,7 @@ const Home = () => {
             />
           </HStack>
           <Text style={S.title}>Top Leagues</Text>
-          <ListLeagues />
+          <ListLeagues onPress={() => navigation.navigate('LeaguesInfo')} />
           <Text style={S.title}>Current Match</Text>
           <MatchCard />
           <Text style={S.title}>Upcoming Match</Text>

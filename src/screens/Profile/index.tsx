@@ -52,6 +52,7 @@ const Profile = ({ navigation }: Props) => {
             <Text>{email}</Text>
           </VStack>
           <MaterialIcons
+            onPress={() => navigation.navigate('EditAccount')}
             style={[S.icon, { position: 'absolute', right: 10 }]}
             name="edit"
           />
@@ -66,7 +67,7 @@ const Profile = ({ navigation }: Props) => {
         />
         <SectionSelect
           title="Notification"
-          onPress={() => {}}
+          onPress={() => navigation.navigate('Notification')}
           image={profile_asset.notification}
         />
         <SectionSelect
@@ -75,8 +76,8 @@ const Profile = ({ navigation }: Props) => {
           image={profile_asset.general}
         />
         <SectionSelect
-          title="Help Center"
-          onPress={() => {}}
+          title="Favorite"
+          onPress={() => navigation.navigate('Favorite')}
           image={profile_asset.help}
         />
         <SectionSelect
@@ -88,7 +89,7 @@ const Profile = ({ navigation }: Props) => {
                 dispatch(userActions.signOut());
                 navigation.reset({
                   index: 0,
-                  routes: [{ name: 'Profile' }],
+                  routes: [{ name: 'Home' }],
                 });
               });
           }}

@@ -6,13 +6,19 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import StatisticCard from '../../../features/Statistic/components/StatisticCard/StatisticTable';
 import { leagueLogos, logos, teamPicture } from '../../../lib/assets';
 import { AntDesign, Fontisto } from '../../../lib/icons';
+import { HomeStackScreenProps } from '../../../Navigation/type';
 import S from './styles';
-const TeamStatictics = ({ navigation }) => {
+
+type Props = HomeStackScreenProps<'TeamStatictics'>;
+
+const TeamStatictics = ({ navigation }: Props) => {
   return (
     <ScrollView>
       <VStack>
         <ImageBackground style={S.imageBackground} source={teamPicture.MU}>
-          <TouchableOpacity style={S.goBack}>
+          <TouchableOpacity
+            style={S.goBack}
+            onPress={() => navigation.goBack()}>
             <AntDesign name="arrowleft" size={20} color="black" />
           </TouchableOpacity>
         </ImageBackground>

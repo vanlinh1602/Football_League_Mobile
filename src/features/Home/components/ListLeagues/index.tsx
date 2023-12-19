@@ -5,7 +5,11 @@ import { Image, TouchableOpacity } from 'react-native';
 import { leagues } from '../../../../lib/options';
 import S from './styles';
 
-const ListLeagues = () => {
+type Props = {
+  onPress: () => void;
+};
+
+const ListLeagues = ({ onPress }: Props) => {
   return (
     <ScrollView
       horizontal
@@ -16,7 +20,7 @@ const ListLeagues = () => {
           <TouchableOpacity
             key={index}
             style={S.touchableOpacity}
-            onPress={() => {}}>
+            onPress={onPress}>
             <View style={S.view}>
               <Image source={category.img} style={S.image} />
             </View>

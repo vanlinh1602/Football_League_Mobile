@@ -7,12 +7,13 @@ import S from './styles';
 type Props = {
   name: string;
   image: any;
+  onPress: () => void;
 };
 
-const CategoriesCard = ({ name, image }: Props) => {
+const CategoriesCard = ({ name, image, onPress }: Props) => {
   return (
     <ImageBackground source={image} imageStyle={S.imageStyle}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={onPress}>
         <View style={S.container} alignItems="center">
           <Text style={S.text}>{name}</Text>
         </View>

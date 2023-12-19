@@ -7,13 +7,19 @@ import StatisticComparisonTable from '../../../features/Statistic/components/Sta
 // import StatisticCard from '../../../features/Statistic/components/StatisticCard/StatisticTable';
 import { logos, teamPicture } from '../../../lib/assets';
 import { AntDesign } from '../../../lib/icons';
+import { HomeStackScreenProps } from '../../../Navigation/type';
 import S from './styles';
-const TeamStaticticsComparison = ({ navigation }) => {
+
+type Props = HomeStackScreenProps<'TeamStaticticsComparison'>;
+
+const TeamStaticticsComparison = ({ navigation }: Props) => {
   return (
     <ScrollView>
       <VStack>
         <ImageBackground style={S.imageBackground} source={teamPicture.MU}>
-          <TouchableOpacity style={S.goBack}>
+          <TouchableOpacity
+            style={S.goBack}
+            onPress={() => navigation.goBack()}>
             <AntDesign name="arrowleft" size={20} color="black" />
           </TouchableOpacity>
         </ImageBackground>

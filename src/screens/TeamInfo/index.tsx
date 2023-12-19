@@ -31,7 +31,7 @@ const TeamInfo = ({ navigation }: Props) => {
             borderBottomRadius={20}
           />
           <View style={S.backButton}>
-            <TouchableOpacity onPress={() => navigation.navigate('PlayerInfo')}>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
               <AntDesign name="left" size={30} />
             </TouchableOpacity>
           </View>

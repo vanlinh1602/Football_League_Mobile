@@ -6,15 +6,22 @@ import { ImageBackground } from 'react-native';
 import CategoriesCard from '../../features/search/components/CategotiesCard';
 import { categories_images, images } from '../../lib/assets';
 import { AntDesign } from '../../lib/icons';
+import { HomeTabScreenProps } from '../../Navigation/type';
 import S from './styles';
 
-const categories = [
-  { name: 'Leagues', image: categories_images.leagues },
-  { name: 'Teams', image: categories_images.teams },
-  { name: 'Players', image: categories_images.players },
+const categories: {
+  name: string;
+  image: any;
+  key?: 'SearchLeague' | 'TeamInfo' | 'PlayerInfo';
+}[] = [
+  { name: 'Leagues', image: categories_images.leagues, key: 'SearchLeague' },
+  { name: 'Teams', image: categories_images.teams, key: 'TeamInfo' },
+  { name: 'Players', image: categories_images.players, key: 'PlayerInfo' },
 ];
 
-const Search = () => {
+type Props = HomeTabScreenProps<'Search'>;
+
+const Search = ({ navigation }: Props) => {
   return (
     <ImageBackground style={S.background} source={images.homeBackgound}>
       <ScrollView mb={70}>
@@ -50,7 +57,15 @@ const Search = () => {
             {chunk(categories, 2).map((group, gIndex) => (
               <HStack key={gIndex} space={5} w="100%">
                 {group.map((category, index) => (
-                  <CategoriesCard key={index} {...category} />
+                  <CategoriesCard
+                    key={index}
+                    {...category}
+                    onPress={() => {
+                      if (category.key) {
+                        navigation.navigate(category.key);
+                      }
+                    }}
+                  />
                 ))}
               </HStack>
             ))}
