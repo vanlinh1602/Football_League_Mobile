@@ -6,7 +6,7 @@ import S from './styles';
 
 type Props = {
   name: string;
-  image: any;
+  logo: any;
 };
 
 const LeaguesCard = ({ name, logo }: Props) => {

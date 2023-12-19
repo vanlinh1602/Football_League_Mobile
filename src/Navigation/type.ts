@@ -44,6 +44,9 @@ export type RootStackParamList = {
   TeamInfo: undefined;
   LeaguesInfo: undefined;
   EditAccount: undefined;
+  TeamStatictics: undefined;
+  PlayerStatictics: undefined;
+  TeamStaticticsComparison: undefined;
   Notification: undefined;
   Favorite: undefined;
 };
