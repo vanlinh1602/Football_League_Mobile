@@ -30,12 +30,25 @@ export default StyleSheet.create({
   iconSetting:{
     fontSize: 24,
     padding:15,
-    marginLeft:95
+    marginLeft:25
+  },
+  goBack: {
+    marginTop: -225,
+    marginLeft: 15,
+    marginBottom:215,
+    height: 25,
+    width: 25,
+    borderWidth: 1,
+    color: 'white',
+    borderRadius: 999,
+    backgroundColor: 'white',
+    alignItems: 'center',
   },
   iconComment:{
     fontSize: 24,
     padding:15,
-    marginLeft:5
+    marginLeft:5,
+    marginTop:5
   },
   divider:{
     height:2,
@@ -85,16 +98,17 @@ export default StyleSheet.create({
     elevation:9,
     borderWidth:1
   },
-  goBack: {
-    marginTop: -225,
-    marginLeft: 15,
-    marginBottom:215,
-    height: 25,
-    width: 25,
+  commentBox:{
+    marginLeft: '10%',
+    width:'80%',
+    marginTop:15
+  },
+  chooseTeamContainer: {
     borderWidth: 1,
-    color: 'white',
-    borderRadius: 999,
-    backgroundColor: 'white',
+    marginLeft: 250,
+    width: 100,
     alignItems: 'center',
+    justifyContent: 'center',
+    marginTop:20,
   },
 });

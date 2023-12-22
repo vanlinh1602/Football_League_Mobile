@@ -12,7 +12,7 @@ export default StyleSheet.create({
     marginTop:20
   },
   username: {
-    fontSize: 17,
+    fontSize: 16,
     paddingTop:2,
     fontWeight:'800',
     marginLeft:4
@@ -28,7 +28,7 @@ export default StyleSheet.create({
     marginTop:20
   },
   commentText:{
-    fontSize:16,
+    //fontSize:16,
     color:'black',
     fontWeight:'300',
     padding:7,

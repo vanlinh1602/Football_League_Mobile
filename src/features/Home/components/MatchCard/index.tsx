@@ -14,7 +14,8 @@ const MatchCard = ({ mini }: Props) => {
   return (
     <ImageBackground
       imageStyle={mini ? S.backgroundMini : S.background}
-      source={card_BG[`card${random(1, 8)}`]}>
+      source={card_BG[`card${random(1, 8)}`]}
+      >
       <View style={mini ? S.viewMini : S.view} padding={5}>
         <VStack alignItems={mini ? 'flex-start' : 'center'} paddingBottom={5}>
           <Text fontSize={mini ? 16 : 24} fontWeight="bold" color="white">

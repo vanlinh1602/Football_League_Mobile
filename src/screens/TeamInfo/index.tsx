@@ -30,11 +30,11 @@ const TeamInfo = ({ navigation }: Props) => {
             alt="kuma"
             borderBottomRadius={20}
           />
-          <View style={S.backButton}>
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-              <AntDesign name="left" size={30} />
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity
+            style={S.goBack}
+            onPress={() => navigation.goBack()}>
+            <AntDesign name="arrowleft" size={20} color="black" />
+          </TouchableOpacity>
           <HStack justifyContent="space-between">
             <View>
               <Text style={S.playerName}>Manchester United</Text>
@@ -70,7 +70,7 @@ const TeamInfo = ({ navigation }: Props) => {
           <Divider style={S.divider2} />
           <HStack marginBottom={2} marginTop={1}>
             <Text style={S.playerInfo}>Comment</Text>
-            <AntDesign style={S.iconComment} name="edit" />
+            <AntDesign style={S.iconComment} name="edit" onPress={()=>navigation.navigate('CommentInput')}/>
           </HStack>
           <ListComments />
         </VStack>

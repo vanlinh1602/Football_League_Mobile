@@ -12,12 +12,12 @@ export default StyleSheet.create({
   },
   playerName:{
     fontWeight: 'bold',
-    fontSize: 30,
+    fontSize: 25,
     paddingLeft: 20,
     paddingTop:22
   },
   teamName:{
-    fontSize: 22,
+    fontSize: 20,
     paddingTop:17,
     marginLeft:10,
     fontWeight:'600'
@@ -46,7 +46,7 @@ export default StyleSheet.create({
   },
   playerInfo:{
     fontWeight: '800',
-    fontSize: 25,
+    fontSize: 22,
     paddingLeft: 20,
     paddingTop:22,
     marginLeft:10,
@@ -59,8 +59,20 @@ export default StyleSheet.create({
     overflow:'visible',
     marginTop:15
   },
+  goBack: {
+    marginTop: -225,
+    marginLeft: 15,
+    marginBottom:215,
+    height: 25,
+    width: 25,
+    borderWidth: 1,
+    color: 'white',
+    borderRadius: 999,
+    backgroundColor: 'white',
+    alignItems: 'center',
+  },
   infoText:{
-    fontSize:20,
+    //fontSize:20,
     overflow:'hidden',
     paddingVertical:20,
     paddingHorizontal:10,
@@ -88,5 +100,5 @@ export default StyleSheet.create({
 
 
 
-  
+
 });

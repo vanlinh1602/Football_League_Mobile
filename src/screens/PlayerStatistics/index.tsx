@@ -3,6 +3,7 @@ import React from 'react';
 import { ImageBackground } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
+import ListComments from '../../features/search/components/ListComments';
 import StatisticCard from '../../features/Statistic/components/StatisticCard/StatisticTable';
 import { playersPicture } from '../../lib/assets';
 import { logos } from '../../lib/assets';
@@ -48,6 +49,15 @@ const PlayerStatictics = ({ navigation }: Props) => {
           cornerKick={24}
         />
       </View>
+      <HStack marginBottom={2} marginTop={1}>
+          <Text style={S.playerInfo}>Comment</Text>
+          <AntDesign
+            style={S.iconComment}
+            name="edit"
+            onPress={() => navigation.navigate('CommentInput')}
+          />
+        </HStack>
+        <ListComments />
     </ScrollView>
   );
 };

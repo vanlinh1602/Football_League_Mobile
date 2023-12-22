@@ -33,7 +33,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   teamComparing: {
-    marginTop: 20,
+    marginTop: 8,
     marginLeft: 25,
   },
   teamComparisonName: {
@@ -58,7 +58,7 @@ export default StyleSheet.create({
   statisticTitle: {
     marginTop: 25,
     marginLeft: 27,
-    fontSize: 28,
+    fontSize: 25,
     lineHeight: 30,
     color: '#003E88',
     fontWeight: 'bold',

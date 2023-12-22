@@ -13,8 +13,9 @@ export default StyleSheet.create({
   playerName:{
     fontWeight: 'bold',
     fontSize: 25,
-    paddingLeft: 20,
-    paddingTop:22
+    paddingLeft: 1,
+    paddingTop:30,
+    marginLeft:90
   },
   teamName:{
     fontSize: 20,
@@ -46,7 +47,7 @@ export default StyleSheet.create({
   },
   playerInfo:{
     fontWeight: '800',
-    fontSize: 20,
+    fontSize: 22,
     paddingLeft: 20,
     paddingTop:22,
     marginLeft:10,
@@ -58,6 +59,19 @@ export default StyleSheet.create({
     borderRadius:20,
     overflow:'visible',
     marginTop:15
+  },
+  goBack: {
+    marginTop: 25,
+    marginLeft: 15,
+    marginBottom:10,
+    height: 25,
+    width: 25,
+    borderWidth: 1,
+    color: 'white',
+    borderRadius: 999,
+    backgroundColor: 'white',
+    alignItems: 'center',
+
   },
   infoText:{
     //fontSize:20,
@@ -85,16 +99,29 @@ export default StyleSheet.create({
     elevation:9,
     borderWidth:1
   },
-  goBack: {
-    marginTop: -225,
-    marginLeft: 15,
-    marginBottom:215,
-    height: 25,
-    width: 25,
-    borderWidth: 1,
-    color: 'white',
-    borderRadius: 999,
-    backgroundColor: 'white',
-    alignItems: 'center',
+  teamImg:{
+    marginLeft:55,
+    marginTop:25,
   },
+  teamName2:{
+    marginLeft:20,
+    marginTop:15,
+    fontSize:16,
+  },
+  score:{
+    marginTop:35,
+    fontSize:30,
+    fontWeight:'bold',
+    padding:10,
+    marginLeft:10
+
+  },
+  teamName3:{
+    marginLeft:50,
+    marginTop:15,
+    fontSize:16,
+  },
+
+
+
 });

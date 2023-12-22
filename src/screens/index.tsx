@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { AntDesign, Feather, MaterialIcons, Octicons } from '../lib/icons';
 import { StackNavigate, TabNavigation } from '../Navigation';
 import { actions as userActions } from '../redux/reducers/user';
+import CommentInput from './CommentInput';
 import EditAccount from './EditAccount';
 import Favorite from './Favorite';
 import Home from './Home';
@@ -22,6 +23,8 @@ import Statistic from './Statistic';
 import TeamInfo from './TeamInfo';
 import TeamStatictics from './TeamStatistics/TeamStatistics';
 import TeamStaticticsComparison from './TeamStatistics/TeamStatisticsComparison';
+import TodayMatch from './TodayMatch';
+import UpcomingMatch from './UpcomingMatch';
 
 const HomeTabs = () => {
   return (
@@ -82,6 +85,7 @@ const Workspace = () => {
     <NavigationContainer>
       <StackNavigate
         stacks={[
+
           { name: 'HomeTabs', render: HomeTabs },
           { name: 'Login', render: Login },
           { name: 'PlayerInfo', render: PlayerInfo }, //done
@@ -91,12 +95,17 @@ const Workspace = () => {
           { name: 'SearchLeague', render: SearchLeague }, //done
           { name: 'PlayerStatictics', render: PlayerStatictics },
           { name: 'TeamStatictics', render: TeamStatictics },
+          { name: 'TodayMatch', render: TodayMatch},
+          { name: 'UpcomingMatch', render: UpcomingMatch},
+
+
           {
             name: 'TeamStaticticsComparison',
             render: TeamStaticticsComparison,
           },
           { name: 'Notification', render: Notification },
           { name: 'Favorite', render: Favorite },
+          { name: 'CommentInput', render: CommentInput},
         ]}
       />
     </NavigationContainer>
