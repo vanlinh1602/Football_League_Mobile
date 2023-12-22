@@ -15,7 +15,10 @@ const TeamStatictics = ({ navigation }: Props) => {
   return (
     <ScrollView>
       <VStack>
-        <ImageBackground style={S.imageBackground} source={teamPicture.MU}>
+        <ImageBackground
+          style={S.imageBackground}
+          source={teamPicture.MU}
+          resizeMode="cover">
           <TouchableOpacity
             style={S.goBack}
             onPress={() => navigation.goBack()}>
