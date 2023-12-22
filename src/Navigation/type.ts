@@ -50,6 +50,8 @@ export type RootStackParamList = {
   Notification: undefined;
   Favorite: undefined;
   SearchLeague: undefined;
+  SearchTeam: undefined;
+  SearchPlayer: undefined;
 };
 
 export type StackScreenNavigationProp<T extends keyof RootStackParamList> =
