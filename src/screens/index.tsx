@@ -99,6 +99,7 @@ const Workspace = () => {
           { name: 'TeamStatictics', render: TeamStatictics },
           { name: 'TodayMatch', render: TodayMatch},
           { name: 'UpcomingMatch', render: UpcomingMatch},
+          { name: 'CommentInput', render: CommentInput},
 
 
           {
