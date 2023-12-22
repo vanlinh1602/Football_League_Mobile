@@ -3,27 +3,25 @@ import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 
 import LeaguesCard from '../../features/search/components/LeaguesCard';
-import { leagueLogos } from '../../lib/assets';
+import { logos } from '../../lib/assets';
 import { AntDesign } from '../../lib/icons';
 import { HomeStackScreenProps } from '../../Navigation/type';
 import S from './styles';
 
 const leagueList = [
-  { name: 'EPL', logo: leagueLogos.AFC },
-  { name: 'AFC', logo: leagueLogos.AFF },
-  { name: 'AFCCUP', logo: leagueLogos.UEFA },
-  { name: 'UEFA', logo: leagueLogos.UEFAEU },
-  { name: 'AFC Champions Cup', logo: leagueLogos.CAF },
-  { name: 'EPL', logo: leagueLogos.AFC },
-  { name: 'AFC', logo: leagueLogos.AFF },
-  { name: 'AFCCUP', logo: leagueLogos.UEFA },
-  { name: 'UEFA', logo: leagueLogos.UEFAEU },
-  { name: 'AFC Champions Cup', logo: leagueLogos.CAF },
+  { name: 'Erling Haaland', logo: logos.Chelsea },
+  { name: 'Marcus Rashford', logo: logos.Chelsea },
+  { name: 'Antony', logo: logos.Chelsea },
+  { name: 'Tripier', logo: logos.Chelsea },
+  { name: 'Mitrovic', logo: logos.Chelsea },
+  { name: 'Mohamed Salah', logo: logos.Chelsea },
+  { name: 'Darwin Nunez', logo: logos.Chelsea },
+  { name: 'Bernando Silva', logo: logos.Chelsea },
+  { name: 'Kevin De Bruyne', logo: logos.Chelsea },
+  { name: 'Onana', logo: logos.Chelsea },
 ];
-
-type Props = HomeStackScreenProps<'SearchLeague'>;
-
-const SearchLeague = ({ navigation }: Props) => {
+type Props = HomeStackScreenProps<'SearchPlayer'>;
+const SearchPlayer = ({ navigation }: Props) => {
   const [filterData, setFilterData] = useState('');
 
   const handleFilterData = (text: string) => {
@@ -46,7 +44,7 @@ const SearchLeague = ({ navigation }: Props) => {
             </HStack>
           </TouchableOpacity>
           <Text style={S.title} fontSize={40} fontWeight="bold" marginLeft={5}>
-            Leagues
+            Players
           </Text>
         </HStack>
         <Input
@@ -67,7 +65,7 @@ const SearchLeague = ({ navigation }: Props) => {
           }
           width="93%"
           variant="rounded"
-          placeholder="Search Leagues"
+          placeholder="Search Player"
           value={filterData}
           onChangeText={handleFilterData}
         />
@@ -81,4 +79,4 @@ const SearchLeague = ({ navigation }: Props) => {
   );
 };
 
-export default SearchLeague;
+export default SearchPlayer;
