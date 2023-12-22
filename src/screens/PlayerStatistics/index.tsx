@@ -19,7 +19,8 @@ const PlayerStatictics = ({ navigation }: Props) => {
       <VStack>
         <ImageBackground
           style={S.imageBackground}
-          source={playersPicture.e_haaland}>
+          source={playersPicture.e_haaland}
+          resizeMode="cover">
           <TouchableOpacity
             style={S.goBack}
             onPress={() => navigation.goBack()}>

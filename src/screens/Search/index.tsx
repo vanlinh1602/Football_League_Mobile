@@ -12,11 +12,11 @@ import S from './styles';
 const categories: {
   name: string;
   image: any;
-  key?: 'SearchLeague' | 'TeamInfo' | 'PlayerInfo';
+  key?: 'SearchLeague' | 'SearchTeam' | 'SearchPlayer';
 }[] = [
   { name: 'Leagues', image: categories_images.leagues, key: 'SearchLeague' },
-  { name: 'Teams', image: categories_images.teams, key: 'TeamInfo' },
-  { name: 'Players', image: categories_images.players, key: 'PlayerInfo' },
+  { name: 'Teams', image: categories_images.teams, key: 'SearchTeam' },
+  { name: 'Players', image: categories_images.players, key: 'SearchPlayer' },
 ];
 
 type Props = HomeTabScreenProps<'Search'>;

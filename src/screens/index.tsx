@@ -19,6 +19,8 @@ import Profile from './Profile';
 import Schedule from './Schedule';
 import Search from './Search';
 import SearchLeague from './SearchLeague';
+import SearchPlayer from './SearchPlayer';
+import SearchTeam from './SearchTeam';
 import Statistic from './Statistic';
 import TeamInfo from './TeamInfo';
 import TeamStatictics from './TeamStatistics/TeamStatistics';
@@ -105,7 +107,8 @@ const Workspace = () => {
           },
           { name: 'Notification', render: Notification },
           { name: 'Favorite', render: Favorite },
-          { name: 'CommentInput', render: CommentInput},
+          { name: 'SearchPlayer', render: SearchPlayer },
+          { name: 'SearchTeam', render: SearchTeam },
         ]}
       />
     </NavigationContainer>
