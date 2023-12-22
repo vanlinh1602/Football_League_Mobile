@@ -14,9 +14,9 @@ import { AntDesign } from '../../lib/icons';
 import { HomeStackScreenProps } from '../../Navigation/type';
 import S from './styles';
 
-type Props = HomeStackScreenProps<'PlayerInfo'>;
+type Props = HomeStackScreenProps<'CommentInput'>;
 
-const PlayerInfo = ({ navigation }: Props) => {
+const CommentInput = ({ navigation }: Props) => {
   const [comment, setComment] = useState('');
 
   return (
@@ -54,4 +54,4 @@ const PlayerInfo = ({ navigation }: Props) => {
     </View>
   );
 };
-export default PlayerInfo;
+export default CommentInput;

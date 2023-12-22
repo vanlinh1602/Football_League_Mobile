@@ -15,9 +15,9 @@ import { logos } from '../../lib/assets';
 import { AntDesign } from '../../lib/icons';
 import { HomeStackScreenProps } from '../../Navigation/type';
 import S from './styles';
-type Props = HomeStackScreenProps<'LeaguesInfo'>;
+type Props = HomeStackScreenProps<'TodayMatch'>;
 
-const LeaguesInfo = ({ navigation }: Props) => {
+const TodayMatch = ({ navigation }: Props) => {
   return (
     <View style={S.background}>
       <ScrollView>
@@ -107,4 +107,4 @@ const LeaguesInfo = ({ navigation }: Props) => {
     </View>
   );
 };
-export default LeaguesInfo;
+export default TodayMatch;
