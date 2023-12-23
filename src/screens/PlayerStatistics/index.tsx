@@ -1,5 +1,5 @@
-import { HStack, Image, ScrollView, Text, View, VStack } from 'native-base';
-import React from 'react';
+import { HStack, Image, Input, ScrollView, Text, View, VStack } from 'native-base';
+import React, { useState } from 'react';
 import { ImageBackground } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -14,6 +14,8 @@ import S from './styles';
 type Props = HomeStackScreenProps<'PlayerStatictics'>;
 
 const PlayerStatictics = ({ navigation }: Props) => {
+  const [, setComment] = useState('');
+
   return (
     <ScrollView>
       <VStack>
@@ -52,12 +54,18 @@ const PlayerStatictics = ({ navigation }: Props) => {
       </View>
       <HStack marginBottom={2} marginTop={1}>
           <Text style={S.playerInfo}>Comment</Text>
-          <AntDesign
-            style={S.iconComment}
-            name="edit"
-            onPress={() => navigation.navigate('CommentInput')}
-          />
         </HStack>
+        <HStack>
+          <View style={S.commentBox}>
+            <Input
+              size="sm"
+              placeholder="Comment Input"
+              onChangeText={(comment) => setComment(comment)}
+              rounded={15}
+            />
+          </View>
+          <AntDesign style={S.iconComment} name="edit" />
+          </HStack>
         <ListComments />
     </ScrollView>
   );

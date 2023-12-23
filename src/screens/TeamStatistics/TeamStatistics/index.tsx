@@ -2,6 +2,7 @@ import {
   CheckIcon,
   HStack,
   Image,
+  Input,
   ScrollView,
   Select,
   Text,
@@ -23,6 +24,7 @@ type Props = HomeStackScreenProps<'TeamStatictics'>;
 
 const TeamStatictics = ({ navigation }: Props) => {
   const [leagues, setleagues] = useState('abc');
+  const [, setComment] = useState('');
 
   return (
     <View>
@@ -82,12 +84,18 @@ const TeamStatictics = ({ navigation }: Props) => {
         </View>
         <HStack marginBottom={2} marginTop={1}>
           <Text style={S.playerInfo}>Comment</Text>
-          <AntDesign
-            style={S.iconComment}
-            name="edit"
-            onPress={() => navigation.navigate('CommentInput')}
-          />
         </HStack>
+        <HStack>
+          <View style={S.commentBox}>
+            <Input
+              size="sm"
+              placeholder="Comment Input"
+              onChangeText={(comment) => setComment(comment)}
+              rounded={15}
+            />
+          </View>
+          <AntDesign style={S.iconComment} name="edit" />
+          </HStack>
         <ListComments />
       </ScrollView>
     </View>

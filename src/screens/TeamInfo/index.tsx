@@ -2,12 +2,13 @@ import {
   Divider,
   HStack,
   Image,
+  Input,
   ScrollView,
   Text,
   View,
   VStack,
 } from 'native-base';
-import React from 'react';
+import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 
 import ListComments from '../../features/search/components/ListComments';
@@ -20,6 +21,8 @@ import S from './styles';
 type Props = HomeStackScreenProps<'TeamInfo'>;
 
 const TeamInfo = ({ navigation }: Props) => {
+  const [, setComment] = useState('');
+
   return (
     <View style={S.background}>
       <ScrollView>
@@ -58,6 +61,24 @@ const TeamInfo = ({ navigation }: Props) => {
               <AntDesign style={S.iconRight} name="right" />
             </HStack>
           </TouchableOpacity>
+          <View ml={6} mt={-2}>
+            <HStack>
+              <Text fontSize={17} fontWeight={'bold'}>
+                Coach:
+              </Text>
+              <Text ml={3} fontSize={17} fontWeight={'medium'}>
+                Gia Hy
+              </Text>
+            </HStack>
+            <HStack mt={2} mb={2}>
+              <Text fontSize={17} fontWeight={'bold'}>
+                Captain:
+              </Text>
+              <Text ml={3} fontSize={17} fontWeight={'medium'}>
+                Gia Hy
+              </Text>
+            </HStack>
+            </View>
           <Divider style={S.divider} />
           <Text style={S.playerInfo}>Infomation</Text>
           <View style={S.infoPara}>
@@ -70,7 +91,17 @@ const TeamInfo = ({ navigation }: Props) => {
           <Divider style={S.divider2} />
           <HStack marginBottom={2} marginTop={1}>
             <Text style={S.playerInfo}>Comment</Text>
-            <AntDesign style={S.iconComment} name="edit" onPress={()=>navigation.navigate('CommentInput')}/>
+          </HStack>
+          <HStack>
+          <View style={S.commentBox}>
+            <Input
+              size="sm"
+              placeholder="Comment Input"
+              onChangeText={(comment) => setComment(comment)}
+              rounded={15}
+            />
+          </View>
+          <AntDesign style={S.iconComment} name="edit" />
           </HStack>
           <ListComments />
         </VStack>

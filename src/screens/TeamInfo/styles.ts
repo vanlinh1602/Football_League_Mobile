@@ -42,7 +42,7 @@ export default StyleSheet.create({
     width:300,
     marginLeft:47,
     backgroundColor:'darkblue',
-    marginTop:-10
+    marginTop:10
   },
   playerInfo:{
     fontWeight: '800',
@@ -96,5 +96,19 @@ export default StyleSheet.create({
     borderRadius: 999,
     backgroundColor: 'white',
     alignItems: 'center',
+  },
+  commentBox:{
+    marginLeft: '7%',
+    width:'75%',
+    marginTop:5,
+    marginBottom:10
+  },
+  chooseTeamContainer: {
+    borderWidth: 1,
+    marginLeft: 250,
+    width: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop:20,
   },
 });

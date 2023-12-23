@@ -90,4 +90,18 @@ export default StyleSheet.create({
     padding:15,
     marginLeft:5
   },
+  commentBox:{
+    marginLeft: '7%',
+    width:'75%',
+    marginTop:5,
+    marginBottom:10
+  },
+  chooseTeamContainer1: {
+    borderWidth: 1,
+    marginLeft: 250,
+    width: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop:20,
+  },
 });

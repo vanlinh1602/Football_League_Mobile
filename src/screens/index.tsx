@@ -91,15 +91,15 @@ const Workspace = () => {
           { name: 'HomeTabs', render: HomeTabs },
           { name: 'Login', render: Login },
           { name: 'PlayerInfo', render: PlayerInfo }, //done
-          { name: 'TeamInfo', render: TeamInfo }, //done
           { name: 'LeaguesInfo', render: LeaguesInfo }, //done
           { name: 'EditAccount', render: EditAccount }, //done
           { name: 'SearchLeague', render: SearchLeague }, //done
           { name: 'PlayerStatictics', render: PlayerStatictics },
           { name: 'TeamStatictics', render: TeamStatictics },
-          { name: 'TodayMatch', render: TodayMatch},
           { name: 'UpcomingMatch', render: UpcomingMatch},
           { name: 'CommentInput', render: CommentInput},
+          { name: 'TodayMatch', render: TodayMatch},
+          { name: 'TeamInfo', render: TeamInfo }, //done
 
 
           {

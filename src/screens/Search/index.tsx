@@ -1,5 +1,5 @@
 import { chunk } from 'lodash';
-import { HStack, Input, ScrollView, Text, View, VStack } from 'native-base';
+import { HStack, Input, ScrollView, Text, VStack } from 'native-base';
 import React from 'react';
 import { ImageBackground } from 'react-native';
 
@@ -45,13 +45,6 @@ const Search = ({ navigation }: Props) => {
             variant="rounded"
             placeholder="Search Leagues, Team, Player"
           />
-          <HStack mt={0} space={2} width="90%">
-            {categories.map((category) => (
-              <View key={category.name} style={S.categotyList}>
-                <Text style={S.categotyListText}>{category.name}</Text>
-              </View>
-            ))}
-          </HStack>
           <Text style={S.title}>Categories</Text>
           <VStack space={3}>
             {chunk(categories, 2).map((group, gIndex) => (
