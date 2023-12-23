@@ -2,12 +2,13 @@ import {
   Divider,
   HStack,
   Image,
+  Input,
   ScrollView,
   Text,
   View,
   VStack,
 } from 'native-base';
-import React from 'react';
+import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 
 import ListComments from '../../features/search/components/ListComments';
@@ -21,6 +22,8 @@ import S from './styles';
 type Props = HomeStackScreenProps<'PlayerInfo'>;
 
 const PlayerInfo = ({ navigation }: Props) => {
+  const [, setComment] = useState('');
+
   return (
     <View style={S.background}>
       <ScrollView>
@@ -45,8 +48,8 @@ const PlayerInfo = ({ navigation }: Props) => {
             <AntDesign style={S.iconHeart} name="book" />
           </HStack>
           <HStack marginTop={3}>
-            <PlayerInfoCard name="Age" score={'33'} />
-            <PlayerInfoCard name="Games" score={'15'} />
+            <PlayerInfoCard name="BirthDay" score={'10-3'} />
+            <PlayerInfoCard name="Number" score={'15'} />
             <PlayerInfoCard name="Role" score={'GK'} />
           </HStack>
           <TouchableOpacity onPress={() => navigation.navigate('TeamInfo')}>
@@ -73,9 +76,17 @@ const PlayerInfo = ({ navigation }: Props) => {
           <Divider style={S.divider2} />
           <HStack marginBottom={2} marginTop={1}>
             <Text style={S.playerInfo}>Comment</Text>
-            <TouchableOpacity onPress={()=>navigation.navigate('CommentInput')}>
-            <AntDesign style={S.iconComment} name="edit" />
-            </TouchableOpacity>
+          </HStack>
+          <HStack>
+          <View style={S.commentBox}>
+            <Input
+              size="sm"
+              placeholder="Comment Input"
+              onChangeText={(comment) => setComment(comment)}
+              rounded={15}
+            />
+          </View>
+          <AntDesign style={S.iconComment} name="edit" />
           </HStack>
           <ListComments />
         </VStack>

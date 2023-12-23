@@ -97,8 +97,20 @@ export default StyleSheet.create({
     elevation:9,
     borderWidth:1
   },
-
-
+  commentBox:{
+    marginLeft: '7%',
+    width:'75%',
+    marginTop:5,
+    marginBottom:10
+  },
+  chooseTeamContainer: {
+    borderWidth: 1,
+    marginLeft: 250,
+    width: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop:20,
+  },
 
 
 });
