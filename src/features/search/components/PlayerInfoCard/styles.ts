@@ -11,7 +11,7 @@ export default StyleSheet.create({
     marginLeft: 15,
   },
   text: {
-    fontSize: 20,
+    fontSize: 18,
     paddingTop: 15,
     fontWeight: 'bold',
     color: 'black',
@@ -19,7 +19,7 @@ export default StyleSheet.create({
     marginBottom:-20
   },
   scoreText:{
-    fontSize: 28,
+    fontSize: 24,
     paddingTop:10,
     fontWeight:'700',
     marginLeft: 45

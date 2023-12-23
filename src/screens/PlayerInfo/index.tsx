@@ -31,11 +31,13 @@ const PlayerInfo = ({ navigation }: Props) => {
             alt="kuma"
             borderBottomRadius={20}
           />
-          <View style={S.backButton}>
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-              <AntDesign name="left" size={30} />
-            </TouchableOpacity>
-          </View>
+
+          <TouchableOpacity
+            style={S.goBack}
+            onPress={() => navigation.goBack()}>
+            <AntDesign name="arrowleft" size={20} color="black" />
+          </TouchableOpacity>
+
           <HStack justifyContent="space-between">
             <View>
               <Text style={S.playerName}>Erling Haaland</Text>
@@ -71,7 +73,9 @@ const PlayerInfo = ({ navigation }: Props) => {
           <Divider style={S.divider2} />
           <HStack marginBottom={2} marginTop={1}>
             <Text style={S.playerInfo}>Comment</Text>
+            <TouchableOpacity onPress={()=>navigation.navigate('CommentInput')}>
             <AntDesign style={S.iconComment} name="edit" />
+            </TouchableOpacity>
           </HStack>
           <ListComments />
         </VStack>

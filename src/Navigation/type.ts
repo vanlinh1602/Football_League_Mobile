@@ -52,6 +52,9 @@ export type RootStackParamList = {
   SearchLeague: undefined;
   SearchTeam: undefined;
   SearchPlayer: undefined;
+  CommentInput: undefined;
+  TodayMatch: undefined;
+  UpcomingMatch: undefined;
 };
 
 export type StackScreenNavigationProp<T extends keyof RootStackParamList> =

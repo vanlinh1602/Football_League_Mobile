@@ -17,7 +17,7 @@ import { AntDesign } from '../../lib/icons';
 import { HomeStackScreenProps } from '../../Navigation/type';
 import S from './styles';
 
-type Props = HomeStackScreenProps<'PlayerInfo'>;
+type Props = HomeStackScreenProps<'LeaguesInfo'>;
 
 const LeaguesInfo = ({ navigation }: Props) => {
   return (
@@ -33,11 +33,11 @@ const LeaguesInfo = ({ navigation }: Props) => {
               resizeMode="contain"
             />
           </View>
-          <View style={S.backButton}>
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-              <AntDesign name="left" size={30} />
-            </TouchableOpacity>
-          </View>
+          <TouchableOpacity
+            style={S.goBack}
+            onPress={() => navigation.goBack()}>
+            <AntDesign name="arrowleft" size={20} color="black" />
+          </TouchableOpacity>
           <HStack justifyContent="space-between">
             <View>
               <Text style={S.playerName}>AFC Champions </Text>
@@ -86,14 +86,13 @@ const LeaguesInfo = ({ navigation }: Props) => {
           <Divider style={S.divider2} />
           <HStack marginBottom={2} marginTop={1}>
             <Text style={S.playerInfo}>Upcoming Match</Text>
-            <AntDesign style={S.iconComment} name="edit" />
           </HStack>
           <UpcomingMatchCard />
           <UpcomingMatchCard />
           <Divider style={S.divider2} />
           <HStack marginBottom={2} marginTop={1}>
             <Text style={S.playerInfo}>Comment</Text>
-            <AntDesign style={S.iconComment} name="edit" />
+            <AntDesign style={S.iconComment} name="edit" onPress={()=>navigation.navigate('CommentInput')}/>
           </HStack>
           <ListComments />
         </VStack>

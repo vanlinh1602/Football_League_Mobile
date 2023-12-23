@@ -39,4 +39,17 @@ export default StyleSheet.create({
   favoriteButton: {
     marginTop: -6,
   },
+  playerInfo:{
+    fontWeight: '800',
+    fontSize: 22,
+    paddingLeft: 20,
+    paddingTop:22,
+    marginLeft:10,
+    color:'darkblue'
+  },
+  iconComment:{
+    fontSize: 24,
+    padding:15,
+    marginLeft:5
+  },
 });

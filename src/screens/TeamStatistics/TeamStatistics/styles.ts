@@ -34,10 +34,16 @@ export default StyleSheet.create({
   },
   chooseTeamContainer: {
     borderWidth: 1,
-    marginLeft: 100,
+    marginLeft: 50,
     width: 100,
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop:14,
+  },
+  iconRight:{
+    fontSize: 24,
+    padding:15,
+    marginLeft:-10
   },
   teamLogo: {
     marginTop: -10,
@@ -70,5 +76,18 @@ export default StyleSheet.create({
     width: '85%',
     color: 'black',
     opacity: 0.3,
+  },
+  playerInfo:{
+    fontWeight: '800',
+    fontSize: 22,
+    paddingLeft: 20,
+    paddingTop:22,
+    marginLeft:10,
+    color:'darkblue'
+  },
+  iconComment:{
+    fontSize: 24,
+    padding:15,
+    marginLeft:5
   },
 });

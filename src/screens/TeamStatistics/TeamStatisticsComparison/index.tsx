@@ -1,5 +1,14 @@
-import { HStack, Image, ScrollView, Text, View, VStack } from 'native-base';
-import React from 'react';
+import {
+  CheckIcon,
+  HStack,
+  Image,
+  ScrollView,
+  Select,
+  Text,
+  View,
+  VStack,
+} from 'native-base';
+import React, { useState } from 'react';
 import { ImageBackground } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -13,6 +22,7 @@ import S from './styles';
 type Props = HomeStackScreenProps<'TeamStaticticsComparison'>;
 
 const TeamStaticticsComparison = ({ navigation }: Props) => {
+  const [teams, setTeams] = useState('');
   return (
     <ScrollView>
       <VStack>
@@ -28,16 +38,26 @@ const TeamStaticticsComparison = ({ navigation }: Props) => {
         </ImageBackground>
       </VStack>
       <View>
-        <HStack>
-          <Text style={S.comparisonTitle}>Comparison</Text>
-          <TouchableOpacity style={S.chooseTeamContainer}>
-            <Text>Choose team</Text>
-          </TouchableOpacity>
-        </HStack>
+        <Text style={S.comparisonTitle}>Comparison</Text>
       </View>
+      <Text marginLeft={10} marginTop={2} fontSize={16}>
+        Choose team to compare:
+      </Text>
       <HStack style={S.teamComparing}>
-        <Image source={logos.Chelsea} alt="logo" style={S.teamComparisonLogo} />
-        <Text style={S.teamComparisonName}>Chelsea</Text>
+        <Select
+          selectedValue={teams}
+          minWidth="200"
+          accessibilityLabel={teams}
+          placeholder="Choose Team"
+          _selectedItem={{
+            endIcon: <CheckIcon size="5" />,
+          }}
+          mt={1}
+          onValueChange={(itemValue) => setTeams(itemValue)}>
+          <Select.Item label="Manchester United" value="1" />
+          <Select.Item label="Chelsea" value="2" />
+          <Select.Item label="Barcelona" value="3" />
+        </Select>
       </HStack>
       <View style={S.underline}></View>
       <View>
@@ -58,6 +78,7 @@ const TeamStaticticsComparison = ({ navigation }: Props) => {
           redCardTeam1={24}
           offSideTeam1={24}
           cornerKickTeam1={24}
+          
           shotsTeam2={4}
           goalsTeam2={24}
           errorsTeam2={24}
