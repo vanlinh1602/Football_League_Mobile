@@ -1,16 +1,14 @@
 import moment from 'moment';
 import { HStack, Image, ScrollView, Text, VStack } from 'native-base';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ImageBackground } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { MatchCard, UpcomingCard } from '../../features/Home/components';
 import ListLeagues from '../../features/Home/components/ListLeagues';
 import { images, logos } from '../../lib/assets';
 import { Ionicons } from '../../lib/icons';
 import { HomeTabScreenProps } from '../../Navigation/type';
-import { actions as teamsAction } from '../../redux/reducers/teams';
-import { selectTeams } from '../../redux/selectors/teams';
 import { selectUser } from '../../redux/selectors/user';
 import S from './styles';
 
@@ -73,15 +71,6 @@ type Props = HomeTabScreenProps<'Home'>;
 
 const Home = ({ navigation }: Props) => {
   const user = useSelector(selectUser);
-
-  const dispatch = useDispatch();
-  const teams = useSelector(selectTeams);
-
-  useEffect(() => {
-    if (!teams) {
-      dispatch(teamsAction.getTeams());
-    }
-  }, [teams, dispatch]);
 
   return (
     <ImageBackground style={S.background} source={images.homeBackgound}>

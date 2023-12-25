@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Player, PlayersStore } from '../types/players';
 
 export const initialState: PlayersStore = {
-  handling: false,
+  handling: true,
 };
 
 const teamsSlice = createSlice({
@@ -25,7 +25,17 @@ const teamsSlice = createSlice({
         };
       }
     },
+    fetchPlayersAllPlayer(
+      state,
+      action: PayloadAction<CustomObject<CustomObject<Player>>>,
+    ) {
+      state.handling = false;
+      state.data = action.payload;
+    },
     getPlayers(state, _action: PayloadAction<string>) {
+      state.handling = true;
+    },
+    getAllPlayers(state) {
       state.handling = true;
     },
   },

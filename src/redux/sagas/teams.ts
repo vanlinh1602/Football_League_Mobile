@@ -4,6 +4,7 @@ import { all, put, takeEvery } from 'redux-saga/effects';
 
 import { backendService } from '../../services';
 import formatError from '../../utils/formatError';
+import { saveDataToFile } from '../../utils/localStorage';
 import { actions as teamActions } from '../reducers/teams';
 import { Team } from '../types/teams';
 
@@ -17,6 +18,7 @@ function* getTeams() {
       if (result.data.length) {
         const teams = _.keyBy(result.data, 'id');
         yield put(teamActions.fetchTeams(teams));
+        saveDataToFile('teams', teams);
       } else {
         yield put(teamActions.fetchTeams({}));
       }

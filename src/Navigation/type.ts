@@ -55,6 +55,7 @@ export type RootStackParamList = {
   CommentInput: undefined;
   TodayMatch: undefined;
   UpcomingMatch: undefined;
+  PrepareScreen: undefined;
 };
 
 export type StackScreenNavigationProp<T extends keyof RootStackParamList> =

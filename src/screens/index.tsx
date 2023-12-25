@@ -15,6 +15,7 @@ import Login from './Login';
 import Notification from './Notification';
 import PlayerInfo from './PlayerInfo';
 import PlayerStatictics from './PlayerStatistics';
+import PrepareScreen from './PrepareLoading';
 import Profile from './Profile';
 import Schedule from './Schedule';
 import Search from './Search';
@@ -83,11 +84,12 @@ const Workspace = () => {
       }
     });
   }, [dispatch]);
+
   return (
     <NavigationContainer>
       <StackNavigate
         stacks={[
-
+          { name: 'PrepareScreen', render: PrepareScreen },
           { name: 'HomeTabs', render: HomeTabs },
           { name: 'Login', render: Login },
           { name: 'PlayerInfo', render: PlayerInfo }, //done
@@ -96,11 +98,10 @@ const Workspace = () => {
           { name: 'SearchLeague', render: SearchLeague }, //done
           { name: 'PlayerStatictics', render: PlayerStatictics },
           { name: 'TeamStatictics', render: TeamStatictics },
-          { name: 'UpcomingMatch', render: UpcomingMatch},
-          { name: 'CommentInput', render: CommentInput},
-          { name: 'TodayMatch', render: TodayMatch},
+          { name: 'UpcomingMatch', render: UpcomingMatch },
+          { name: 'CommentInput', render: CommentInput },
+          { name: 'TodayMatch', render: TodayMatch },
           { name: 'TeamInfo', render: TeamInfo }, //done
-
 
           {
             name: 'TeamStaticticsComparison',

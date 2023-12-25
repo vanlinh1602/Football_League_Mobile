@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Team, TeamStore } from '../types/teams';
 
 export const initialState: TeamStore = {
-  handling: false,
+  handling: true,
 };
 
 const teamsSlice = createSlice({

@@ -15,6 +15,7 @@ export const FontFamily = {
 
 export const images = {
   homeBackgound: require('../assets/images/main_background.jpg'),
+  logos: require('../assets/images/main_logo.png'),
 };
 
 export const logos = {

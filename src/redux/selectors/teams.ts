@@ -7,6 +7,11 @@ const selectDomain = (state: RootState) => state?.teamStore || initialState;
 
 const path = (state: RootState, path: string) => path;
 
+export const selectTeamHandling = createSelector(
+  [selectDomain],
+  (state) => state.handling,
+);
+
 export const selectTeams = createSelector(
   [selectDomain],
   (state) => state.data,
