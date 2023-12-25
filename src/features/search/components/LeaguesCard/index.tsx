@@ -1,20 +1,32 @@
+import { useNavigation } from '@react-navigation/native';
 import { HStack, Image, Text, View } from 'native-base';
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 
+import { StackScreenNavigationProp } from '../../../../Navigation/type';
 import S from './styles';
 
 type Props = {
   name: string;
   logo: any;
+  id: string;
 };
 
-const LeaguesCard = ({ name, logo }: Props) => {
+const LeaguesCard = ({ name, logo, id }: Props) => {
+  const navigation = useNavigation<StackScreenNavigationProp<'SearchTeam'>>();
   return (
-    <TouchableOpacity style={S.container}>
+    <TouchableOpacity
+      style={S.container}
+      onPress={() => {
+        navigation.navigate('TeamInfo', { id });
+      }}>
       <View>
         <HStack>
-          <Image source={logo} alt="leagueLogo" style={S.leagueLogos}></Image>
+          <Image
+            source={{ uri: logo }}
+            alt="leagueLogo"
+            style={S.leagueLogos}
+          />
           <View>
             <Text style={S.text}>{name}</Text>
             <View style={S.underline}></View>

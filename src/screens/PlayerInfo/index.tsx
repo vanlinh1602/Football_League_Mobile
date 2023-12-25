@@ -52,7 +52,8 @@ const PlayerInfo = ({ navigation }: Props) => {
             <PlayerInfoCard name="Number" score={'15'} />
             <PlayerInfoCard name="Role" score={'GK'} />
           </HStack>
-          <TouchableOpacity onPress={() => navigation.navigate('TeamInfo')}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('TeamInfo', { id: '' })}>
             <HStack margin={5}>
               <Image
                 source={logos.Manchester_United}
@@ -78,15 +79,15 @@ const PlayerInfo = ({ navigation }: Props) => {
             <Text style={S.playerInfo}>Comment</Text>
           </HStack>
           <HStack>
-          <View style={S.commentBox}>
-            <Input
-              size="sm"
-              placeholder="Comment Input"
-              onChangeText={(comment) => setComment(comment)}
-              rounded={15}
-            />
-          </View>
-          <AntDesign style={S.iconComment} name="edit" />
+            <View style={S.commentBox}>
+              <Input
+                size="sm"
+                placeholder="Comment Input"
+                onChangeText={(comment) => setComment(comment)}
+                rounded={15}
+              />
+            </View>
+            <AntDesign style={S.iconComment} name="edit" />
           </HStack>
           <ListComments />
         </VStack>

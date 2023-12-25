@@ -7,7 +7,7 @@ export const initialState: UserState = {
 };
 
 const userSlice = createSlice({
-  name: 'user',
+  name: 'userStore',
   initialState,
   reducers: {
     fetchUser(state, action: PayloadAction<UserData>) {

@@ -10,17 +10,22 @@ import {
 } from 'native-base';
 import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
+import { useSelector } from 'react-redux';
 
 import ListComments from '../../features/search/components/ListComments';
 import PlayerInfoCard from '../../features/search/components/PlayerInfoCard';
-import { logos } from '../../lib/assets';
 import { AntDesign } from '../../lib/icons';
 import { HomeStackScreenProps } from '../../Navigation/type';
+import { selectTeam } from '../../redux/selectors/teams';
+import { RootState } from '../../redux/types/RootState';
 import S from './styles';
 
 type Props = HomeStackScreenProps<'TeamInfo'>;
 
-const TeamInfo = ({ navigation }: Props) => {
+const TeamInfo = ({ navigation, route }: Props) => {
+  const teamId = route.params.id;
+
+  const teamInfo = useSelector((state: RootState) => selectTeam(state, teamId));
   const [, setComment] = useState('');
 
   return (
@@ -28,7 +33,7 @@ const TeamInfo = ({ navigation }: Props) => {
       <ScrollView>
         <VStack>
           <Image
-            source={logos.Manchester_United}
+            source={{ uri: teamInfo?.background }}
             height={250}
             alt="kuma"
             borderBottomRadius={20}
@@ -40,7 +45,7 @@ const TeamInfo = ({ navigation }: Props) => {
           </TouchableOpacity>
           <HStack justifyContent="space-between">
             <View>
-              <Text style={S.playerName}>Manchester United</Text>
+              <Text style={S.playerName}>{teamInfo?.name}</Text>
             </View>
             <AntDesign style={S.iconHeart} name="book" />
           </HStack>
@@ -52,7 +57,7 @@ const TeamInfo = ({ navigation }: Props) => {
           <TouchableOpacity>
             <HStack margin={5}>
               <Image
-                source={logos.Manchester_United}
+                source={{ uri: teamInfo?.logo }}
                 height={50}
                 width={50}
                 alt="kuma"
@@ -78,7 +83,7 @@ const TeamInfo = ({ navigation }: Props) => {
                 Gia Hy
               </Text>
             </HStack>
-            </View>
+          </View>
           <Divider style={S.divider} />
           <Text style={S.playerInfo}>Infomation</Text>
           <View style={S.infoPara}>
@@ -93,15 +98,15 @@ const TeamInfo = ({ navigation }: Props) => {
             <Text style={S.playerInfo}>Comment</Text>
           </HStack>
           <HStack>
-          <View style={S.commentBox}>
-            <Input
-              size="sm"
-              placeholder="Comment Input"
-              onChangeText={(comment) => setComment(comment)}
-              rounded={15}
-            />
-          </View>
-          <AntDesign style={S.iconComment} name="edit" />
+            <View style={S.commentBox}>
+              <Input
+                size="sm"
+                placeholder="Comment Input"
+                onChangeText={(comment) => setComment(comment)}
+                rounded={15}
+              />
+            </View>
+            <AntDesign style={S.iconComment} name="edit" />
           </HStack>
           <ListComments />
         </VStack>

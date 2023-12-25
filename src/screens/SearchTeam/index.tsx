@@ -1,36 +1,36 @@
 import { HStack, Input, ScrollView, Text, View, VStack } from 'native-base';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
+import { useSelector } from 'react-redux';
 
 import LeaguesCard from '../../features/search/components/LeaguesCard';
-import { logos } from '../../lib/assets';
 import { AntDesign } from '../../lib/icons';
 import { HomeStackScreenProps } from '../../Navigation/type';
+import { selectTeams } from '../../redux/selectors/teams';
 import S from './styles';
-
-const leagueList = [
-  { name: 'Manchester United', logo: logos.Manchester_United },
-  { name: 'Manchester city', logo: logos.Manchester_City },
-  { name: 'Chelsea', logo: logos.Chelsea },
-  { name: 'Arsenal', logo: logos.Arsenal },
-  { name: 'Liverpool', logo: logos.Liverpool },
-  { name: 'Crystal Palace', logo: logos.Arsenal },
-  { name: 'Fulham', logo: logos.Arsenal },
-  { name: 'Aston Villa', logo: logos.Arsenal },
-  { name: 'Newcastle United', logo: logos.Arsenal },
-  { name: 'Luton Town', logo: logos.Arsenal },
-];
 
 type Props = HomeStackScreenProps<'SearchTeam'>;
 
 const SearchTeam = ({ navigation }: Props) => {
   const [filterData, setFilterData] = useState('');
 
+  const teams = useSelector(selectTeams);
+
+  const teamList = useMemo(
+    () =>
+      Object.values(teams ?? {}).map(({ id, logo, name }) => ({
+        id,
+        logo,
+        name,
+      })),
+    [teams],
+  );
+
   const handleFilterData = (text: string) => {
     setFilterData(text);
   };
 
-  const filteredLeagues = leagueList.filter((league) => {
+  const filteredTeams = teamList.filter((league) => {
     return league.name.toLowerCase().includes(filterData.toLowerCase());
   });
 
@@ -72,7 +72,7 @@ const SearchTeam = ({ navigation }: Props) => {
           onChangeText={handleFilterData}
         />
         <VStack>
-          {filteredLeagues.map((league, gIndex) => (
+          {filteredTeams.map((league, gIndex) => (
             <LeaguesCard key={gIndex} {...league} />
           ))}
         </VStack>

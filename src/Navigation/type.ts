@@ -41,7 +41,7 @@ export type RootStackParamList = {
   HomeTabs: NavigatorScreenParams<RootTabParamList>;
   Login: { authScreen: keyof (RootTabParamList & RootStackParamList) };
   PlayerInfo: undefined;
-  TeamInfo: undefined;
+  TeamInfo: { id: string };
   LeaguesInfo: undefined;
   EditAccount: undefined;
   TeamStatictics: undefined;
