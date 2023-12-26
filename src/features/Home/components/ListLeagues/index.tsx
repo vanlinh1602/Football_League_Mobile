@@ -1,28 +1,30 @@
 import { ScrollView, View } from 'native-base';
 import React from 'react';
 import { Image, TouchableOpacity } from 'react-native';
+import { useSelector } from 'react-redux';
 
-import { leagues } from '../../../../lib/options';
+import { selectLeagues } from '../../../../redux/selectors/leagues';
 import S from './styles';
 
 type Props = {
-  onPress: () => void;
+  onPress: (id: string) => void;
 };
 
 const ListLeagues = ({ onPress }: Props) => {
+  const leagues = useSelector(selectLeagues);
   return (
     <ScrollView
       horizontal
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={S.scrollView}>
       <View flexDirection="row" marginBottom={2}>
-        {leagues.map((category, index) => (
+        {Object.values(leagues ?? {}).map(({ image, id }) => (
           <TouchableOpacity
-            key={index}
+            key={id}
             style={S.touchableOpacity}
-            onPress={onPress}>
+            onPress={() => onPress(id)}>
             <View style={S.view}>
-              <Image source={category.img} style={S.image} />
+              <Image source={{ uri: image }} style={S.image} />
             </View>
           </TouchableOpacity>
         ))}

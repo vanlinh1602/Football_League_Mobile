@@ -1,44 +1,43 @@
-import isEmpty from 'lodash/isEmpty';
 import moment from 'moment';
 import { Divider, HStack, Image, Text, View } from 'native-base';
 import React from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { useSelector } from 'react-redux';
 
-import { logos } from '../../lib/assets';
 import { theme } from '../../lib/theme';
+import { selectTeam } from '../../redux/selectors/teams';
+import { Match } from '../../redux/types/matches';
+import { RootState } from '../../redux/types/RootState';
 
 interface ItemProps {
-  item: any;
+  item: Match;
 }
 
-const AgendaItem = (props: ItemProps) => {
-  const { item } = props;
-
-  if (isEmpty(item)) {
-    return (
-      <View style={styles.emptyItem}>
-        <Text style={styles.emptyItemText}>No Match Planned Today</Text>
-      </View>
-    );
-  }
+const AgendaItem = ({ item }: ItemProps) => {
+  const teamA = useSelector((state: RootState) =>
+    selectTeam(state, item.teamA),
+  );
+  const teamB = useSelector((state: RootState) =>
+    selectTeam(state, item.teamB),
+  );
 
   return (
     <View style={styles.container}>
       <HStack padding={3} alignItems="center">
-        <View style={{ width: '60%' }}>
+        <View style={{ width: '65%' }}>
           <HStack alignItems="center" justifyContent="space-between">
             <HStack alignItems="center">
-              <Image source={logos.Liverpool} alt="" style={styles.logo} />
-              <Text fontWeight="bold">Liverpool</Text>
+              <Image source={{ uri: teamA?.logo }} alt="" style={styles.logo} />
+              <Text fontWeight="bold">{teamA?.name}</Text>
             </HStack>
-            <Text fontWeight="bold">1</Text>
+            <Text fontWeight="bold">{item.mathResult?.teamA || 0}</Text>
           </HStack>
           <HStack alignItems="center" justifyContent="space-between">
             <HStack alignItems="center">
-              <Image source={logos.FC_Barcelona} alt="" style={styles.logo} />
-              <Text fontWeight="bold">Barcelona</Text>
+              <Image source={{ uri: teamB?.logo }} alt="" style={styles.logo} />
+              <Text fontWeight="bold">{teamB?.name}</Text>
             </HStack>
-            <Text fontWeight="bold">0</Text>
+            <Text fontWeight="bold">{item.mathResult?.teamB || 0}</Text>
           </HStack>
         </View>
         <Divider
@@ -49,14 +48,11 @@ const AgendaItem = (props: ItemProps) => {
         />
         <View style={{ width: '30%' }}>
           <Text color={theme.purple} fontWeight="bold" fontSize={16}>
-            {moment().format('HH : mm')}
+            {moment(item.date).format('HH : mm')}
           </Text>
-          <Text fontWeight="bold">{moment().format('DD MMM - YYYY')}</Text>
-        </View>
-        <View style={{ position: 'absolute', top: 10, right: 10 }}>
-          <TouchableOpacity>
-            <Text color={theme.red}>edit</Text>
-          </TouchableOpacity>
+          <Text fontWeight="bold">
+            {moment(item.date).format('DD MMM - YYYY')}
+          </Text>
         </View>
       </HStack>
     </View>
@@ -72,10 +68,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderBottomWidth: 1,
     borderBottomColor: 'lightgrey',
-  },
-  emptyItemText: {
-    color: 'lightgrey',
-    fontSize: 14,
   },
   container: {
     borderBottomWidth: 3,

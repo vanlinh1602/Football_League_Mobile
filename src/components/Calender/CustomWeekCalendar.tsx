@@ -1,271 +1,160 @@
-/* eslint-disable react/display-name */
 import moment from 'moment';
-import { HStack, Text, View } from 'native-base';
-import React from 'react';
-import { StyleSheet } from 'react-native';
+import { HStack, ScrollView, VStack } from 'native-base';
+import React, { useState } from 'react';
 import {
-  AgendaList,
-  CalendarProvider,
-  WeekCalendar,
-} from 'react-native-calendars';
+  Dimensions,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import { useSelector } from 'react-redux';
 
-import { AntDesign } from '../../lib/icons';
+import { selectMatchInDay } from '../../redux/selectors/matches';
+import { RootState } from '../../redux/types/RootState';
 import AgendaItem from './AgedaItem';
 
-const items = [
-  {
-    title: '2023-11-21',
-    data: [
-      {
-        hour: '12am',
-        duration: '1h',
-        title: 'First Yoga',
-      },
-    ],
-  },
-  {
-    title: '2023-11-24',
-    data: [
-      {
-        hour: '4pm',
-        duration: '1h',
-        title: 'Pilates ABC',
-      },
-      {
-        hour: '5pm',
-        duration: '1h',
-        title: 'Vinyasa Yoga',
-      },
-    ],
-  },
-  {
-    title: '2023-11-25',
-    data: [
-      {
-        hour: '1pm',
-        duration: '1h',
-        title: 'Ashtanga Yoga',
-      },
-      {
-        hour: '2pm',
-        duration: '1h',
-        title: 'Deep Stretches',
-      },
-      {
-        hour: '3pm',
-        duration: '1h',
-        title: 'Private Yoga',
-      },
-    ],
-  },
-  {
-    title: '2023-11-26',
-    data: [
-      {
-        hour: '12am',
-        duration: '1h',
-        title: 'Ashtanga Yoga',
-      },
-    ],
-  },
-  {
-    title: '2023-11-27',
-    data: [{}],
-  },
-  {
-    title: '2023-11-28',
-    data: [
-      {
-        hour: '9pm',
-        duration: '1h',
-        title: 'Middle Yoga',
-      },
-      {
-        hour: '10pm',
-        duration: '1h',
-        title: 'Ashtanga',
-      },
-      {
-        hour: '11pm',
-        duration: '1h',
-        title: 'TRX',
-      },
-      {
-        hour: '12pm',
-        duration: '1h',
-        title: 'Running Group',
-      },
-    ],
-  },
-  {
-    title: '2023-11-29',
-    data: [
-      {
-        hour: '12am',
-        duration: '1h',
-        title: 'Ashtanga Yoga',
-      },
-    ],
-  },
-  {
-    title: '2023-11-30',
-    data: [{}],
-  },
-  {
-    title: '2023-12-01',
-    data: [
-      {
-        hour: '9pm',
-        duration: '1h',
-        title: 'Pilates Reformer',
-      },
-      {
-        hour: '10pm',
-        duration: '1h',
-        title: 'Ashtanga',
-      },
-      {
-        hour: '11pm',
-        duration: '1h',
-        title: 'TRX',
-      },
-      {
-        hour: '12pm',
-        duration: '1h',
-        title: 'Running Group',
-      },
-    ],
-  },
-  {
-    title: '2023-12-02',
-    data: [
-      {
-        hour: '1pm',
-        duration: '1h',
-        title: 'Ashtanga Yoga',
-      },
-      {
-        hour: '2pm',
-        duration: '1h',
-        title: 'Deep Stretches',
-      },
-      {
-        hour: '3pm',
-        duration: '1h',
-        title: 'Private Yoga',
-      },
-    ],
-  },
-  {
-    title: 1704128400000,
-    data: [
-      {
-        hour: '12am',
-        duration: '1h',
-        title: 'Last Yoga',
-      },
-    ],
-  },
-  {
-    title: '2024-01-03',
-    data: [
-      {
-        hour: '1pm',
-        duration: '1h',
-        title: 'Ashtanga Yoga',
-      },
-      {
-        hour: '2pm',
-        duration: '1h',
-        title: 'Deep Stretches',
-      },
-      {
-        hour: '3pm',
-        duration: '1h',
-        title: 'Private Yoga',
-      },
-    ],
-  },
-  {
-    title: '2024-01-04',
-    data: [
-      {
-        hour: '12am',
-        duration: '1h',
-        title: 'Last Yoga',
-      },
-    ],
-  },
-  {
-    title: '2024-01-05',
-    data: [
-      {
-        hour: '12am',
-        duration: '1h',
-        title: 'Last Yoga',
-      },
-    ],
-  },
-];
+const windowWidth = Dimensions.get('window').width;
 
-type Props = {
-  onDayChange: (date: number) => void;
-  currentDate?: number;
-};
+const WeekCalendar = () => {
+  const [startDate, setStartDate] = useState(moment().startOf('isoWeek'));
+  const [selectDate, setSelectDate] = useState<number>(
+    moment().startOf('day').valueOf(),
+  );
 
-const CustomWeekCalendar = ({ onDayChange, currentDate }: Props) => {
+  const matchOfDate = useSelector((state: RootState) =>
+    selectMatchInDay(state, selectDate),
+  );
+
+  const generateWeekDays = () => {
+    return Array.from({ length: 7 }, (_, i) =>
+      moment(startDate).add(i, 'days'),
+    );
+  };
+
+  const nextWeek = () => {
+    setStartDate(moment(startDate).add(1, 'weeks'));
+  };
+
+  const prevWeek = () => {
+    setStartDate(moment(startDate).subtract(1, 'weeks'));
+  };
+
+  const daysOfWeek = generateWeekDays();
+
   return (
-    <View style={styles.calendar}>
-      <View style={{ height: '76%' }}>
-        <HStack alignItems="center" ml={5} space={3}>
-          <AntDesign name="calendar" color="#686868" size={24} />
-          <Text fontWeight="bold">
-            {moment(currentDate).format('MMM DD - YYYY')}
-          </Text>
-        </HStack>
-        <CalendarProvider
-          key="calendar_porvider"
-          date={moment(currentDate).toISOString()}
-          onDateChanged={(dateString) => {
-            const date = moment(dateString).valueOf();
-            onDayChange(date);
-          }}>
-          <WeekCalendar
-            allowShadow={false}
-            key="ExpandableCalendar"
-            date={moment(currentDate).toISOString()}
-            current={moment(currentDate).toISOString()}
-            firstDay={1}
-          />
-          <AgendaList
-            key="AgendaList"
-            sections={items}
-            renderItem={AgendaItem}
-            sectionStyle={styles.section}
-            useMoment
-          />
-        </CalendarProvider>
+    <View style={styles.container}>
+      <HStack alignItems="center" justifyContent="space-between" mb={0}>
+        <TouchableOpacity onPress={prevWeek} style={styles.arrowContainer}>
+          <Text style={styles.arrowText}>&lt;</Text>
+        </TouchableOpacity>
+        <Text style={styles.header}>{`${startDate.format('MMM D')} - ${moment(
+          startDate,
+        )
+          .add(6, 'days')
+          .format('MMM D, YYYY')}`}</Text>
+        <TouchableOpacity onPress={nextWeek} style={styles.arrowContainer}>
+          <Text style={styles.arrowText}>&gt;</Text>
+        </TouchableOpacity>
+      </HStack>
+      <View style={styles.weekContainer}>
+        {daysOfWeek.map((day, index) => (
+          <TouchableOpacity
+            key={index}
+            onPress={() => setSelectDate(day.valueOf())}>
+            <View key={index} style={styles.dayContainer}>
+              <Text style={styles.day}>{day.format('ddd')}</Text>
+              <Text
+                style={
+                  selectDate === day.valueOf() ? styles.dateSelect : styles.date
+                }>
+                {day.format('D')}
+              </Text>
+            </View>
+          </TouchableOpacity>
+        ))}
+      </View>
+      <View style={{ height: '70%', paddingBottom: 70 }}>
+        <ScrollView scrollEnabled>
+          <VStack>
+            {}
+            {matchOfDate.length ? (
+              matchOfDate.map((match, index) => (
+                <AgendaItem key={index} item={match} />
+              ))
+            ) : (
+              <View
+                style={{
+                  height: 52,
+                  width: '100%',
+                }}>
+                <Text
+                  style={{
+                    paddingTop: 20,
+                    color: 'grey',
+                    fontSize: 14,
+                    textAlign: 'center',
+                  }}>
+                  No Match Planned Today
+                </Text>
+              </View>
+            )}
+          </VStack>
+        </ScrollView>
       </View>
     </View>
   );
 };
 
-export default CustomWeekCalendar;
-
 const styles = StyleSheet.create({
-  calendar: {
-    backgroundColor: 'white',
-    borderTopLeftRadius: 24,
-    borderTopRightRadius: 24,
-    paddingTop: 5,
+  container: {
+    backgroundColor: '#fff',
+    padding: 10,
+    borderRadius: 20,
+    height: '100%',
+    width: '100%',
   },
-  title: {
-    paddingTop: 10,
-    marginLeft: 25,
+  header: {
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
-  section: {
-    backgroundColor: 'white',
-    color: 'grey',
-    textTransform: 'capitalize',
+  weekContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 10,
+    overflow: 'hidden',
+  },
+  dayContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: (windowWidth - 80) / 7, // Subtract the width of the arrows
+    paddingVertical: 10,
+  },
+  day: {
+    fontSize: 12,
+    color: '#666666',
+  },
+  date: {
+    fontSize: 16,
+    color: '#333333',
+  },
+  dateSelect: {
+    fontSize: 16,
+    color: '#fff',
+    backgroundColor: '#0ac2e4',
+    paddingHorizontal: 5,
+    borderRadius: 12,
+  },
+  arrowContainer: {
+    width: 20, // Width of the arrow container
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  arrowText: {
+    fontSize: 24,
+    color: '#333333',
   },
 });
+
+export default WeekCalendar;

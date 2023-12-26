@@ -32,6 +32,29 @@ function* getMatchs(action: PayloadAction<string>) {
   }
 }
 
+function* getAllMatchs() {
+  try {
+    const result: WithApiResult<Match[]> = yield backendService.post(
+      'api/getAllMatchs',
+      {},
+    );
+    if (result.kind === 'ok') {
+      if (result.data.length) {
+        const matches = _.keyBy(result.data, 'id');
+        yield put(matchAction.fetchMatchs(matches));
+      } else {
+        yield put(matchAction.fetchMatchs({}));
+      }
+    } else {
+      yield put(matchAction.fetchMatchs());
+      Alert.alert('Lỗi tra cứu', formatError(result));
+    }
+  } catch (error) {
+    yield put(matchAction.fetchMatchs());
+    Alert.alert('Lỗi tra cứu', formatError(error));
+  }
+}
+
 function* getEvents(action: PayloadAction<string>) {
   try {
     const match = action.payload;
@@ -60,5 +83,6 @@ export default function* saga() {
   yield all([
     takeEvery(matchAction.getMatchs.type, getMatchs),
     takeEvery(matchAction.getEvents.type, getEvents),
+    takeEvery(matchAction.getAllMatch.type, getAllMatchs),
   ]);
 }

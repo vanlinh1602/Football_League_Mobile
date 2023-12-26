@@ -2,6 +2,7 @@ import moment from 'moment';
 import { HStack, Image, ScrollView, Text, VStack } from 'native-base';
 import React from 'react';
 import { ImageBackground } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import { MatchCard, UpcomingCard } from '../../features/Home/components';
@@ -9,6 +10,7 @@ import ListLeagues from '../../features/Home/components/ListLeagues';
 import { images, logos } from '../../lib/assets';
 import { Ionicons } from '../../lib/icons';
 import { HomeTabScreenProps } from '../../Navigation/type';
+import { selectCurrentMatch } from '../../redux/selectors/matches';
 import { selectUser } from '../../redux/selectors/user';
 import S from './styles';
 
@@ -71,7 +73,7 @@ type Props = HomeTabScreenProps<'Home'>;
 
 const Home = ({ navigation }: Props) => {
   const user = useSelector(selectUser);
-
+  const currentMatch = useSelector(selectCurrentMatch);
   return (
     <ImageBackground style={S.background} source={images.homeBackgound}>
       <ScrollView>
@@ -94,9 +96,13 @@ const Home = ({ navigation }: Props) => {
             />
           </HStack>
           <Text style={S.title}>Top Leagues</Text>
-          <ListLeagues onPress={() => navigation.navigate('LeaguesInfo')} />
+          <ListLeagues
+            onPress={(id) => navigation.navigate('LeaguesInfo', { id })}
+          />
           <Text style={S.title}>Current Match</Text>
-          <MatchCard />
+          <TouchableOpacity onPress={() => navigation.navigate('TodayMatch')}>
+            <MatchCard match={currentMatch!} />
+          </TouchableOpacity>
           <Text style={S.title}>Upcoming Match</Text>
           {upcoming.map((card, index) => (
             <UpcomingCard key={index} {...card} />

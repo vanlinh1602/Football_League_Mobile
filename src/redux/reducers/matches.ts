@@ -36,6 +36,10 @@ const slice = createSlice({
     getMatchs(state, _action: PayloadAction<string>) {
       state.handling = true;
     },
+
+    getAllMatch(state) {
+      state.handling = true;
+    },
     getEvents(state, _action: PayloadAction<string>) {
       state.handling = true;
     },

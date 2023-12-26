@@ -43,7 +43,9 @@ const Statistic = ({ navigation }: Props) => {
           <Text color="#fff" fontSize={24} pl={5}>
             Choose League
           </Text>
-          <ListLeagues onPress={() => navigation.navigate('LeaguesInfo')} />
+          <ListLeagues
+            onPress={(id) => navigation.navigate('LeaguesInfo', { id })}
+          />
         </View>
         <View style={S.statistic}>
           <ScrollView>

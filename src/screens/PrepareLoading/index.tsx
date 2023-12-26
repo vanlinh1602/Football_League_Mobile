@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { images } from '../../lib/assets';
 import { HomeStackScreenProps } from '../../Navigation/type';
 import { actions as leagueActions } from '../../redux/reducers/leagues';
+import { actions as matchActions } from '../../redux/reducers/matches';
 import { actions as playerActions } from '../../redux/reducers/players';
 import { actions as teamActions } from '../../redux/reducers/teams';
 import { selectPlayerHandling } from '../../redux/selectors/players';
@@ -45,6 +46,8 @@ const PrepareScreen = ({ navigation }: Props) => {
     dispatch(playerActions.getAllPlayers());
 
     dispatch(leagueActions.getLeagues());
+
+    dispatch(matchActions.getAllMatch());
 
     changeMessage();
   }, [dispatch]);
