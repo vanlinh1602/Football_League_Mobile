@@ -1,35 +1,26 @@
 import { HStack, Input, ScrollView, Text, View, VStack } from 'native-base';
 import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
+import { useSelector } from 'react-redux';
 
 import LeaguesCard from '../../features/search/components/LeaguesCard';
-import { logos } from '../../lib/assets';
 import { AntDesign } from '../../lib/icons';
 import { HomeStackScreenProps } from '../../Navigation/type';
+import { selectAllPlayer } from '../../redux/selectors/players';
 import S from './styles';
 
-const leagueList = [
-  { name: 'Erling Haaland', logo: logos.Chelsea },
-  { name: 'Marcus Rashford', logo: logos.Chelsea },
-  { name: 'Antony', logo: logos.Chelsea },
-  { name: 'Tripier', logo: logos.Chelsea },
-  { name: 'Mitrovic', logo: logos.Chelsea },
-  { name: 'Mohamed Salah', logo: logos.Chelsea },
-  { name: 'Darwin Nunez', logo: logos.Chelsea },
-  { name: 'Bernando Silva', logo: logos.Chelsea },
-  { name: 'Kevin De Bruyne', logo: logos.Chelsea },
-  { name: 'Onana', logo: logos.Chelsea },
-];
 type Props = HomeStackScreenProps<'SearchPlayer'>;
+
 const SearchPlayer = ({ navigation }: Props) => {
   const [filterData, setFilterData] = useState('');
+  const allPlayer = useSelector(selectAllPlayer);
 
   const handleFilterData = (text: string) => {
     setFilterData(text);
   };
 
-  const filteredLeagues = leagueList.filter((league) => {
-    return league.name.toLowerCase().includes(filterData.toLowerCase());
+  const filteredPlayers = Object.values(allPlayer).filter((player) => {
+    return player.name.toLowerCase().includes(filterData.toLowerCase());
   });
 
   return (
@@ -70,8 +61,14 @@ const SearchPlayer = ({ navigation }: Props) => {
           onChangeText={handleFilterData}
         />
         <VStack>
-          {filteredLeagues.map((league, gIndex) => (
-            <LeaguesCard key={gIndex} {...league} />
+          {filteredPlayers.map(({ id, name, avatar }, gIndex) => (
+            <LeaguesCard
+              key={gIndex}
+              logo={avatar}
+              name={name}
+              nativeScreen="PlayerInfo"
+              id={id}
+            />
           ))}
         </VStack>
       </VStack>

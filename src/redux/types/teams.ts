@@ -6,9 +6,9 @@ export type Team = {
   name: string;
   logo: string;
   background: string;
-  owner: string;
   coach: string;
   captain: string;
+  description: string;
   country: string;
   founding: number;
 };

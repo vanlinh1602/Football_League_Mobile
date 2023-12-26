@@ -72,7 +72,7 @@ const TeamInfo = ({ navigation, route }: Props) => {
                 Coach:
               </Text>
               <Text ml={3} fontSize={17} fontWeight={'medium'}>
-                Gia Hy
+                {teamInfo?.coach}
               </Text>
             </HStack>
             <HStack mt={2} mb={2}>
@@ -80,18 +80,14 @@ const TeamInfo = ({ navigation, route }: Props) => {
                 Captain:
               </Text>
               <Text ml={3} fontSize={17} fontWeight={'medium'}>
-                Gia Hy
+                {teamInfo?.captain}
               </Text>
             </HStack>
           </View>
           <Divider style={S.divider} />
           <Text style={S.playerInfo}>Infomation</Text>
           <View style={S.infoPara}>
-            <Text style={S.infoText}>
-              Manchester United Football Club is an English professional
-              football club, based in Old Trafford, Greater Manchester, that
-              plays in the Premier League.
-            </Text>
+            <Text style={S.infoText}>{teamInfo?.description}</Text>
           </View>
           <Divider style={S.divider2} />
           <HStack marginBottom={2} marginTop={1}>

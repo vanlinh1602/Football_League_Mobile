@@ -1,3 +1,4 @@
+import moment from 'moment';
 import {
   Divider,
   HStack,
@@ -10,18 +11,27 @@ import {
 } from 'native-base';
 import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
+import { useSelector } from 'react-redux';
 
 import ListComments from '../../features/search/components/ListComments';
 import PlayerInfoCard from '../../features/search/components/PlayerInfoCard';
-import { logos } from '../../lib/assets';
-import { playersPicture } from '../../lib/assets';
 import { AntDesign } from '../../lib/icons';
 import { HomeStackScreenProps } from '../../Navigation/type';
+import { selectPlayer } from '../../redux/selectors/players';
+import { selectTeam } from '../../redux/selectors/teams';
+import { RootState } from '../../redux/types/RootState';
 import S from './styles';
 
 type Props = HomeStackScreenProps<'PlayerInfo'>;
 
-const PlayerInfo = ({ navigation }: Props) => {
+const PlayerInfo = ({ navigation, route }: Props) => {
+  const playerId = route.params.id;
+  const playerInfo = useSelector((state: RootState) =>
+    selectPlayer(state, playerId),
+  );
+  const team = useSelector((state: RootState) =>
+    selectTeam(state, playerInfo.team),
+  );
   const [, setComment] = useState('');
 
   return (
@@ -29,7 +39,7 @@ const PlayerInfo = ({ navigation }: Props) => {
       <ScrollView>
         <VStack>
           <Image
-            source={playersPicture.e_haaland}
+            source={{ uri: playerInfo.avatar }}
             height={250}
             alt="kuma"
             borderBottomRadius={20}
@@ -43,36 +53,42 @@ const PlayerInfo = ({ navigation }: Props) => {
 
           <HStack justifyContent="space-between">
             <View>
-              <Text style={S.playerName}>Erling Haaland</Text>
+              <Text style={S.playerName}>{playerInfo.name}</Text>
             </View>
             <AntDesign style={S.iconHeart} name="book" />
           </HStack>
           <HStack marginTop={3}>
-            <PlayerInfoCard name="BirthDay" score={'10-3'} />
-            <PlayerInfoCard name="Number" score={'15'} />
-            <PlayerInfoCard name="Role" score={'GK'} />
+            <PlayerInfoCard
+              name="BirthDay"
+              score={
+                playerInfo.birthday
+                  ? moment(playerInfo.birthday).format('D/M')
+                  : ''
+              }
+            />
+            <PlayerInfoCard
+              name="Number"
+              score={playerInfo.number?.toString() ?? '12'}
+            />
+            <PlayerInfoCard name="Role" score={playerInfo.role ?? ''} />
           </HStack>
           <TouchableOpacity
             onPress={() => navigation.navigate('TeamInfo', { id: '' })}>
             <HStack margin={5}>
               <Image
-                source={logos.Manchester_United}
+                source={{ uri: team?.logo }}
                 height={50}
                 width={50}
                 alt="kuma"
               />
-              <Text style={S.teamName}>Manchester United</Text>
+              <Text style={S.teamName}>{team?.name}</Text>
               <AntDesign style={S.iconRight} name="right" />
             </HStack>
           </TouchableOpacity>
           <Divider style={S.divider} />
           <Text style={S.playerInfo}>Infomation</Text>
           <View style={S.infoPara}>
-            <Text style={S.infoText}>
-              Erling Braut Haaland là một cầu thủ bóng đá chuyên nghiệp người Na
-              Uy thi đấu ở vị trí tiền đạo cắm cho câu lạc bộ Premier League
-              Manchester City và Đội tuyển bóng đá quốc gia Na Uy.
-            </Text>
+            <Text style={S.infoText}>{playerInfo.description}</Text>
           </View>
           <Divider style={S.divider2} />
           <HStack marginBottom={2} marginTop={1}>

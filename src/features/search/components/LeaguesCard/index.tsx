@@ -10,15 +10,16 @@ type Props = {
   name: string;
   logo: any;
   id: string;
+  nativeScreen: 'TeamInfo' | 'LeaguesInfo' | 'PlayerInfo';
 };
 
-const LeaguesCard = ({ name, logo, id }: Props) => {
+const LeaguesCard = ({ name, logo, id, nativeScreen }: Props) => {
   const navigation = useNavigation<StackScreenNavigationProp<'SearchTeam'>>();
   return (
     <TouchableOpacity
       style={S.container}
       onPress={() => {
-        navigation.navigate('TeamInfo', { id });
+        navigation.navigate(nativeScreen, { id });
       }}>
       <View>
         <HStack>

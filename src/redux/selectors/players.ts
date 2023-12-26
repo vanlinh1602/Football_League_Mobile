@@ -1,6 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 
 import { initialState } from '../reducers/players';
+import { Player } from '../types/players';
 import { RootState } from '../types/RootState';
 
 const selectDomain = (state: RootState) => state?.playerStore || initialState;
@@ -11,12 +12,35 @@ export const selectPlayerHandling = createSelector(
   (state) => state.handling,
 );
 
-export const selectLayers = createSelector(
+export const selectPlayers = createSelector(
   [selectDomain],
   (state) => state.data,
 );
 
+export const selectPlayer = createSelector(
+  [selectDomain, selectPath],
+  (state, id) => {
+    const playerData = state.data ?? {};
+    const teamId =
+      Object.keys(playerData).find((tId) =>
+        Object.keys(playerData[tId] ?? {}).includes(id),
+      ) ?? '';
+    return playerData[teamId]?.[id];
+  },
+);
+
+export const selectAllPlayer = createSelector([selectDomain], (state) => {
+  let players: CustomObject<Player> = {};
+  Object.values(state.data ?? {}).forEach((teamPLayer) => {
+    players = {
+      ...players,
+      ...teamPLayer,
+    };
+  });
+  return players;
+});
+
 export const selectPlayersOfTeams = createSelector(
-  [selectLayers, selectPath],
+  [selectPlayers, selectPath],
   (players, path) => players?.[path],
 );

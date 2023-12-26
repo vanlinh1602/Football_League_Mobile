@@ -73,7 +73,7 @@ const SearchTeam = ({ navigation }: Props) => {
         />
         <VStack>
           {filteredTeams.map((league, gIndex) => (
-            <LeaguesCard key={gIndex} {...league} />
+            <LeaguesCard key={gIndex} {...league} nativeScreen="TeamInfo" />
           ))}
         </VStack>
       </VStack>

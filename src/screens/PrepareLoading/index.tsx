@@ -10,11 +10,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { images } from '../../lib/assets';
 import { HomeStackScreenProps } from '../../Navigation/type';
+import { actions as leagueActions } from '../../redux/reducers/leagues';
 import { actions as playerActions } from '../../redux/reducers/players';
 import { actions as teamActions } from '../../redux/reducers/teams';
 import { selectPlayerHandling } from '../../redux/selectors/players';
 import { selectTeamHandling } from '../../redux/selectors/teams';
-import { readDataFromFile } from '../../utils/localStorage';
 
 type Props = HomeStackScreenProps<'PrepareScreen'>;
 
@@ -38,22 +38,15 @@ const PrepareScreen = ({ navigation }: Props) => {
       }
     };
 
-    readDataFromFile('teams').then((teamValue) => {
-      if (teamValue) {
-        dispatch(teamActions.fetchTeams(teamValue));
-      } else {
-        dispatch(teamActions.getTeams());
-      }
-      changeMessage();
-    });
-    readDataFromFile('players').then((playerValue) => {
-      if (playerValue) {
-        dispatch(playerActions.fetchPlayers(playerValue));
-      } else {
-        dispatch(playerActions.getAllPlayers());
-      }
-      changeMessage();
-    });
+    dispatch(teamActions.getTeams());
+
+    changeMessage();
+
+    dispatch(playerActions.getAllPlayers());
+
+    dispatch(leagueActions.getLeagues());
+
+    changeMessage();
   }, [dispatch]);
 
   useEffect(() => {

@@ -1,36 +1,25 @@
 import { HStack, Input, ScrollView, Text, View, VStack } from 'native-base';
 import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
+import { useSelector } from 'react-redux';
 
 import LeaguesCard from '../../features/search/components/LeaguesCard';
-import { leagueLogos } from '../../lib/assets';
 import { AntDesign } from '../../lib/icons';
 import { HomeStackScreenProps } from '../../Navigation/type';
+import { selectLeagues } from '../../redux/selectors/leagues';
 import S from './styles';
-
-const leagueList = [
-  { name: 'EPL', logo: leagueLogos.AFC },
-  { name: 'AFC', logo: leagueLogos.AFF },
-  { name: 'AFCCUP', logo: leagueLogos.UEFA },
-  { name: 'UEFA', logo: leagueLogos.UEFAEU },
-  { name: 'AFC Champions Cup', logo: leagueLogos.CAF },
-  { name: 'EPL', logo: leagueLogos.AFC },
-  { name: 'AFC', logo: leagueLogos.AFF },
-  { name: 'AFCCUP', logo: leagueLogos.UEFA },
-  { name: 'UEFA', logo: leagueLogos.UEFAEU },
-  { name: 'AFC Champions Cup', logo: leagueLogos.CAF },
-];
 
 type Props = HomeStackScreenProps<'SearchLeague'>;
 
 const SearchLeague = ({ navigation }: Props) => {
   const [filterData, setFilterData] = useState('');
 
+  const leagues = useSelector(selectLeagues);
   const handleFilterData = (text: string) => {
     setFilterData(text);
   };
 
-  const filteredLeagues = leagueList.filter((league) => {
+  const filteredLeagues = Object.values(leagues ?? {}).filter((league) => {
     return league.name.toLowerCase().includes(filterData.toLowerCase());
   });
 
@@ -72,8 +61,14 @@ const SearchLeague = ({ navigation }: Props) => {
           onChangeText={handleFilterData}
         />
         <VStack>
-          {filteredLeagues.map((league, gIndex) => (
-            <LeaguesCard key={gIndex} {...league} />
+          {filteredLeagues.map(({ id, image, name }, gIndex) => (
+            <LeaguesCard
+              key={gIndex}
+              name={name}
+              logo={image}
+              id={id}
+              nativeScreen="LeaguesInfo"
+            />
           ))}
         </VStack>
       </VStack>
