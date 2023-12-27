@@ -93,8 +93,6 @@ function* getAllEvents() {
       if (result.data.length) {
         const dataUpdate: CustomObject<CustomObject<Event>> = {};
         const events = _.groupBy(result.data, 'match');
-        console.log(events);
-
         Object.entries(events).forEach(([match, matchEvent]) => {
           dataUpdate[match] = _.keyBy(matchEvent, 'id');
         });

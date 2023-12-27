@@ -74,7 +74,12 @@ const Statistic = ({ navigation }: Props) => {
                           key={team.id}
                           team={team}
                           colorLiner={colorLinerTeam[index % 2]}
-                          onPress={() => navigation.navigate('TeamStatictics')}
+                          onPress={(data) =>
+                            navigation.navigate('TeamStatictics', {
+                              data,
+                              team: team.id,
+                            })
+                          }
                         />
                       ),
                     )}

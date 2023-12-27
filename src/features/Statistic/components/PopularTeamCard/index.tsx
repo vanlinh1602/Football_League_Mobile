@@ -9,13 +9,14 @@ import {
   selectEvents,
   selectTeamMatch,
 } from '../../../../redux/selectors/matches';
+import { TeamStatistic } from '../../../../redux/types/matches';
 import { RootState } from '../../../../redux/types/RootState';
 import { Team } from '../../../../redux/types/teams';
 import S from './styles';
 
 type Props = {
   colorLiner: string[];
-  onPress: () => void;
+  onPress: (statistic: TeamStatistic) => void;
   team: Team;
 };
 
@@ -30,7 +31,7 @@ const PopularTeamCard = ({ colorLiner, onPress, team }: Props) => {
   }, [teamMactes, events, team.id]);
 
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={() => onPress(teamStatistic)}>
       <View style={S.container}>
         <LinearGradient
           start={{ x: 0.0, y: 0.25 }}

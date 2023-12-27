@@ -12,6 +12,8 @@ import type {
   StackScreenProps,
 } from '@react-navigation/stack';
 
+import { TeamStatistic } from '../redux/types/matches';
+
 // Bottom Tab
 export type RootTabParamList = {
   Home: undefined;
@@ -44,7 +46,7 @@ export type RootStackParamList = {
   TeamInfo: { id: string };
   LeaguesInfo: { id: string };
   EditAccount: undefined;
-  TeamStatictics: undefined;
+  TeamStatictics: { data: TeamStatistic; team: string };
   PlayerStatictics: undefined;
   TeamStaticticsComparison: undefined;
   Notification: undefined;
