@@ -6,6 +6,7 @@ import { all, put, takeEvery } from 'redux-saga/effects';
 import { backendService } from '../../services';
 import formatError from '../../utils/formatError';
 import { actions as matchAction } from '../reducers/matches';
+import { actions as userActions } from '../reducers/user';
 import { Event, Match } from '../types/matches';
 
 function* getMatchs(action: PayloadAction<string>) {
@@ -45,6 +46,9 @@ function* getAllMatchs() {
       } else {
         yield put(matchAction.fetchMatchs({}));
       }
+      yield put(
+        userActions.changePrepareStatus({ status: 'Fetching Events...' }),
+      );
     } else {
       yield put(matchAction.fetchMatchs());
       Alert.alert('Lỗi tra cứu', formatError(result));
@@ -79,10 +83,46 @@ function* getEvents(action: PayloadAction<string>) {
   }
 }
 
+function* getAllEvents() {
+  try {
+    const result: WithApiResult<Event[]> = yield backendService.post(
+      'api/getAllEvents',
+      {},
+    );
+    if (result.kind === 'ok') {
+      if (result.data.length) {
+        const dataUpdate: CustomObject<CustomObject<Event>> = {};
+        const events = _.groupBy(result.data, 'match');
+        console.log(events);
+
+        Object.entries(events).forEach(([match, matchEvent]) => {
+          dataUpdate[match] = _.keyBy(matchEvent, 'id');
+        });
+        yield put(matchAction.fetchAllEvents(dataUpdate));
+      } else {
+        yield put(matchAction.fetchMatchs({}));
+      }
+      yield put(
+        userActions.changePrepareStatus({
+          status: 'Completed...',
+          isFinish: true,
+        }),
+      );
+    } else {
+      yield put(matchAction.fetchMatchs());
+      Alert.alert('Lỗi tra cứu', formatError(result));
+    }
+  } catch (error) {
+    yield put(matchAction.fetchMatchs());
+    Alert.alert('Lỗi tra cứu', formatError(error));
+  }
+}
+
 export default function* saga() {
   yield all([
     takeEvery(matchAction.getMatchs.type, getMatchs),
     takeEvery(matchAction.getEvents.type, getEvents),
     takeEvery(matchAction.getAllMatch.type, getAllMatchs),
+    takeEvery(matchAction.getAllEvents.type, getAllEvents),
   ]);
 }

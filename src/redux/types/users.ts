@@ -12,6 +12,8 @@ export type UserData = {
 export type UserState = {
   handling: boolean;
   data?: UserData;
+  fetching: boolean;
+  fetchStatus: string;
 };
 
 export type SignInAction = PayloadAction<FirebaseAuthTypes.User>;

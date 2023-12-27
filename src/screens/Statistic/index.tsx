@@ -1,7 +1,8 @@
-import { range } from 'lodash';
+import _, { range } from 'lodash';
 import { HStack, ScrollView, Text, View, VStack } from 'native-base';
 import React from 'react';
 import { ImageBackground } from 'react-native';
+import { useSelector } from 'react-redux';
 
 import ListLeagues from '../../features/Home/components/ListLeagues';
 import {
@@ -12,6 +13,7 @@ import {
 import { images } from '../../lib/assets';
 import { EvilIcons, Ionicons } from '../../lib/icons';
 import { HomeTabScreenProps } from '../../Navigation/type';
+import { selectTeams } from '../../redux/selectors/teams';
 import S from './styles';
 
 const colorLinerTeam = [
@@ -27,6 +29,8 @@ const colorLinerPlayer = [
 type Props = HomeTabScreenProps<'Statistic'>;
 
 const Statistic = ({ navigation }: Props) => {
+  const teams = useSelector(selectTeams);
+
   return (
     <ImageBackground source={images.homeBackgound}>
       <VStack space={5} pb={5}>
@@ -64,13 +68,16 @@ const Statistic = ({ navigation }: Props) => {
               <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                 <View height="auto">
                   <HStack space={5}>
-                    {range(0, 5).map((key) => (
-                      <PopularTeamCard
-                        key={key}
-                        colorLiner={colorLinerTeam[key % 2]}
-                        onPress={() => navigation.navigate('TeamStatictics')}
-                      />
-                    ))}
+                    {_.take(Object.values(teams ?? {}), 6).map(
+                      (team, index) => (
+                        <PopularTeamCard
+                          key={team.id}
+                          team={team}
+                          colorLiner={colorLinerTeam[index % 2]}
+                          onPress={() => navigation.navigate('TeamStatictics')}
+                        />
+                      ),
+                    )}
                   </HStack>
                 </View>
               </ScrollView>

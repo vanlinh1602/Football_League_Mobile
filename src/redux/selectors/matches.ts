@@ -1,4 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
+import _ from 'lodash';
 import moment from 'moment';
 
 import { initialState } from '../reducers/matches';
@@ -72,3 +73,13 @@ export const selectUpcomingMatch = createSelector([selectDomain], (state) => {
   const sorted = matchData.sort((a, b) => a.date - b.date);
   return sorted;
 });
+
+export const selectTeamMatch = createSelector(
+  [selectDomain, selectPath],
+  (state, team) => {
+    const matches = Object.values(state.matches ?? {}).filter(
+      ({ teamA, teamB }) => teamA === team || teamB === team,
+    );
+    return _.keyBy(matches, 'id');
+  },
+);

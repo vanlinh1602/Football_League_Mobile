@@ -6,6 +6,7 @@ import { backendService } from '../../services';
 import formatError from '../../utils/formatError';
 import { saveDataToFile } from '../../utils/localStorage';
 import { actions as teamActions } from '../reducers/teams';
+import { actions as userActions } from '../reducers/user';
 import { Team } from '../types/teams';
 
 function* getTeams() {
@@ -22,6 +23,9 @@ function* getTeams() {
       } else {
         yield put(teamActions.fetchTeams({}));
       }
+      yield put(
+        userActions.changePrepareStatus({ status: 'Fetching Players...' }),
+      );
     } else {
       yield put(teamActions.fetchTeams({}));
       Alert.alert('Lỗi tra cứu', formatError(result));

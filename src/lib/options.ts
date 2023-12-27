@@ -58,18 +58,28 @@ export const comments = [
 export const playerCard = [
   {
     ava: require('../assets/images/categories/players.jpg'),
-    name: 'Ronaldo'
+    name: 'Ronaldo',
   },
   {
     ava: require('../assets/images/categories/players.jpg'),
-    name: 'Ronaldo'
+    name: 'Ronaldo',
   },
   {
     ava: require('../assets/images/categories/players.jpg'),
-    name: 'Ronaldo'
+    name: 'Ronaldo',
   },
   {
     ava: require('../assets/images/categories/players.jpg'),
-    name: 'Ronaldo'
+    name: 'Ronaldo',
   },
 ];
+
+export const events: CustomObject<string> = {
+  shots: 'Shots',
+  goals: 'Goals',
+  offSide: 'Offside',
+  cornerKick: 'Corner Kick',
+  errors: 'Errors',
+  redCard: 'Red Card',
+  yellowCard: 'Yellow Card',
+};

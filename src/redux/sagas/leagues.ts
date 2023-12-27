@@ -5,6 +5,7 @@ import { all, put, takeEvery } from 'redux-saga/effects';
 import { backendService } from '../../services';
 import formatError from '../../utils/formatError';
 import { actions as leagueAction } from '../reducers/leagues';
+import { actions as userActions } from '../reducers/user';
 import { League } from '../types/leagues';
 
 function* getLeagues() {
@@ -20,6 +21,9 @@ function* getLeagues() {
       } else {
         yield put(leagueAction.fetchLeagues({}));
       }
+      yield put(
+        userActions.changePrepareStatus({ status: 'Fetching Matches...' }),
+      );
     } else {
       yield put(leagueAction.fetchLeagues({}));
       Alert.alert('Lỗi tra cứu', formatError(result));

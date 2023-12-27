@@ -1,17 +1,34 @@
 import { Divider, HStack, Image, Text, View, VStack } from 'native-base';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { useSelector } from 'react-redux';
 
-import { logos } from '../../../../lib/assets';
+import { calculateStatistic } from '../../../../lib/common';
+import {
+  selectEvents,
+  selectTeamMatch,
+} from '../../../../redux/selectors/matches';
+import { RootState } from '../../../../redux/types/RootState';
+import { Team } from '../../../../redux/types/teams';
 import S from './styles';
 
 type Props = {
   colorLiner: string[];
   onPress: () => void;
+  team: Team;
 };
 
-const PopularTeamCard = ({ colorLiner, onPress }: Props) => {
+const PopularTeamCard = ({ colorLiner, onPress, team }: Props) => {
+  const teamMactes = useSelector((state: RootState) =>
+    selectTeamMatch(state, team.id),
+  );
+  const events = useSelector(selectEvents);
+
+  const teamStatistic = useMemo(() => {
+    return calculateStatistic(team.id, teamMactes, events ?? {});
+  }, [teamMactes, events, team.id]);
+
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={S.container}>
@@ -22,12 +39,12 @@ const PopularTeamCard = ({ colorLiner, onPress }: Props) => {
           style={S.linearGradient}>
           <VStack>
             <HStack p={3} pl={5} alignItems="center" space={5}>
-              <Image style={S.image} source={logos.Chelsea} alt="" />
+              <Image style={S.image} source={{ uri: team.logo }} alt="" />
               <VStack>
                 <Text fontWeight="bold" fontSize={24}>
-                  Chelsea
+                  {team.name}
                 </Text>
-                <Text style={S.rank}>Top 10</Text>
+                {/* <Text style={S.rank}>Top 10</Text> */}
               </VStack>
             </HStack>
             <View alignItems="center">
@@ -36,19 +53,19 @@ const PopularTeamCard = ({ colorLiner, onPress }: Props) => {
 
             <HStack p={2} pl={5} pr={5} justifyContent="space-between">
               <VStack alignItems="center">
-                <Text fontSize={20}>5</Text>
+                <Text fontSize={20}>{teamStatistic.win}</Text>
                 <Text fontSize={16}>Win</Text>
               </VStack>
               <VStack alignItems="center">
-                <Text fontSize={20}>1</Text>
+                <Text fontSize={20}>{teamStatistic.draw}</Text>
                 <Text fontSize={16}>Draw</Text>
               </VStack>
               <VStack alignItems="center">
-                <Text fontSize={20}>2</Text>
+                <Text fontSize={20}>{teamStatistic.lose}</Text>
                 <Text fontSize={16}>Lose</Text>
               </VStack>
               <VStack alignItems="center">
-                <Text fontSize={20}>60</Text>
+                <Text fontSize={20}>{teamStatistic.rate}</Text>
                 <Text fontSize={16}>Rate</Text>
               </VStack>
             </HStack>

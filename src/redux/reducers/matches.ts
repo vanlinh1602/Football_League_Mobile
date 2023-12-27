@@ -33,11 +33,27 @@ const slice = createSlice({
         };
       }
     },
+    fetchAllEvents(
+      state,
+      action: PayloadAction<CustomObject<CustomObject<Event>>>,
+    ) {
+      state.handling = false;
+      if (action.payload) {
+        state.events = {
+          ...state.events,
+          ...action.payload,
+        };
+      }
+    },
+
     getMatchs(state, _action: PayloadAction<string>) {
       state.handling = true;
     },
 
     getAllMatch(state) {
+      state.handling = true;
+    },
+    getAllEvents(state) {
       state.handling = true;
     },
     getEvents(state, _action: PayloadAction<string>) {

@@ -44,6 +44,7 @@ export type TeamStatistic = {
   redCard: number;
   yellowCard: number;
   win: number;
-  lost: number;
+  lose: number;
+  draw: number;
   rate: number;
 };
