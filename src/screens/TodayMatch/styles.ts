@@ -53,6 +53,21 @@ export default StyleSheet.create({
     marginLeft:10,
     color:'darkblue'
   },
+  commentBox:{
+    marginLeft: '7%',
+    width:'75%',
+    marginTop:5,
+    marginBottom:10
+  },
+  playerInfo1:{
+    fontWeight: '800',
+    fontSize: 22,
+    paddingLeft: 20,
+    paddingTop:22,
+    marginLeft:10,
+    color:'darkblue',
+    marginTop:10
+  },
   infoPara:{
     paddingHorizontal:10,
     marginHorizontal:15,
@@ -86,7 +101,7 @@ export default StyleSheet.create({
     width:300,
     marginLeft:47,
     backgroundColor:'darkblue',
-    marginTop:15
+    marginTop:-35
   },
   backButton: {
     backgroundColor:'white',
