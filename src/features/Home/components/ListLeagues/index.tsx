@@ -8,9 +8,10 @@ import S from './styles';
 
 type Props = {
   onPress: (id: string) => void;
+  select?: string;
 };
 
-const ListLeagues = ({ onPress }: Props) => {
+const ListLeagues = ({ onPress, select }: Props) => {
   const leagues = useSelector(selectLeagues);
   return (
     <ScrollView
@@ -23,8 +24,20 @@ const ListLeagues = ({ onPress }: Props) => {
             key={id}
             style={S.touchableOpacity}
             onPress={() => onPress(id)}>
-            <View style={S.view}>
-              <Image source={{ uri: image || ''}} style={S.image} />
+            <View style={[S.view]}>
+              <Image
+                source={{ uri: image || '' }}
+                style={[
+                  S.image,
+                  select === id
+                    ? {
+                        borderWidth: 3,
+                        borderRadius: 48,
+                        borderColor: '#ff8c00',
+                      }
+                    : {},
+                ]}
+              />
             </View>
           </TouchableOpacity>
         ))}

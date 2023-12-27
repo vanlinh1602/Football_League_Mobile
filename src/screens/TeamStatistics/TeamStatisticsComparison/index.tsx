@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import {
   CheckIcon,
   HStack,
@@ -8,21 +9,60 @@ import {
   View,
   VStack,
 } from 'native-base';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { ImageBackground } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useSelector } from 'react-redux';
 
 import StatisticComparisonTable from '../../../features/Statistic/components/StatisticCard/StatisticComparisonTable';
 // import StatisticCard from '../../../features/Statistic/components/StatisticCard/StatisticTable';
-import { logos, teamPicture } from '../../../lib/assets';
+import { teamPicture } from '../../../lib/assets';
+import { calculateTeamStatistic } from '../../../lib/common';
 import { AntDesign } from '../../../lib/icons';
 import { HomeStackScreenProps } from '../../../Navigation/type';
+import {
+  selectEvents,
+  selectLeagueMatches,
+} from '../../../redux/selectors/matches';
+import { selectTeam, selectTeams } from '../../../redux/selectors/teams';
+import { RootState } from '../../../redux/types/RootState';
 import S from './styles';
 
 type Props = HomeStackScreenProps<'TeamStaticticsComparison'>;
 
-const TeamStaticticsComparison = ({ navigation }: Props) => {
-  const [teams, setTeams] = useState('');
+const TeamStaticticsComparison = ({ navigation, route }: Props) => {
+  const { changeTeam, teamA, teamB, league } = route.params;
+  const [teamCompare, setTeampCompare] = useState<string>(teamB || '');
+  const teams = useSelector(selectTeams);
+  const matchesLeague = useSelector((state: RootState) =>
+    selectLeagueMatches(state, league ?? 'all'),
+  );
+  const allEvents = useSelector(selectEvents);
+  const teamAInfo = useSelector((state: RootState) => selectTeam(state, teamA));
+  const teamBInfo = useSelector((state: RootState) =>
+    selectTeam(state, teamCompare),
+  );
+
+  const { statisticTeamA, statisticTeamB } = useMemo(() => {
+    const matchesTeamA = Object.values(matchesLeague ?? {}).filter(
+      (match) => match.teamA === teamA || match.teamB === teamA,
+    );
+    const matchesTeamB = Object.values(matchesLeague ?? {}).filter(
+      (match) => match.teamA === teamCompare || match.teamB === teamCompare,
+    );
+    return {
+      statisticTeamA: calculateTeamStatistic(
+        teamA,
+        _.keyBy(matchesTeamA, 'id'),
+        allEvents ?? {},
+      ),
+      statisticTeamB: calculateTeamStatistic(
+        teamCompare,
+        _.keyBy(matchesTeamB, 'id'),
+        allEvents ?? {},
+      ),
+    };
+  }, [matchesLeague, teamA, teamCompare, allEvents]);
   return (
     <ScrollView>
       <VStack>
@@ -37,57 +77,59 @@ const TeamStaticticsComparison = ({ navigation }: Props) => {
           </TouchableOpacity>
         </ImageBackground>
       </VStack>
-      <View>
-        <Text style={S.comparisonTitle}>Comparison</Text>
-      </View>
-      <Text marginLeft={10} marginTop={2} fontSize={16}>
-        Choose team to compare:
-      </Text>
-      <HStack style={S.teamComparing}>
-        <Select
-          selectedValue={teams}
-          minWidth="200"
-          accessibilityLabel={teams}
-          placeholder="Choose Team"
-          _selectedItem={{
-            endIcon: <CheckIcon size="5" />,
-          }}
-          mt={1}
-          onValueChange={(itemValue) => setTeams(itemValue)}>
-          <Select.Item label="Manchester United" value="1" />
-          <Select.Item label="Chelsea" value="2" />
-          <Select.Item label="Barcelona" value="3" />
-        </Select>
-      </HStack>
+      {changeTeam ? (
+        <>
+          <View>
+            <Text style={S.comparisonTitle}>Comparison</Text>
+          </View>
+          <Text marginLeft={10} marginTop={2} fontSize={16}>
+            Choose team to compare:
+          </Text>
+          <HStack style={S.teamComparing}>
+            <Select
+              selectedValue={teamCompare}
+              minWidth="200"
+              accessibilityLabel={teamCompare}
+              placeholder="Choose Team"
+              _selectedItem={{
+                endIcon: <CheckIcon size="5" />,
+              }}
+              mt={1}
+              onValueChange={(itemValue) => setTeampCompare(itemValue)}>
+              {Object.values(teams ?? {}).map((team) => (
+                <Select.Item key={team.id} label={team.name} value={team.id} />
+              ))}
+            </Select>
+          </HStack>
+        </>
+      ) : null}
+
       <View style={S.underline}></View>
-      <View>
-        <Text style={S.statisticTitle}>Statistic</Text>
-        <HStack style={S.logosLine} space={237}>
-          <Image
-            style={S.twoTeamLogos}
-            source={logos.Manchester_United}
-            alt="logo"
+      {teamCompare ? (
+        <View>
+          <Text style={S.statisticTitle}>Statistic</Text>
+          <HStack style={S.logosLine} space={237}>
+            <Image
+              style={S.twoTeamLogos}
+              source={{ uri: teamAInfo?.logo }}
+              alt="logo"
+            />
+            <Image
+              style={S.twoTeamLogos}
+              source={{ uri: teamBInfo?.logo }}
+              alt="logo"
+            />
+          </HStack>
+          <StatisticComparisonTable
+            teamA={statisticTeamA}
+            teamB={statisticTeamB}
           />
-          <Image style={S.twoTeamLogos} source={logos.Chelsea} alt="logo" />
-        </HStack>
-        <StatisticComparisonTable
-          shotsTeam1={2}
-          goalsTeam1={24}
-          errorsTeam1={24}
-          yelloCardTeam1={24}
-          redCardTeam1={24}
-          offSideTeam1={24}
-          cornerKickTeam1={24}
-          
-          shotsTeam2={4}
-          goalsTeam2={24}
-          errorsTeam2={24}
-          yelloCardTeam2={24}
-          redCardTeam2={24}
-          offSideTeam2={24}
-          cornerKickTeam2={24}
-        />
-      </View>
+        </View>
+      ) : (
+        <Text textAlign="center" mt={10}>
+          Please select team to compare
+        </Text>
+      )}
     </ScrollView>
   );
 };

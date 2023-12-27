@@ -48,7 +48,12 @@ export type RootStackParamList = {
   EditAccount: undefined;
   TeamStatictics: { data: Statistic; team: string };
   PlayerStatictics: { id: string };
-  TeamStaticticsComparison: undefined;
+  TeamStaticticsComparison: {
+    changeTeam: boolean;
+    teamA: string;
+    teamB?: string;
+    league?: string;
+  };
   Notification: undefined;
   Favorite: undefined;
   SearchLeague: undefined;

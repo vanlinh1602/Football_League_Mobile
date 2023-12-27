@@ -70,5 +70,6 @@ export default StyleSheet.create({
   twoTeamLogos: {
     width: 45,
     height: 45,
+    borderRadius: 48,
   },
 });

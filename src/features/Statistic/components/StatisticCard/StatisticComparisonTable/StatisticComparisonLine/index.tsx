@@ -1,4 +1,5 @@
 import { HStack, Text, View } from 'native-base';
+import React from 'react';
 
 import S from './styles';
 type Props = {
@@ -13,7 +14,7 @@ const StatisticComparisonLine = ({
   StatisticValue2,
 }: Props) => {
   return (
-    <View style={S.container}>
+    <View>
       <HStack>
         <View style={S.statisticValue1Container}>
           <Text style={S.statisticValue1}>{StatisticValue1}</Text>

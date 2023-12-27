@@ -99,3 +99,13 @@ export const calculatePlayerStatistic = (
   });
   return data;
 };
+
+export const getShortName = (name: string) => {
+  if (name.includes('Manchester')) {
+    return _.replace(name, 'Manchester', 'M.');
+  }
+  if (name.length > 15) {
+    return name.split(' ')[1] || name.split(' ')[0];
+  }
+  return name;
+};

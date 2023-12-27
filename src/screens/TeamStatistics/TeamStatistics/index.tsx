@@ -48,7 +48,7 @@ const TeamStatictics = ({ navigation, route }: Props) => {
             {teamData?.name}
           </Text>
           <Image
-            source={{ uri: teamData?.logo || ''}}
+            source={{ uri: teamData?.logo || '' }}
             alt="logo"
             style={S.teamLogo}
           />
@@ -74,7 +74,12 @@ const TeamStatictics = ({ navigation, route }: Props) => {
 
           <TouchableOpacity
             style={S.chooseTeamContainer}
-            onPress={() => navigation.navigate('TeamStaticticsComparison')}>
+            onPress={() =>
+              navigation.navigate('TeamStaticticsComparison', {
+                teamA: team,
+                changeTeam: true,
+              })
+            }>
             <Text>Comparision</Text>
           </TouchableOpacity>
         </HStack>

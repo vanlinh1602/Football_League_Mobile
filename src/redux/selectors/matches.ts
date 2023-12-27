@@ -27,8 +27,8 @@ export const selectEvents = createSelector(
 export const selectLeagueMatches = createSelector(
   [selectMatchs, selectPath],
   (matches, league) => {
-    const result = Object.values(matches ?? {}).filter(
-      (match) => match.league === league,
+    const result = Object.values(matches ?? {}).filter((match) =>
+      league === 'all' ? true : match.league === league,
     );
     return result;
   },
