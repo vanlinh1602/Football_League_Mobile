@@ -24,7 +24,7 @@ const LeaguesCard = ({ name, logo, id, nativeScreen }: Props) => {
       <View>
         <HStack>
           <Image
-            source={{ uri: logo }}
+            source={{ uri: logo || ''}}
             alt="leagueLogo"
             style={S.leagueLogos}
           />

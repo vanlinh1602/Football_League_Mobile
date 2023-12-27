@@ -34,29 +34,30 @@ export default StyleSheet.create({
     marginRight: 15,
     width: 40,
     height: 40,
+    borderRadius: 48,
   },
 
   favoriteButton: {
     marginTop: -6,
   },
-  playerInfo:{
+  playerInfo: {
     fontWeight: '800',
     fontSize: 22,
     paddingLeft: 20,
-    paddingTop:22,
-    marginLeft:10,
-    color:'darkblue'
+    paddingTop: 22,
+    marginLeft: 10,
+    color: 'darkblue',
   },
-  iconComment:{
+  iconComment: {
     fontSize: 24,
-    padding:15,
-    marginLeft:5
+    padding: 15,
+    marginLeft: 5,
   },
-  commentBox:{
+  commentBox: {
     marginLeft: '7%',
-    width:'75%',
-    marginTop:5,
-    marginBottom:10
+    width: '75%',
+    marginTop: 5,
+    marginBottom: 10,
   },
   chooseTeamContainer: {
     borderWidth: 1,
@@ -64,6 +65,6 @@ export default StyleSheet.create({
     width: 100,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop:20,
+    marginTop: 20,
   },
 });

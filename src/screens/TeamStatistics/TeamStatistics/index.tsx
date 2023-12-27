@@ -48,7 +48,7 @@ const TeamStatictics = ({ navigation, route }: Props) => {
             {teamData?.name}
           </Text>
           <Image
-            source={{ uri: teamData?.logo }}
+            source={{ uri: teamData?.logo || ''}}
             alt="logo"
             style={S.teamLogo}
           />

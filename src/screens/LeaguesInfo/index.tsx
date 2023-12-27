@@ -36,7 +36,7 @@ const LeaguesInfo = ({ navigation, route }: Props) => {
         <VStack>
           <View marginX={16} padding={7}>
             <Image
-              source={{ uri: league?.image }}
+              source={{ uri: league?.image || '' }}
               height={200}
               alt="kuma"
               borderBottomRadius={20}
@@ -57,7 +57,7 @@ const LeaguesInfo = ({ navigation, route }: Props) => {
           <TouchableOpacity>
             <HStack margin={5}>
               <Image
-                source={{ uri: league?.image }}
+                source={{ uri: league?.image || ''}}
                 height={50}
                 width={50}
                 alt="kuma"

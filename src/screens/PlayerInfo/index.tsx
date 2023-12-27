@@ -39,7 +39,7 @@ const PlayerInfo = ({ navigation, route }: Props) => {
       <ScrollView>
         <VStack>
           <Image
-            source={{ uri: playerInfo.avatar }}
+            source={{ uri: playerInfo.avatar || ''}}
             height={250}
             alt="kuma"
             borderBottomRadius={20}
@@ -76,7 +76,7 @@ const PlayerInfo = ({ navigation, route }: Props) => {
             onPress={() => navigation.navigate('TeamInfo', { id: '' })}>
             <HStack margin={5}>
               <Image
-                source={{ uri: team?.logo }}
+                source={{ uri: team?.logo || ''}}
                 height={50}
                 width={50}
                 alt="kuma"

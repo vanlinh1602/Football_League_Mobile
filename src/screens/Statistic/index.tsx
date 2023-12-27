@@ -1,6 +1,6 @@
 import _, { range } from 'lodash';
 import { HStack, ScrollView, Text, View, VStack } from 'native-base';
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import { ImageBackground } from 'react-native';
 import { useSelector } from 'react-redux';
 
@@ -11,9 +11,14 @@ import {
   PopularTeamCard,
 } from '../../features/Statistic/components';
 import { images } from '../../lib/assets';
+import { takeRandomValue } from '../../lib/common';
 import { EvilIcons, Ionicons } from '../../lib/icons';
 import { HomeTabScreenProps } from '../../Navigation/type';
+import { selectLeague } from '../../redux/selectors/leagues';
+import { selectPlayerInLeague } from '../../redux/selectors/players';
 import { selectTeams } from '../../redux/selectors/teams';
+import { RootState } from '../../redux/types/RootState';
+import { Team } from '../../redux/types/teams';
 import S from './styles';
 
 const colorLinerTeam = [
@@ -29,8 +34,23 @@ const colorLinerPlayer = [
 type Props = HomeTabScreenProps<'Statistic'>;
 
 const Statistic = ({ navigation }: Props) => {
-  const teams = useSelector(selectTeams);
+  const [leagueSelect, setLeagueSelect] = useState<string>('');
 
+  const teams = useSelector(selectTeams);
+  const league = useSelector((state: RootState) =>
+    selectLeague(state, leagueSelect),
+  );
+  const players = useSelector((state: RootState) =>
+    selectPlayerInLeague(state, league?.participants ?? []),
+  );
+
+  const teamLeague = useMemo(() => {
+    const tmp: Team[] = [];
+    league?.participants.forEach((teamId) => {
+      tmp.push(teams![teamId]);
+    });
+    return tmp;
+  }, [teams, league?.participants]);
   return (
     <ImageBackground source={images.homeBackgound}>
       <VStack space={5} pb={5}>
@@ -47,9 +67,7 @@ const Statistic = ({ navigation }: Props) => {
           <Text color="#fff" fontSize={24} pl={5}>
             Choose League
           </Text>
-          <ListLeagues
-            onPress={(id) => navigation.navigate('LeaguesInfo', { id })}
-          />
+          <ListLeagues onPress={(id) => setLeagueSelect(id)} />
         </View>
         <View style={S.statistic}>
           <ScrollView>
@@ -58,7 +76,7 @@ const Statistic = ({ navigation }: Props) => {
                 <HStack p={1} alignItems="center" space={2}>
                   <EvilIcons name="trophy" size={35} color="grey" />
                   <Text color="grey" pt={2} fontWeight="bold">
-                    AFC CUP
+                    {_.upperCase(league?.name)}
                   </Text>
                 </HStack>
               </View>
@@ -68,21 +86,19 @@ const Statistic = ({ navigation }: Props) => {
               <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                 <View height="auto">
                   <HStack space={5}>
-                    {_.take(Object.values(teams ?? {}), 6).map(
-                      (team, index) => (
-                        <PopularTeamCard
-                          key={team.id}
-                          team={team}
-                          colorLiner={colorLinerTeam[index % 2]}
-                          onPress={(data) =>
-                            navigation.navigate('TeamStatictics', {
-                              data,
-                              team: team.id,
-                            })
-                          }
-                        />
-                      ),
-                    )}
+                    {takeRandomValue(teamLeague, 6).map((team, index) => (
+                      <PopularTeamCard
+                        key={team.id}
+                        team={team}
+                        colorLiner={colorLinerTeam[index % 2]}
+                        onPress={(data) =>
+                          navigation.navigate('TeamStatictics', {
+                            data,
+                            team: team.id,
+                          })
+                        }
+                      />
+                    ))}
                   </HStack>
                 </View>
               </ScrollView>
@@ -92,13 +108,20 @@ const Statistic = ({ navigation }: Props) => {
               <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                 <View height="auto">
                   <HStack space={7}>
-                    {range(0, 5).map((key) => (
-                      <PopularPlayerCard
-                        key={key}
-                        colorLiner={colorLinerPlayer[key % 3]}
-                        onPress={() => navigation.navigate('PlayerStatictics')}
-                      />
-                    ))}
+                    {takeRandomValue(Object.values(players ?? {}), 6).map(
+                      (player, index) => (
+                        <PopularPlayerCard
+                          key={player.id}
+                          colorLiner={colorLinerPlayer[index % 3]}
+                          player={player}
+                          onPress={() =>
+                            navigation.navigate('PlayerStatictics', {
+                              id: player.id,
+                            })
+                          }
+                        />
+                      ),
+                    )}
                   </HStack>
                 </View>
               </ScrollView>

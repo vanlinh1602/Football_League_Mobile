@@ -35,7 +35,7 @@ export type Event = {
   };
 };
 
-export type TeamStatistic = {
+export type Statistic = {
   shots: number;
   goals: number;
   offSide: number;
@@ -43,8 +43,8 @@ export type TeamStatistic = {
   errors: number;
   redCard: number;
   yellowCard: number;
-  win: number;
-  lose: number;
-  draw: number;
-  rate: number;
+  win?: number;
+  lose?: number;
+  draw?: number;
+  rate?: number;
 };

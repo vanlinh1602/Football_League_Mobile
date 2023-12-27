@@ -43,7 +43,7 @@ const MatchCard = ({ mini, match }: Props) => {
         <HStack space={mini ? 1 : 5}>
           <VStack alignItems="center" style={{ width: '30%' }}>
             <Image
-              source={{ uri: teamA?.logo }}
+              source={{ uri: teamA?.logo || ''}}
               alt=""
               style={mini ? S.imageMini : S.image}
             />
@@ -61,7 +61,7 @@ const MatchCard = ({ mini, match }: Props) => {
           </VStack>
           <VStack alignItems="center" style={{ width: '30%' }}>
             <Image
-              source={{ uri: teamB?.logo }}
+              source={{ uri: teamB?.logo ||''}}
               alt=""
               style={mini ? S.imageMini : S.image}
             />

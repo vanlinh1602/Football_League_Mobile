@@ -4,19 +4,19 @@ import { TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useSelector } from 'react-redux';
 
-import { calculateStatistic } from '../../../../lib/common';
+import { calculateTeamStatistic } from '../../../../lib/common';
 import {
   selectEvents,
   selectTeamMatch,
 } from '../../../../redux/selectors/matches';
-import { TeamStatistic } from '../../../../redux/types/matches';
+import { Statistic } from '../../../../redux/types/matches';
 import { RootState } from '../../../../redux/types/RootState';
 import { Team } from '../../../../redux/types/teams';
 import S from './styles';
 
 type Props = {
   colorLiner: string[];
-  onPress: (statistic: TeamStatistic) => void;
+  onPress: (statistic: Statistic) => void;
   team: Team;
 };
 
@@ -27,7 +27,7 @@ const PopularTeamCard = ({ colorLiner, onPress, team }: Props) => {
   const events = useSelector(selectEvents);
 
   const teamStatistic = useMemo(() => {
-    return calculateStatistic(team.id, teamMactes, events ?? {});
+    return calculateTeamStatistic(team.id, teamMactes, events ?? {});
   }, [teamMactes, events, team.id]);
 
   return (
@@ -40,7 +40,7 @@ const PopularTeamCard = ({ colorLiner, onPress, team }: Props) => {
           style={S.linearGradient}>
           <VStack>
             <HStack p={3} pl={5} alignItems="center" space={5}>
-              <Image style={S.image} source={{ uri: team.logo }} alt="" />
+              <Image style={S.image} source={{ uri: team.logo  || ''}} alt="" />
               <VStack>
                 <Text fontWeight="bold" fontSize={24}>
                   {team.name}

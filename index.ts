@@ -7,7 +7,8 @@ import { name as appName } from './app.json';
 
 LogBox.ignoreLogs([
   'In React 18, SSRProvider is not necessary and is a noop. You can remove it from your app.',
-  'ReactImageView: Image source "null" doesn\'t exist',
+  'ReactImageView: Image source "" doesn\'t exist',
+  'source.uri should not be an empty string',
 ]);
 
 AppRegistry.registerComponent(appName, () => App);

@@ -30,7 +30,7 @@ const UpcomingCard = ({ match }: Props) => {
       <View style={S.view}>
         <HStack space={8} alignItems="center">
           <VStack alignItems="center">
-            <Image source={{ uri: teamA?.logo }} alt="" style={S.image} />
+            <Image source={{ uri: teamA?.logo || '' }} alt="" style={S.image} />
             <Text color="white">{teamA?.name}</Text>
           </VStack>
           <VStack alignItems="center">
@@ -40,7 +40,7 @@ const UpcomingCard = ({ match }: Props) => {
             </Text>
           </VStack>
           <VStack alignItems="center">
-            <Image source={{ uri: teamB?.logo }} alt="" style={S.image} />
+            <Image source={{ uri: teamB?.logo || ''}} alt="" style={S.image} />
             <Text color="white">{teamB?.name}</Text>
           </VStack>
         </HStack>

@@ -5,7 +5,7 @@ export default StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1.5,
     borderColor: 'grey',
-    width: 130,
+    minWidth: 130,
     padding: 5,
   },
   logo: {
@@ -20,7 +20,7 @@ export default StyleSheet.create({
     paddingHorizontal: 5,
     borderRadius: 5,
     bottom: 0,
-    left: 55,
+    left: '42%',
     zIndex: 10,
   },
   linearGradient: {

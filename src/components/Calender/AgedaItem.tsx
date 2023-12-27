@@ -27,14 +27,14 @@ const AgendaItem = ({ item }: ItemProps) => {
         <View style={{ width: '65%' }}>
           <HStack alignItems="center" justifyContent="space-between">
             <HStack alignItems="center">
-              <Image source={{ uri: teamA?.logo }} alt="" style={styles.logo} />
+              <Image source={{ uri: teamA?.logo || '' }} alt="" style={styles.logo} />
               <Text fontWeight="bold">{teamA?.name}</Text>
             </HStack>
             <Text fontWeight="bold">{item.mathResult?.teamA || 0}</Text>
           </HStack>
           <HStack alignItems="center" justifyContent="space-between">
             <HStack alignItems="center">
-              <Image source={{ uri: teamB?.logo }} alt="" style={styles.logo} />
+              <Image source={{ uri: teamB?.logo || ''}} alt="" style={styles.logo} />
               <Text fontWeight="bold">{teamB?.name}</Text>
             </HStack>
             <Text fontWeight="bold">{item.mathResult?.teamB || 0}</Text>

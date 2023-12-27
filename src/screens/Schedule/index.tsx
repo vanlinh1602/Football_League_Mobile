@@ -14,9 +14,9 @@ import { RootState } from '../../redux/types/RootState';
 type Props = HomeStackScreenProps<'TodayMatch'>;
 
 const Schedule = ({ navigation }: Props) => {
-  const todayMatch = useSelector((state: RootState) =>
-    selectMatchInDay(state, moment.now()),
-  );
+  const todayMatch =
+    useSelector((state: RootState) => selectMatchInDay(state, moment.now())) ??
+    [];
   return (
     <ImageBackground source={images.homeBackgound}>
       <View>

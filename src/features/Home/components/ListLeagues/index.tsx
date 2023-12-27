@@ -24,7 +24,7 @@ const ListLeagues = ({ onPress }: Props) => {
             style={S.touchableOpacity}
             onPress={() => onPress(id)}>
             <View style={S.view}>
-              <Image source={{ uri: image }} style={S.image} />
+              <Image source={{ uri: image || ''}} style={S.image} />
             </View>
           </TouchableOpacity>
         ))}

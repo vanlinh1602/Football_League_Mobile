@@ -12,7 +12,7 @@ import type {
   StackScreenProps,
 } from '@react-navigation/stack';
 
-import { TeamStatistic } from '../redux/types/matches';
+import { Statistic } from '../redux/types/matches';
 
 // Bottom Tab
 export type RootTabParamList = {
@@ -46,8 +46,8 @@ export type RootStackParamList = {
   TeamInfo: { id: string };
   LeaguesInfo: { id: string };
   EditAccount: undefined;
-  TeamStatictics: { data: TeamStatistic; team: string };
-  PlayerStatictics: undefined;
+  TeamStatictics: { data: Statistic; team: string };
+  PlayerStatictics: { id: string };
   TeamStaticticsComparison: undefined;
   Notification: undefined;
   Favorite: undefined;

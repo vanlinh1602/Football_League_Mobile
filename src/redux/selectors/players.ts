@@ -6,6 +6,7 @@ import { RootState } from '../types/RootState';
 
 const selectDomain = (state: RootState) => state?.playerStore || initialState;
 const selectPath = (state: RootState, path: string) => path;
+const selectPathArray = (state: RootState, path: string[]) => path;
 
 export const selectPlayerHandling = createSelector(
   [selectDomain],
@@ -43,4 +44,17 @@ export const selectAllPlayer = createSelector([selectDomain], (state) => {
 export const selectPlayersOfTeams = createSelector(
   [selectPlayers, selectPath],
   (players, path) => players?.[path],
+);
+
+export const selectPlayerInLeague = createSelector(
+  [selectDomain, selectPathArray],
+  (state, teams) => {
+    const players: CustomObject<Player> = {};
+    Object.values(teams).forEach((team) => {
+      Object.entries(state.data?.[team] ?? {}).forEach(([id, data]) => {
+        players[id] = data;
+      });
+    });
+    return players;
+  },
 );

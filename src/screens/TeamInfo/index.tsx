@@ -33,7 +33,7 @@ const TeamInfo = ({ navigation, route }: Props) => {
       <ScrollView>
         <VStack>
           <Image
-            source={{ uri: teamInfo?.background }}
+            source={{ uri: teamInfo?.background || ''}}
             height={250}
             alt="kuma"
             borderBottomRadius={20}
@@ -57,7 +57,7 @@ const TeamInfo = ({ navigation, route }: Props) => {
           <TouchableOpacity>
             <HStack margin={5}>
               <Image
-                source={{ uri: teamInfo?.logo }}
+                source={{ uri: teamInfo?.logo || ''}}
                 height={50}
                 width={50}
                 alt="kuma"
