@@ -1,4 +1,3 @@
-import moment from 'moment';
 import { HStack, Image, ScrollView, Text, VStack } from 'native-base';
 import React from 'react';
 import { ImageBackground } from 'react-native';
@@ -7,73 +6,22 @@ import { useSelector } from 'react-redux';
 
 import { MatchCard, UpcomingCard } from '../../features/Home/components';
 import ListLeagues from '../../features/Home/components/ListLeagues';
-import { images, logos } from '../../lib/assets';
+import { images } from '../../lib/assets';
 import { Ionicons } from '../../lib/icons';
 import { HomeTabScreenProps } from '../../Navigation/type';
-import { selectCurrentMatch } from '../../redux/selectors/matches';
+import {
+  selectCurrentMatch,
+  selectUpcomingMatch,
+} from '../../redux/selectors/matches';
 import { selectUser } from '../../redux/selectors/user';
 import S from './styles';
-
-const upcoming = [
-  {
-    teamA: {
-      name: 'Man - Uni',
-      logo: logos.Manchester_United,
-    },
-    teamB: {
-      name: 'Arsenal',
-      logo: logos.Arsenal,
-    },
-    schedule: {
-      date: moment.now(),
-    },
-  },
-  {
-    teamA: {
-      name: 'Chelsea',
-      logo: logos.Chelsea,
-    },
-    teamB: {
-      name: 'FC_Barcelona',
-      logo: logos.FC_Barcelona,
-    },
-    schedule: {
-      date: moment.now(),
-    },
-  },
-  {
-    teamA: {
-      name: 'Liverpool',
-      logo: logos.Liverpool,
-    },
-    teamB: {
-      name: 'Chelsea',
-      logo: logos.Chelsea,
-    },
-    schedule: {
-      date: moment.now(),
-    },
-  },
-  {
-    teamA: {
-      name: 'Man - Uni',
-      logo: logos.Manchester_United,
-    },
-    teamB: {
-      name: 'Man_City',
-      logo: logos.Manchester_City,
-    },
-    schedule: {
-      date: moment.now(),
-    },
-  },
-];
 
 type Props = HomeTabScreenProps<'Home'>;
 
 const Home = ({ navigation }: Props) => {
   const user = useSelector(selectUser);
   const currentMatch = useSelector(selectCurrentMatch);
+  const upcommingMatch = useSelector(selectUpcomingMatch);
   return (
     <ImageBackground style={S.background} source={images.homeBackgound}>
       <ScrollView>
@@ -85,27 +33,34 @@ const Home = ({ navigation }: Props) => {
                 Welcome, <Text color="yellow.400">{user?.name || 'Guest'}</Text>
               </Text>
             </HStack>
-            <Image
-              source={{
-                uri:
-                  user?.photoURL ||
-                  'https://www.pngkey.com/png/detail/32-325199_afc-cup-logo-download-logo-afc-cup-2018.png',
-              }}
-              alt=""
-              style={S.image}
-            />
+            <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+              <Image
+                source={{
+                  uri:
+                    user?.photoURL ||
+                    'https://www.pngkey.com/png/detail/32-325199_afc-cup-logo-download-logo-afc-cup-2018.png',
+                }}
+                alt=""
+                style={S.image}
+              />
+            </TouchableOpacity>
           </HStack>
           <Text style={S.title}>Top Leagues</Text>
           <ListLeagues
             onPress={(id) => navigation.navigate('LeaguesInfo', { id })}
           />
-          <Text style={S.title}>Current Match</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('TodayMatch')}>
-            <MatchCard match={currentMatch!} />
-          </TouchableOpacity>
+          {currentMatch ? (
+            <>
+              <Text style={S.title}>Current Match</Text>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('TodayMatch')}>
+                <MatchCard match={currentMatch} />
+              </TouchableOpacity>
+            </>
+          ) : null}
           <Text style={S.title}>Upcoming Match</Text>
-          {upcoming.map((card, index) => (
-            <UpcomingCard key={index} {...card} />
+          {upcommingMatch.map((match, index) => (
+            <UpcomingCard key={index} match={match} />
           ))}
         </VStack>
       </ScrollView>

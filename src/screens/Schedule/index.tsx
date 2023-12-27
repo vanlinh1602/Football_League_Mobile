@@ -20,26 +20,31 @@ const Schedule = ({ navigation }: Props) => {
   return (
     <ImageBackground source={images.homeBackgound}>
       <View>
-        <Text color="#fff" fontSize={26} fontWeight="bold" ml={5}>
-          Today match
-        </Text>
-        <HStack>
-          <ScrollView horizontal>
-            {todayMatch.map((match) => (
-              <View key={match.id} width={300}>
-                <TouchableOpacity
-                  onPress={() => navigation.navigate('TodayMatch')}>
-                  <MatchCard mini match={match} />
-                </TouchableOpacity>
-              </View>
-            ))}
-          </ScrollView>
-        </HStack>
+        {todayMatch.length ? (
+          <>
+            <Text color="#fff" fontSize={26} fontWeight="bold" ml={5}>
+              Today match
+            </Text>
+            <HStack>
+              <ScrollView horizontal>
+                {todayMatch.map((match) => (
+                  <View key={match.id} width={300}>
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate('TodayMatch')}>
+                      <MatchCard mini match={match} />
+                    </TouchableOpacity>
+                  </View>
+                ))}
+              </ScrollView>
+            </HStack>
+          </>
+        ) : null}
+
         <View
           style={{
             borderTopLeftRadius: 24,
             borderTopRightRadius: 24,
-            height: '70%',
+            height: todayMatch.length ? '70%' : '100%',
           }}>
           <CustomWeekCalendar />
         </View>

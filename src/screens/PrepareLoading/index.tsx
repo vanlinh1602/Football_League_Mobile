@@ -14,6 +14,8 @@ import { actions as leagueActions } from '../../redux/reducers/leagues';
 import { actions as matchActions } from '../../redux/reducers/matches';
 import { actions as playerActions } from '../../redux/reducers/players';
 import { actions as teamActions } from '../../redux/reducers/teams';
+import { selectLeagueHandling } from '../../redux/selectors/leagues';
+import { selectMatchHandling } from '../../redux/selectors/matches';
 import { selectPlayerHandling } from '../../redux/selectors/players';
 import { selectTeamHandling } from '../../redux/selectors/teams';
 
@@ -23,6 +25,8 @@ const PrepareScreen = ({ navigation }: Props) => {
   const dispatch = useDispatch();
   const playerHandling = useSelector(selectPlayerHandling);
   const teamHandling = useSelector(selectTeamHandling);
+  const leagueHandling = useSelector(selectLeagueHandling);
+  const matchHandling = useSelector(selectMatchHandling);
 
   const [loadingMessage, setLoadingMessage] = useState('Preparing data...');
 
@@ -53,10 +57,10 @@ const PrepareScreen = ({ navigation }: Props) => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (!teamHandling && !playerHandling) {
+    if (!teamHandling && !playerHandling && !leagueHandling && !matchHandling) {
       navigation.navigate('HomeTabs', { screen: 'Home' });
     }
-  }, [teamHandling, playerHandling, navigation]);
+  }, [teamHandling, playerHandling, navigation, leagueHandling, matchHandling]);
 
   return (
     <ImageBackground source={images.homeBackgound} alt="">

@@ -33,11 +33,15 @@ const WeekCalendar = () => {
   };
 
   const nextWeek = () => {
-    setStartDate(moment(startDate).add(1, 'weeks'));
+    const dayNextWeek = moment(startDate).add(1, 'weeks');
+    setStartDate(dayNextWeek);
+    setSelectDate(dayNextWeek.valueOf());
   };
 
   const prevWeek = () => {
-    setStartDate(moment(startDate).subtract(1, 'weeks'));
+    const dayPreWeek = moment(startDate).subtract(1, 'weeks');
+    setStartDate(dayPreWeek);
+    setSelectDate(dayPreWeek.valueOf());
   };
 
   const daysOfWeek = generateWeekDays();

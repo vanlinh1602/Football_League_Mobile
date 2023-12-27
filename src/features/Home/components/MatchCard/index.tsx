@@ -19,13 +19,13 @@ type Props = {
 
 const MatchCard = ({ mini, match }: Props) => {
   const league = useSelector((state: RootState) =>
-    selectLeague(state, match.league),
+    selectLeague(state, match?.league),
   );
   const teamA = useSelector((state: RootState) =>
-    selectTeam(state, match.teamA),
+    selectTeam(state, match?.teamA),
   );
   const teamB = useSelector((state: RootState) =>
-    selectTeam(state, match.teamB),
+    selectTeam(state, match?.teamB),
   );
   return (
     <ImageBackground

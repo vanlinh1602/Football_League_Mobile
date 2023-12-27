@@ -34,3 +34,16 @@ export type Event = {
     player?: string;
   };
 };
+
+export type TeamStatistic = {
+  shots: number;
+  goals: number;
+  offSide: number;
+  cornerKick: number;
+  errors: number;
+  redCard: number;
+  yellowCard: number;
+  win: number;
+  lost: number;
+  rate: number;
+};

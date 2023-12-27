@@ -45,7 +45,9 @@ export const selectMatchEvents = createSelector(
 
 export const selectCurrentMatch = createSelector([selectDomain], (state) => {
   const matchData = Object.values(state.matches ?? {}).filter(
-    ({ date }) => date <= Date.now(),
+    ({ date }) =>
+      moment(date).format('DD/MM/YYYY') === moment().format('DD/MM/YYYY') &&
+      date < Date.now(),
   );
   const sorted = matchData.sort((a, b) => b.date - a.date);
   return sorted.shift();
@@ -62,3 +64,11 @@ export const selectMatchInDay = createSelector(
     return sorted;
   },
 );
+
+export const selectUpcomingMatch = createSelector([selectDomain], (state) => {
+  const matchData = Object.values(state.matches ?? {}).filter(
+    ({ date }) => date > Date.now(),
+  );
+  const sorted = matchData.sort((a, b) => a.date - b.date);
+  return sorted;
+});
