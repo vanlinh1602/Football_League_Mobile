@@ -109,3 +109,9 @@ export const getShortName = (name: string) => {
   }
   return name;
 };
+
+export const getVideoIdFromYoutubeUrl = (url: string) => {
+  const regex = /(?:\?v=|&v=|youtu\.be\/)(.*?)(?:\?|&|$)/;
+  const match = url.match(regex);
+  return match ? match[1] : url;
+};

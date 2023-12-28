@@ -7,11 +7,11 @@ import { useSelector } from 'react-redux';
 import { CustomWeekCalendar } from '../../components';
 import { MatchCard } from '../../features/Home/components';
 import { images } from '../../lib/assets';
-import { HomeStackScreenProps } from '../../Navigation/type';
+import { HomeTabScreenProps } from '../../Navigation/type';
 import { selectMatchInDay } from '../../redux/selectors/matches';
 import { RootState } from '../../redux/types/RootState';
 
-type Props = HomeStackScreenProps<'TodayMatch'>;
+type Props = HomeTabScreenProps<'Schedule'>;
 
 const Schedule = ({ navigation }: Props) => {
   const todayMatch =
@@ -30,7 +30,9 @@ const Schedule = ({ navigation }: Props) => {
                 {todayMatch.map((match) => (
                   <View key={match.id} width={300}>
                     <TouchableOpacity
-                      onPress={() => navigation.navigate('TodayMatch')}>
+                      onPress={() =>
+                        navigation.navigate('TodayMatch', { match })
+                      }>
                       <MatchCard mini match={match} />
                     </TouchableOpacity>
                   </View>

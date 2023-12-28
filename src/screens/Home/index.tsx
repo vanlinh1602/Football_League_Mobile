@@ -53,7 +53,9 @@ const Home = ({ navigation }: Props) => {
             <>
               <Text style={S.title}>Current Match</Text>
               <TouchableOpacity
-                onPress={() => navigation.navigate('TodayMatch')}>
+                onPress={() =>
+                  navigation.navigate('TodayMatch', { match: currentMatch })
+                }>
                 <MatchCard match={currentMatch} />
               </TouchableOpacity>
             </>

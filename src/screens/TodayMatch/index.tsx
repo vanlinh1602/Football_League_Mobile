@@ -1,3 +1,4 @@
+import moment from 'moment';
 import {
   Divider,
   HStack,
@@ -10,19 +11,29 @@ import {
 } from 'native-base';
 import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
+import { useSelector } from 'react-redux';
 
-import { leagueLogos } from '../../lib/assets';
-import { logos } from '../../lib/assets';
+import ListComments from '../../features/search/components/ListComments';
+import YoutubePlayer from '../../features/YoutubeIframe';
+import { getVideoIdFromYoutubeUrl } from '../../lib/common';
 import { AntDesign } from '../../lib/icons';
 import { HomeStackScreenProps } from '../../Navigation/type';
+import { selectTeam } from '../../redux/selectors/teams';
+import { RootState } from '../../redux/types/RootState';
 import S from './styles';
-import YoutubePlayer from '../../features/YoutubeIframe';
-import ListComments from '../../features/search/components/ListComments';
 
 type Props = HomeStackScreenProps<'TodayMatch'>;
 
-const TodayMatch = ({ navigation }: Props) => {
+const TodayMatch = ({ navigation, route }: Props) => {
+  const { match } = route.params;
   const [, setComment] = useState('');
+
+  const teamA = useSelector((state: RootState) =>
+    selectTeam(state, match.teamA),
+  );
+  const teamB = useSelector((state: RootState) =>
+    selectTeam(state, match.teamB),
+  );
 
   return (
     <View style={S.background}>
@@ -35,83 +46,58 @@ const TodayMatch = ({ navigation }: Props) => {
               <AntDesign name="arrowleft" size={20} color="black" />
             </TouchableOpacity>
             <View>
-              <Text style={S.playerName}>Today Match </Text>
+              <Text style={S.playerName}>View Match </Text>
             </View>
           </HStack>
-          <TouchableOpacity>
-            <HStack margin={5}>
-              <Image
-                source={leagueLogos.AFC}
-                height={50}
-                width={50}
-                alt="kuma"
-              />
-              <Text style={S.teamName}>AFC league</Text>
-              <AntDesign style={S.iconRight} name="right" />
-            </HStack>
-          </TouchableOpacity>
-          <Divider style={S.divider} />
-          <View ml={6} mt={15}>
-            <HStack>
-              <Text fontSize={17} fontWeight={'bold'}>
-                Date:
-              </Text>
-              <Text ml={3} fontSize={17} fontWeight={'medium'}>
-                18/9/2023
-              </Text>
-            </HStack>
-            <HStack mt={3}>
-              <Text fontSize={17} fontWeight={'bold'}>
-                Time:
-              </Text>
-              <Text ml={3} fontSize={17} fontWeight={'medium'}>
-                9 : 30
-              </Text>
-            </HStack>
-            <HStack mt={3}>
-              <Text fontSize={17} fontWeight={'bold'}>
-                Place:
-              </Text>
-              <Text ml={3} fontSize={17} fontWeight={'medium'}>
-                Asia
-              </Text>
-            </HStack>
-          </View>
-          <Text style={S.playerInfo1}>Live Match</Text>
-                    <YoutubePlayer videoId='5BeOh1XHAVI'/>
+          <YoutubePlayer
+            videoId={getVideoIdFromYoutubeUrl(match.video ?? '')}
+          />
           <Divider style={S.divider2} />
 
-          <Text style={S.playerInfo}>Score</Text>
+          <Text textAlign="center" fontSize={18} fontStyle="italic">
+            {moment(match.date).format('HH:mm - DD/MM/YYYY')}
+          </Text>
+          <Text textAlign="center" fontSize={20}>
+            {match.place}
+          </Text>
 
-          <HStack>
-            <VStack>
+          <HStack alignItems="center">
+            <VStack style={{ width: '40%' }}>
               <TouchableOpacity style={S.teamImg}>
                 <Image
-                  source={logos.Manchester_United}
+                  source={{ uri: teamA?.logo }}
                   height={50}
                   width={50}
                   alt="kuma"
                 />
               </TouchableOpacity>
-              <Text style={S.teamName2}>Manchester United</Text>
+              <Text textAlign="center" mt={3}>
+                {teamA?.name}
+              </Text>
             </VStack>
-
-            <VStack>
-              <Text style={S.score}>0:1</Text>
+            <VStack
+              style={{ width: '20%', height: '100%', alignItems: 'center' }}>
+              <Text
+                textAlign="center"
+                fontSize={30}
+                fontWeight="bold"
+                style={{ marginTop: '30%' }}>
+                {match.mathResult?.teamA || 0} - {match.mathResult?.teamB || 0}
+              </Text>
             </VStack>
-
-            <VStack>
+            <VStack style={{ width: '40%' }}>
               <TouchableOpacity style={S.teamImg}>
                 <Image
-                  source={logos.Chelsea}
+                  source={{ uri: teamB?.logo }}
                   height={50}
                   width={50}
                   alt="kuma"
                 />
               </TouchableOpacity>
-              <Text style={S.teamName3}>Chelsea</Text>
+              <Text textAlign="center" mt={3}>
+                {teamB?.name}
+              </Text>
             </VStack>
-
           </HStack>
 
           <HStack marginBottom={2} marginTop={5}>
