@@ -11,14 +11,17 @@ import {
 } from 'native-base';
 import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import ListComments from '../../features/search/components/ListComments';
 import YoutubePlayer from '../../features/YoutubeIframe';
 import { getVideoIdFromYoutubeUrl } from '../../lib/common';
 import { AntDesign } from '../../lib/icons';
 import { HomeStackScreenProps } from '../../Navigation/type';
+import { actions } from '../../redux/reducers/comments';
 import { selectTeam } from '../../redux/selectors/teams';
+import { selectUser } from '../../redux/selectors/user';
+import { Comment } from '../../redux/types/comments';
 import { RootState } from '../../redux/types/RootState';
 import S from './styles';
 
@@ -26,7 +29,9 @@ type Props = HomeStackScreenProps<'TodayMatch'>;
 
 const TodayMatch = ({ navigation, route }: Props) => {
   const { match } = route.params;
-  const [, setComment] = useState('');
+  const [comment, setComment] = useState('');
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
 
   const teamA = useSelector((state: RootState) =>
     selectTeam(state, match.teamA),
@@ -34,6 +39,18 @@ const TodayMatch = ({ navigation, route }: Props) => {
   const teamB = useSelector((state: RootState) =>
     selectTeam(state, match.teamB),
   );
+
+  const handleAddComment = () => {
+    if (!comment) return;
+    const commentAdd: Comment = {
+      content: comment,
+      user: user?.name ?? '',
+      avatar: user?.photoURL ?? '',
+      path: `match/${match.id}`,
+    };
+
+    dispatch(actions.addComment(commentAdd));
+  };
 
   return (
     <View style={S.background}>
@@ -49,9 +66,17 @@ const TodayMatch = ({ navigation, route }: Props) => {
               <Text style={S.playerName}>View Match </Text>
             </View>
           </HStack>
-          <YoutubePlayer
-            videoId={getVideoIdFromYoutubeUrl(match.video ?? '')}
-          />
+          {match.video ? (
+            <YoutubePlayer
+              videoId={getVideoIdFromYoutubeUrl(match.video ?? '')}
+            />
+          ) : (
+            <View height={300} justifyContent="center">
+              <Text textAlign="center" fontSize={20} fontStyle="italic">
+                No video available for this match
+              </Text>
+            </View>
+          )}
           <Divider style={S.divider2} />
 
           <Text textAlign="center" fontSize={18} fontStyle="italic">
@@ -60,7 +85,6 @@ const TodayMatch = ({ navigation, route }: Props) => {
           <Text textAlign="center" fontSize={20}>
             {match.place}
           </Text>
-
           <HStack alignItems="center">
             <VStack style={{ width: '40%' }}>
               <TouchableOpacity style={S.teamImg}>
@@ -103,18 +127,22 @@ const TodayMatch = ({ navigation, route }: Props) => {
           <HStack marginBottom={2} marginTop={5}>
             <Text style={S.playerInfo}>Comment</Text>
           </HStack>
-          <HStack>
-            <View style={S.commentBox}>
-              <Input
-                size="sm"
-                placeholder="Comment Input"
-                onChangeText={(comment) => setComment(comment)}
-                rounded={15}
-              />
-            </View>
-            <AntDesign style={S.iconComment} name="edit" />
-          </HStack>
-          <ListComments />
+          {user?.uid ? (
+            <HStack>
+              <View style={S.commentBox}>
+                <Input
+                  size="sm"
+                  placeholder="Comment Input"
+                  onChangeText={(comment) => setComment(comment)}
+                  rounded={15}
+                />
+              </View>
+              <TouchableOpacity onPress={handleAddComment}>
+                <AntDesign style={S.iconComment} name="edit" />
+              </TouchableOpacity>
+            </HStack>
+          ) : null}
+          <ListComments path={`match/${match.id}`} />
         </VStack>
       </ScrollView>
     </View>

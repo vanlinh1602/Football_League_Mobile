@@ -59,7 +59,6 @@ export type RootStackParamList = {
   SearchLeague: undefined;
   SearchTeam: undefined;
   SearchPlayer: undefined;
-  CommentInput: undefined;
   TodayMatch: { match: Match };
   UpcomingMatch: undefined;
   PrepareScreen: undefined;

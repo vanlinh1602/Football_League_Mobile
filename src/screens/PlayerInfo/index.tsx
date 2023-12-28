@@ -11,14 +11,17 @@ import {
 } from 'native-base';
 import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import ListComments from '../../features/search/components/ListComments';
 import PlayerInfoCard from '../../features/search/components/PlayerInfoCard';
 import { AntDesign } from '../../lib/icons';
 import { HomeStackScreenProps } from '../../Navigation/type';
+import { actions } from '../../redux/reducers/comments';
 import { selectPlayer } from '../../redux/selectors/players';
 import { selectTeam } from '../../redux/selectors/teams';
+import { selectUser } from '../../redux/selectors/user';
+import { Comment } from '../../redux/types/comments';
 import { RootState } from '../../redux/types/RootState';
 import S from './styles';
 
@@ -32,14 +35,29 @@ const PlayerInfo = ({ navigation, route }: Props) => {
   const team = useSelector((state: RootState) =>
     selectTeam(state, playerInfo.team),
   );
-  const [, setComment] = useState('');
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
+
+  const [comment, setComment] = useState('');
+
+  const handleAddComment = () => {
+    if (!comment) return;
+    const commentAdd: Comment = {
+      content: comment,
+      user: user?.name ?? '',
+      avatar: user?.photoURL ?? '',
+      path: `player/${playerId}`,
+    };
+
+    dispatch(actions.addComment(commentAdd));
+  };
 
   return (
     <View style={S.background}>
       <ScrollView>
         <VStack>
           <Image
-            source={{ uri: playerInfo.avatar || ''}}
+            source={{ uri: playerInfo.avatar || '' }}
             height={250}
             alt="kuma"
             borderBottomRadius={20}
@@ -76,7 +94,7 @@ const PlayerInfo = ({ navigation, route }: Props) => {
             onPress={() => navigation.navigate('TeamInfo', { id: '' })}>
             <HStack margin={5}>
               <Image
-                source={{ uri: team?.logo || ''}}
+                source={{ uri: team?.logo || '' }}
                 height={50}
                 width={50}
                 alt="kuma"
@@ -94,18 +112,22 @@ const PlayerInfo = ({ navigation, route }: Props) => {
           <HStack marginBottom={2} marginTop={1}>
             <Text style={S.playerInfo}>Comment</Text>
           </HStack>
-          <HStack>
-            <View style={S.commentBox}>
-              <Input
-                size="sm"
-                placeholder="Comment Input"
-                onChangeText={(comment) => setComment(comment)}
-                rounded={15}
-              />
-            </View>
-            <AntDesign style={S.iconComment} name="edit" />
-          </HStack>
-          <ListComments />
+          {user?.uid ? (
+            <HStack>
+              <View style={S.commentBox}>
+                <Input
+                  size="sm"
+                  placeholder="Comment Input"
+                  onChangeText={(comment) => setComment(comment)}
+                  rounded={15}
+                />
+              </View>
+              <TouchableOpacity onPress={handleAddComment}>
+                <AntDesign style={S.iconComment} name="edit" />
+              </TouchableOpacity>
+            </HStack>
+          ) : null}
+          <ListComments path={`player/${playerId}`} />
         </VStack>
       </ScrollView>
     </View>

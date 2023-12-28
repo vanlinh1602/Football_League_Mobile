@@ -66,13 +66,17 @@ export const selectMatchInDay = createSelector(
   },
 );
 
-export const selectUpcomingMatch = createSelector([selectDomain], (state) => {
-  const matchData = Object.values(state.matches ?? {}).filter(
-    ({ date }) => date > Date.now(),
-  );
-  const sorted = matchData.sort((a, b) => a.date - b.date);
-  return sorted;
-});
+export const selectUpcomingMatch = createSelector(
+  [selectDomain, selectPath],
+  (state, leagueId) => {
+    const matchData = Object.values(state.matches ?? {}).filter(
+      ({ date, league }) =>
+        date > Date.now() && (leagueId === 'all' ? true : league === leagueId),
+    );
+    const sorted = matchData.sort((a, b) => a.date - b.date);
+    return sorted;
+  },
+);
 
 export const selectTeamMatch = createSelector(
   [selectDomain, selectPath],

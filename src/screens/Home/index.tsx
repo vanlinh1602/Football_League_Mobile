@@ -14,6 +14,7 @@ import {
   selectUpcomingMatch,
 } from '../../redux/selectors/matches';
 import { selectUser } from '../../redux/selectors/user';
+import { RootState } from '../../redux/types/RootState';
 import S from './styles';
 
 type Props = HomeTabScreenProps<'Home'>;
@@ -21,7 +22,9 @@ type Props = HomeTabScreenProps<'Home'>;
 const Home = ({ navigation }: Props) => {
   const user = useSelector(selectUser);
   const currentMatch = useSelector(selectCurrentMatch);
-  const upcommingMatch = useSelector(selectUpcomingMatch);
+  const upcommingMatch = useSelector((state: RootState) =>
+    selectUpcomingMatch(state, 'all'),
+  );
   return (
     <ImageBackground style={S.background} source={images.homeBackgound}>
       <ScrollView>

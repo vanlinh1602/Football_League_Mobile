@@ -6,7 +6,6 @@ import { useDispatch } from 'react-redux';
 import { AntDesign, Feather, MaterialIcons, Octicons } from '../lib/icons';
 import { StackNavigate, TabNavigation } from '../Navigation';
 import { actions as userActions } from '../redux/reducers/user';
-import CommentInput from './CommentInput';
 import EditAccount from './EditAccount';
 import Favorite from './Favorite';
 import Home from './Home';
@@ -99,10 +98,8 @@ const Workspace = () => {
           { name: 'PlayerStatictics', render: PlayerStatictics },
           { name: 'TeamStatictics', render: TeamStatictics },
           { name: 'UpcomingMatch', render: UpcomingMatch },
-          { name: 'CommentInput', render: CommentInput },
           { name: 'TodayMatch', render: TodayMatch },
           { name: 'TeamInfo', render: TeamInfo }, //done
-
           {
             name: 'TeamStaticticsComparison',
             render: TeamStaticticsComparison,

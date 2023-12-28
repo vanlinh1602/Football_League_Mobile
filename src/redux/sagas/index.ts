@@ -1,5 +1,6 @@
 import { all } from 'redux-saga/effects';
 
+import commentSage from './comments';
 import leaguesSaga from './leagues';
 import matchesSaga from './matches';
 import playersSaga from './players';
@@ -13,5 +14,6 @@ export default function* rootSaga() {
     leaguesSaga(),
     matchesSaga(),
     playersSaga(),
+    commentSage(),
   ]);
 }

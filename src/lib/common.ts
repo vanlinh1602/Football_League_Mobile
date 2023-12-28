@@ -3,9 +3,9 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { Event, Match, Statistic } from '../redux/types/matches';
 
-export const getUid = () => {
-  return uuidv4();
-};
+
+
+export const generateId = () => uuidv4();
 
 export const takeRandomValue = <T>(array: T[], size: number = 6): T[] => {
   const subArray = [];

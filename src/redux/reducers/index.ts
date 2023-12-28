@@ -1,5 +1,6 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
+import { reducer as commentReducer } from './comments';
 import { reducer as leaguesReducer } from './leagues';
 import { reducer as matchesReducer } from './matches';
 import { reducer as playersReducer } from './players';
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   leagueStore: leaguesReducer,
   matchStore: matchesReducer,
   playerStore: playersReducer,
+  commentStore: commentReducer,
 });
 
 export default rootReducer;

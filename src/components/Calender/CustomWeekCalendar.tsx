@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import moment from 'moment';
 import { HStack, ScrollView, VStack } from 'native-base';
 import React, { useState } from 'react';
@@ -10,6 +11,7 @@ import {
 } from 'react-native';
 import { useSelector } from 'react-redux';
 
+import { TabScreenNavigationProp } from '../../Navigation/type';
 import { selectMatchInDay } from '../../redux/selectors/matches';
 import { RootState } from '../../redux/types/RootState';
 import AgendaItem from './AgedaItem';
@@ -17,6 +19,8 @@ import AgendaItem from './AgedaItem';
 const windowWidth = Dimensions.get('window').width;
 
 const WeekCalendar = () => {
+  const navigation = useNavigation<TabScreenNavigationProp<'Schedule'>>();
+
   const [startDate, setStartDate] = useState(moment().startOf('isoWeek'));
   const [selectDate, setSelectDate] = useState<number>(
     moment().startOf('day').valueOf(),
@@ -84,7 +88,11 @@ const WeekCalendar = () => {
             {}
             {matchOfDate.length ? (
               matchOfDate.map((match, index) => (
-                <AgendaItem key={index} item={match} />
+                <AgendaItem
+                  key={index}
+                  item={match}
+                  onPress={() => navigation.navigate('TodayMatch', { match })}
+                />
               ))
             ) : (
               <View

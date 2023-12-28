@@ -1,7 +1,7 @@
 import moment from 'moment';
 import { Divider, HStack, Image, Text, View } from 'native-base';
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
 
 import { theme } from '../../lib/theme';
@@ -11,9 +11,10 @@ import { RootState } from '../../redux/types/RootState';
 
 interface ItemProps {
   item: Match;
+  onPress: () => void;
 }
 
-const AgendaItem = ({ item }: ItemProps) => {
+const AgendaItem = ({ item, onPress }: ItemProps) => {
   const teamA = useSelector((state: RootState) =>
     selectTeam(state, item.teamA),
   );
@@ -22,40 +23,50 @@ const AgendaItem = ({ item }: ItemProps) => {
   );
 
   return (
-    <View style={styles.container}>
-      <HStack padding={3} alignItems="center">
-        <View style={{ width: '65%' }}>
-          <HStack alignItems="center" justifyContent="space-between">
-            <HStack alignItems="center">
-              <Image source={{ uri: teamA?.logo || '' }} alt="" style={styles.logo} />
-              <Text fontWeight="bold">{teamA?.name}</Text>
+    <TouchableOpacity onPress={onPress}>
+      <View style={styles.container}>
+        <HStack padding={3} alignItems="center">
+          <View style={{ width: '65%' }}>
+            <HStack alignItems="center" justifyContent="space-between">
+              <HStack alignItems="center">
+                <Image
+                  source={{ uri: teamA?.logo || '' }}
+                  alt=""
+                  style={styles.logo}
+                />
+                <Text fontWeight="bold">{teamA?.name}</Text>
+              </HStack>
+              <Text fontWeight="bold">{item.mathResult?.teamA || 0}</Text>
             </HStack>
-            <Text fontWeight="bold">{item.mathResult?.teamA || 0}</Text>
-          </HStack>
-          <HStack alignItems="center" justifyContent="space-between">
-            <HStack alignItems="center">
-              <Image source={{ uri: teamB?.logo || ''}} alt="" style={styles.logo} />
-              <Text fontWeight="bold">{teamB?.name}</Text>
+            <HStack alignItems="center" justifyContent="space-between">
+              <HStack alignItems="center">
+                <Image
+                  source={{ uri: teamB?.logo || '' }}
+                  alt=""
+                  style={styles.logo}
+                />
+                <Text fontWeight="bold">{teamB?.name}</Text>
+              </HStack>
+              <Text fontWeight="bold">{item.mathResult?.teamB || 0}</Text>
             </HStack>
-            <Text fontWeight="bold">{item.mathResult?.teamB || 0}</Text>
-          </HStack>
-        </View>
-        <Divider
-          bg={theme.purple}
-          thickness="3"
-          mx="2"
-          orientation="vertical"
-        />
-        <View style={{ width: '30%' }}>
-          <Text color={theme.purple} fontWeight="bold" fontSize={16}>
-            {moment(item.date).format('HH : mm')}
-          </Text>
-          <Text fontWeight="bold">
-            {moment(item.date).format('DD MMM - YYYY')}
-          </Text>
-        </View>
-      </HStack>
-    </View>
+          </View>
+          <Divider
+            bg={theme.purple}
+            thickness="3"
+            mx="2"
+            orientation="vertical"
+          />
+          <View style={{ width: '30%' }}>
+            <Text color={theme.purple} fontWeight="bold" fontSize={16}>
+              {moment(item.date).format('HH : mm')}
+            </Text>
+            <Text fontWeight="bold">
+              {moment(item.date).format('DD MMM - YYYY')}
+            </Text>
+          </View>
+        </HStack>
+      </View>
+    </TouchableOpacity>
   );
 };
 

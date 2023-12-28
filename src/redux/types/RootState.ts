@@ -1,7 +1,8 @@
-import { LeagueStore } from './leagues';
-import { MatchStore } from './matches';
-import { PlayersStore } from './players';
-import { TeamStore } from './teams';
+import type { CommentsState } from './comments';
+import type { LeagueStore } from './leagues';
+import type { MatchStore } from './matches';
+import type { PlayersStore } from './players';
+import type { TeamStore } from './teams';
 import type { UserState } from './users';
 
 export type RootState = {
@@ -10,4 +11,5 @@ export type RootState = {
   playerStore: PlayersStore;
   leagueStore: LeagueStore;
   matchStore: MatchStore;
+  commentStore: CommentsState;
 };
