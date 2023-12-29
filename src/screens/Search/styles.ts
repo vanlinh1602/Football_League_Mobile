@@ -30,4 +30,12 @@ export default StyleSheet.create({
     color: 'white',
     width: '90%',
   },
+  title1: {
+    fontSize: 26,
+    paddingTop: 5,
+    fontWeight: 'bold',
+    color: 'white',
+    width: '90%',
+    marginTop:30
+  },
 });

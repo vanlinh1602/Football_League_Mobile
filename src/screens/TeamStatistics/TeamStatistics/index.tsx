@@ -14,7 +14,6 @@ import { ImageBackground } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
 
-import ListComments from '../../../features/search/components/ListComments';
 import StatisticCard from '../../../features/Statistic/components/StatisticCard/StatisticTable';
 import { teamPicture } from '../../../lib/assets';
 import { AntDesign, Fontisto } from '../../../lib/icons';
@@ -29,7 +28,6 @@ const TeamStatictics = ({ navigation, route }: Props) => {
   const { data, team } = route.params;
   const teamData = useSelector((state: RootState) => selectTeam(state, team));
   const [leagues, setleagues] = useState('abc');
-  const [, setComment] = useState('');
 
   return (
     <View>
@@ -52,9 +50,6 @@ const TeamStatictics = ({ navigation, route }: Props) => {
             alt="logo"
             style={S.teamLogo}
           />
-          <TouchableOpacity style={S.favoriteButton}>
-            <Fontisto name="favorite" size={30} color="black" />
-          </TouchableOpacity>
         </HStack>
         <HStack style={S.leagueTeamPlaying}>
           <Select
@@ -96,21 +91,6 @@ const TeamStatictics = ({ navigation, route }: Props) => {
             cornerKick={data.cornerKick}
           />
         </View>
-        <HStack marginBottom={2} marginTop={1}>
-          <Text style={S.playerInfo}>Comment</Text>
-        </HStack>
-        <HStack>
-          <View style={S.commentBox}>
-            <Input
-              size="sm"
-              placeholder="Comment Input"
-              onChangeText={(comment) => setComment(comment)}
-              rounded={15}
-            />
-          </View>
-          <AntDesign style={S.iconComment} name="edit" />
-        </HStack>
-        <ListComments />
       </ScrollView>
     </View>
   );
