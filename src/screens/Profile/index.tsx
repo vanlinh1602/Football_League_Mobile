@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { SectionSelect } from '../../features/Profile/components';
 import { profile_asset } from '../../lib/assets';
-import { Feather, MaterialIcons } from '../../lib/icons';
+import { Feather } from '../../lib/icons';
 import { HomeTabScreenProps } from '../../Navigation/type';
 import { actions as userActions } from '../../redux/reducers/user';
 import { selectUser } from '../../redux/selectors/user';
@@ -51,30 +51,30 @@ const Profile = ({ navigation }: Props) => {
             </Text>
             <Text>{email}</Text>
           </VStack>
-          <MaterialIcons
+          {/* <MaterialIcons
             onPress={() => navigation.navigate('EditAccount')}
             style={[S.icon, { position: 'absolute', right: 10 }]}
             name="edit"
-          />
+          /> */}
         </HStack>
         <View alignItems="center">
           <Divider thickness={1} bg="#000" width={80} />
         </View>
-        <SectionSelect
+        {/* <SectionSelect
           title="Personal Setting"
           onPress={() => {}}
           image={profile_asset.personal_setting}
-        />
+        /> */}
         <SectionSelect
           title="Notification"
           onPress={() => navigation.navigate('Notification')}
           image={profile_asset.notification}
         />
-        <SectionSelect
+        {/* <SectionSelect
           title="General"
           onPress={() => {}}
           image={profile_asset.general}
-        />
+        /> */}
         <SectionSelect
           title="Favorite"
           onPress={() => navigation.navigate('Favorite')}
