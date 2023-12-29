@@ -8,6 +8,7 @@ export default StyleSheet.create({
   leagueLogos: {
     width: 54,
     height: 54,
+    borderRadius: 48,
   },
   text: {
     marginTop: 15,

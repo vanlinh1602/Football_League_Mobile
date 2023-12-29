@@ -21,8 +21,10 @@ const Authenticate = ({ children, authScreen }: Props) => {
   useEffect(() => {
     if (!user?.email || !user.uid) {
       navigation.navigate('Login', { authScreen });
+    } else {
+      navigation.navigate(authScreen as any);
     }
-  }, [authScreen, navigation, user]);
+  }, [authScreen, navigation, user?.email, user?.uid]);
 
   return children;
 };

@@ -11,20 +11,27 @@ import S from './styles';
 
 type Props = HomeStackScreenProps<'SearchTeam'>;
 
-const SearchTeam = ({ navigation }: Props) => {
+const SearchTeam = ({ navigation, route }: Props) => {
+  const { teams } = route.params ?? {};
   const [filterData, setFilterData] = useState('');
 
-  const teams = useSelector(selectTeams);
+  const allTeams = useSelector(selectTeams);
 
-  const teamList = useMemo(
-    () =>
-      Object.values(teams ?? {}).map(({ id, logo, name }) => ({
-        id,
-        logo,
-        name,
-      })),
-    [teams],
-  );
+  const teamList = useMemo(() => {
+    let teamFilter;
+    if (teams) {
+      teamFilter = Object.values(allTeams ?? {}).filter((team) =>
+        teams.includes(team.id),
+      );
+    } else {
+      teamFilter = Object.values(allTeams ?? {});
+    }
+    return teamFilter.map(({ id, logo, name }) => ({
+      id,
+      logo,
+      name,
+    }));
+  }, [teams, allTeams]);
 
   const handleFilterData = (text: string) => {
     setFilterData(text);

@@ -18,9 +18,10 @@ import UpcomingMatchCard from '../../features/search/components/UpcomingMatchCar
 import { AntDesign } from '../../lib/icons';
 import { HomeStackScreenProps } from '../../Navigation/type';
 import { actions } from '../../redux/reducers/comments';
+import { actions as userActions } from '../../redux/reducers/user';
 import { selectLeague } from '../../redux/selectors/leagues';
 import { selectUpcomingMatch } from '../../redux/selectors/matches';
-import { selectUser } from '../../redux/selectors/user';
+import { selectUser, selectUserFavorite } from '../../redux/selectors/user';
 import { Comment } from '../../redux/types/comments';
 import { RootState } from '../../redux/types/RootState';
 import S from './styles';
@@ -38,6 +39,9 @@ const LeaguesInfo = ({ navigation, route }: Props) => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const [comment, setComment] = useState('');
+  const leagueFavorite = useSelector((state: RootState) =>
+    selectUserFavorite(state, 'league'),
+  );
 
   const handleAddComment = () => {
     if (!comment) return;
@@ -49,6 +53,24 @@ const LeaguesInfo = ({ navigation, route }: Props) => {
     };
 
     dispatch(actions.addComment(commentAdd));
+  };
+
+  const handleSaveLeague = () => {
+    if (leagueFavorite?.includes(leagueId)) {
+      dispatch(
+        userActions.updateUserData({
+          path: 'favorite.league',
+          data: leagueFavorite?.filter((item) => item !== leagueId),
+        }),
+      );
+    } else {
+      dispatch(
+        userActions.updateUserData({
+          path: 'favorite.league',
+          data: [leagueId, ...(leagueFavorite ?? [])],
+        }),
+      );
+    }
   };
 
   return (
@@ -73,9 +95,20 @@ const LeaguesInfo = ({ navigation, route }: Props) => {
             <View>
               <Text style={S.playerName}>{league?.name} </Text>
             </View>
-            <AntDesign style={S.iconHeart} name="book" />
+            <TouchableOpacity onPress={handleSaveLeague}>
+              <AntDesign
+                style={[
+                  S.iconHeart,
+                  leagueFavorite.includes(leagueId) ? { color: '#fe4040' } : {},
+                ]}
+                name="book"
+              />
+            </TouchableOpacity>
           </HStack>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('SearchTeam', { teams: league?.participants })
+            }>
             <HStack margin={5}>
               <Image
                 source={{ uri: league?.image || '' }}
@@ -118,7 +151,9 @@ const LeaguesInfo = ({ navigation, route }: Props) => {
             <UpcomingMatchCard
               key={match.id}
               match={match}
-              onPress={() => navigation.navigate('TodayMatch', { match })}
+              onPress={() =>
+                navigation.navigate('TodayMatch', { matchId: match.id })
+              }
             />
           ))}
           <Divider style={S.divider2} />

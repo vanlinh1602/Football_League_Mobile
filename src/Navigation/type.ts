@@ -12,7 +12,7 @@ import type {
   StackScreenProps,
 } from '@react-navigation/stack';
 
-import { Match, Statistic } from '../redux/types/matches';
+import { Statistic } from '../redux/types/matches';
 
 // Bottom Tab
 export type RootTabParamList = {
@@ -57,9 +57,9 @@ export type RootStackParamList = {
   Notification: undefined;
   Favorite: undefined;
   SearchLeague: undefined;
-  SearchTeam: undefined;
-  SearchPlayer: undefined;
-  TodayMatch: { match: Match };
+  SearchTeam: { teams?: string[] };
+  SearchPlayer: { team?: string };
+  TodayMatch: { matchId: string };
   UpcomingMatch: undefined;
   PrepareScreen: undefined;
 };

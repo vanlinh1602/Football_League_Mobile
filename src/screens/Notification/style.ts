@@ -13,11 +13,15 @@ export default StyleSheet.create({
     color: '#000',
   },
   todayMatchtitle: {
-    fontSize:24,
-    marginLeft:10,
-    fontWeight:'800',
-    marginTop:5,
-    paddingTop:10
+    fontSize: 24,
+    marginLeft: 10,
+    fontWeight: '800',
+    marginTop: 5,
+    paddingTop: 10,
   },
-
+  notify: {
+    padding: 15,
+    borderWidth: 1,
+    borderRadius: 12,
+  },
 });

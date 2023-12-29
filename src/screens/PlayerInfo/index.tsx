@@ -18,9 +18,10 @@ import PlayerInfoCard from '../../features/search/components/PlayerInfoCard';
 import { AntDesign } from '../../lib/icons';
 import { HomeStackScreenProps } from '../../Navigation/type';
 import { actions } from '../../redux/reducers/comments';
+import { actions as userActions } from '../../redux/reducers/user';
 import { selectPlayer } from '../../redux/selectors/players';
 import { selectTeam } from '../../redux/selectors/teams';
-import { selectUser } from '../../redux/selectors/user';
+import { selectUser, selectUserFavorite } from '../../redux/selectors/user';
 import { Comment } from '../../redux/types/comments';
 import { RootState } from '../../redux/types/RootState';
 import S from './styles';
@@ -35,6 +36,10 @@ const PlayerInfo = ({ navigation, route }: Props) => {
   const team = useSelector((state: RootState) =>
     selectTeam(state, playerInfo.team),
   );
+  const playerFavorite = useSelector((state: RootState) =>
+    selectUserFavorite(state, 'player'),
+  );
+
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
@@ -50,6 +55,24 @@ const PlayerInfo = ({ navigation, route }: Props) => {
     };
 
     dispatch(actions.addComment(commentAdd));
+  };
+
+  const handleSavePlayer = () => {
+    if (playerFavorite?.includes(playerId)) {
+      dispatch(
+        userActions.updateUserData({
+          path: 'favorite.player',
+          data: playerFavorite?.filter((item) => item !== playerId),
+        }),
+      );
+    } else {
+      dispatch(
+        userActions.updateUserData({
+          path: 'favorite.player',
+          data: [playerId, ...(playerFavorite ?? [])],
+        }),
+      );
+    }
   };
 
   return (
@@ -73,7 +96,15 @@ const PlayerInfo = ({ navigation, route }: Props) => {
             <View>
               <Text style={S.playerName}>{playerInfo.name}</Text>
             </View>
-            <AntDesign style={S.iconHeart} name="book" />
+            <TouchableOpacity onPress={handleSavePlayer}>
+              <AntDesign
+                style={[
+                  S.iconHeart,
+                  playerFavorite.includes(playerId) ? { color: '#fe4040' } : {},
+                ]}
+                name="book"
+              />
+            </TouchableOpacity>
           </HStack>
           <HStack marginTop={3}>
             <PlayerInfoCard
@@ -91,7 +122,9 @@ const PlayerInfo = ({ navigation, route }: Props) => {
             <PlayerInfoCard name="Role" score={playerInfo.role ?? ''} />
           </HStack>
           <TouchableOpacity
-            onPress={() => navigation.navigate('TeamInfo', { id: '' })}>
+            onPress={() =>
+              navigation.navigate('TeamInfo', { id: playerInfo.team })
+            }>
             <HStack margin={5}>
               <Image
                 source={{ uri: team?.logo || '' }}

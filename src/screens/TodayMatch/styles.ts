@@ -12,9 +12,7 @@ export default StyleSheet.create({
   playerName: {
     fontWeight: 'bold',
     fontSize: 25,
-    paddingLeft: 1,
-    paddingTop: 30,
-    marginLeft: 90,
+    paddingTop: 10,
   },
   teamName: {
     fontSize: 20,
@@ -75,9 +73,6 @@ export default StyleSheet.create({
     marginTop: 15,
   },
   goBack: {
-    marginTop: 25,
-    marginLeft: 15,
-    marginBottom: 10,
     height: 25,
     width: 25,
     borderWidth: 1,

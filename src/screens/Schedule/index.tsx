@@ -31,7 +31,7 @@ const Schedule = ({ navigation }: Props) => {
                   <View key={match.id} width={300}>
                     <TouchableOpacity
                       onPress={() =>
-                        navigation.navigate('TodayMatch', { match })
+                        navigation.navigate('TodayMatch', { matchId: match.id })
                       }>
                       <MatchCard mini match={match} />
                     </TouchableOpacity>

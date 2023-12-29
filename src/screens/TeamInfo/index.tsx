@@ -1,3 +1,5 @@
+import _ from 'lodash';
+import moment from 'moment';
 import {
   Divider,
   HStack,
@@ -17,8 +19,10 @@ import PlayerInfoCard from '../../features/search/components/PlayerInfoCard';
 import { AntDesign } from '../../lib/icons';
 import { HomeStackScreenProps } from '../../Navigation/type';
 import { actions } from '../../redux/reducers/comments';
+import { actions as userActions } from '../../redux/reducers/user';
+import { selectPlayersOfTeams } from '../../redux/selectors/players';
 import { selectTeam } from '../../redux/selectors/teams';
-import { selectUser } from '../../redux/selectors/user';
+import { selectUser, selectUserFavorite } from '../../redux/selectors/user';
 import { Comment } from '../../redux/types/comments';
 import { RootState } from '../../redux/types/RootState';
 import S from './styles';
@@ -31,6 +35,12 @@ const TeamInfo = ({ navigation, route }: Props) => {
   const user = useSelector(selectUser);
 
   const teamInfo = useSelector((state: RootState) => selectTeam(state, teamId));
+  const players = useSelector((state: RootState) =>
+    selectPlayersOfTeams(state, teamId),
+  );
+  const teamFavorite = useSelector((state: RootState) =>
+    selectUserFavorite(state, 'team'),
+  );
   const [comment, setComment] = useState('');
 
   const handleAddComment = () => {
@@ -42,6 +52,26 @@ const TeamInfo = ({ navigation, route }: Props) => {
       path: `team/${teamId}`,
     };
     dispatch(actions.addComment(commentAdd));
+  };
+
+  const handleSaveTeam = () => {
+    if (teamFavorite?.includes(teamId)) {
+      dispatch(
+        userActions.updateUserData({
+          path: 'favorite.team',
+          data: teamFavorite?.filter((item) => item !== teamId),
+        }),
+      );
+    } else {
+      {
+        dispatch(
+          userActions.updateUserData({
+            path: 'favorite.team',
+            data: [teamId, ...(teamFavorite ?? [])],
+          }),
+        );
+      }
+    }
   };
 
   return (
@@ -63,14 +93,34 @@ const TeamInfo = ({ navigation, route }: Props) => {
             <View>
               <Text style={S.playerName}>{teamInfo?.name}</Text>
             </View>
-            <AntDesign style={S.iconHeart} name="book" />
+            <TouchableOpacity onPress={handleSaveTeam}>
+              <AntDesign
+                style={[
+                  S.iconHeart,
+                  teamFavorite.includes(teamId) ? { color: '#fe4040' } : {},
+                ]}
+                name="book"
+              />
+            </TouchableOpacity>
           </HStack>
           <HStack marginTop={3}>
-            <PlayerInfoCard name="Year" score={'33'} />
-            <PlayerInfoCard name="Players" score={'45'} />
-            <PlayerInfoCard name="Country" score={'Eng'} />
+            <PlayerInfoCard
+              name="Year"
+              score={
+                teamInfo?.founding
+                  ? (
+                      moment().year() - moment(teamInfo.founding).year()
+                    ).toString()
+                  : ''
+              }
+            />
+            <PlayerInfoCard name="Players" score={_.size(players).toString()} />
+            <PlayerInfoCard name="Country" score={teamInfo?.country ?? ''} />
           </HStack>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('SearchPlayer', { team: teamId })
+            }>
             <HStack margin={5}>
               <Image
                 source={{ uri: teamInfo?.logo || '' }}

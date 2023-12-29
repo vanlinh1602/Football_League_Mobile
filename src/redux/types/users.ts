@@ -7,6 +7,23 @@ export type UserData = {
   name: string;
   photoURL?: string;
   role?: string;
+  favorite?: {
+    league?: string[];
+    team?: string[];
+    player?: string[];
+  };
+  notification?: Notification[];
+};
+
+export type Notification = {
+  id: string;
+  title: string;
+  body: string;
+  time: number;
+  data: {
+    type: 'match';
+    id: string;
+  };
 };
 
 export type UserState = {

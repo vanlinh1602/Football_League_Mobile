@@ -1,4 +1,5 @@
 {
   "name": "LeagueManagement",
-  "displayName": "LeagueManagement"
+  "displayName": "LeagueManagement",
+  "plugins": ["@notifee/react-native"]
 }

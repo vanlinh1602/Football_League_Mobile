@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import _ from 'lodash';
 
 import type { SignInAction, UserData, UserState } from '../types/users';
 
@@ -15,6 +16,17 @@ const userSlice = createSlice({
     fetchUser(state, action: PayloadAction<UserData>) {
       state.handling = false;
       state.data = action.payload;
+    },
+    fetchUserData(
+      state,
+      action: PayloadAction<{
+        path: string;
+        data: any;
+      }>,
+    ) {
+      const { path, data } = action.payload;
+      state.handling = false;
+      _.set(state, `data.${path}`, data);
     },
     changePrepareStatus(
       state,
@@ -33,6 +45,15 @@ const userSlice = createSlice({
     },
     prepareData(state) {
       state.fetching = true;
+    },
+    updateUserData(
+      state,
+      _action: PayloadAction<{
+        path: string;
+        data: any;
+      }>,
+    ) {
+      state.handling = true;
     },
   },
 });

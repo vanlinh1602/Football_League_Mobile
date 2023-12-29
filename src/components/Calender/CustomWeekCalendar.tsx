@@ -91,7 +91,9 @@ const WeekCalendar = () => {
                 <AgendaItem
                   key={index}
                   item={match}
-                  onPress={() => navigation.navigate('TodayMatch', { match })}
+                  onPress={() =>
+                    navigation.navigate('TodayMatch', { matchId: match.id })
+                  }
                 />
               ))
             ) : (

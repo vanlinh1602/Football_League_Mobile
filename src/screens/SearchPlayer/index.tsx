@@ -6,20 +6,27 @@ import { useSelector } from 'react-redux';
 import LeaguesCard from '../../features/search/components/LeaguesCard';
 import { AntDesign } from '../../lib/icons';
 import { HomeStackScreenProps } from '../../Navigation/type';
-import { selectAllPlayer } from '../../redux/selectors/players';
+import {
+  selectAllPlayer,
+  selectPlayersOfTeams,
+} from '../../redux/selectors/players';
+import { RootState } from '../../redux/types/RootState';
 import S from './styles';
 
 type Props = HomeStackScreenProps<'SearchPlayer'>;
 
-const SearchPlayer = ({ navigation }: Props) => {
+const SearchPlayer = ({ navigation, route }: Props) => {
+  const { team } = route.params ?? {};
   const [filterData, setFilterData] = useState('');
-  const allPlayer = useSelector(selectAllPlayer);
+  const allPlayer = useSelector((state: RootState) =>
+    team ? selectPlayersOfTeams(state, team) : selectAllPlayer(state),
+  );
 
   const handleFilterData = (text: string) => {
     setFilterData(text);
   };
 
-  const filteredPlayers = Object.values(allPlayer).filter((player) => {
+  const filteredPlayers = Object.values(allPlayer ?? {}).filter((player) => {
     return player.name.toLowerCase().includes(filterData.toLowerCase());
   });
 

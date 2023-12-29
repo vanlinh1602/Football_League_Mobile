@@ -62,7 +62,7 @@ const HomeTabs = () => {
         },
         {
           name: 'Profile',
-          // auth: true,
+          auth: true,
           render: Profile,
           icon: ({ color, size }) => (
             <AntDesign name="user" color={color} size={size} />

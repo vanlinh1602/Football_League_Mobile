@@ -57,7 +57,9 @@ const Home = ({ navigation }: Props) => {
               <Text style={S.title}>Current Match</Text>
               <TouchableOpacity
                 onPress={() =>
-                  navigation.navigate('TodayMatch', { match: currentMatch })
+                  navigation.navigate('TodayMatch', {
+                    matchId: currentMatch.id,
+                  })
                 }>
                 <MatchCard match={currentMatch} />
               </TouchableOpacity>
@@ -65,7 +67,13 @@ const Home = ({ navigation }: Props) => {
           ) : null}
           <Text style={S.title}>Upcoming Match</Text>
           {upcommingMatch.map((match, index) => (
-            <UpcomingCard key={index} match={match} />
+            <TouchableOpacity
+              key={index}
+              onPress={() =>
+                navigation.navigate('TodayMatch', { matchId: match.id })
+              }>
+              <UpcomingCard match={match} />
+            </TouchableOpacity>
           ))}
         </VStack>
       </ScrollView>

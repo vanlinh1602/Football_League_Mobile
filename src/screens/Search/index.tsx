@@ -55,7 +55,7 @@ const Search = ({ navigation }: Props) => {
                     {...category}
                     onPress={() => {
                       if (category.key) {
-                        navigation.navigate(category.key);
+                        navigation.navigate(category.key as any);
                       }
                     }}
                   />
