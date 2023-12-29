@@ -5,7 +5,6 @@ import { ImageBackground } from 'react-native';
 
 import CategoriesCard from '../../features/search/components/CategotiesCard';
 import { categories_images, images } from '../../lib/assets';
-import { AntDesign } from '../../lib/icons';
 import { HomeTabScreenProps } from '../../Navigation/type';
 import S from './styles';
 

@@ -14,7 +14,6 @@ import { ImageBackground } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
 
-import ListComments from '../../../features/search/components/ListComments';
 import StatisticCard from '../../../features/Statistic/components/StatisticCard/StatisticTable';
 import { teamPicture } from '../../../lib/assets';
 import { AntDesign, Fontisto } from '../../../lib/icons';
@@ -29,7 +28,6 @@ const TeamStatictics = ({ navigation, route }: Props) => {
   const { data, team } = route.params;
   const teamData = useSelector((state: RootState) => selectTeam(state, team));
   const [leagues, setleagues] = useState('abc');
-  const [, setComment] = useState('');
 
   return (
     <View>

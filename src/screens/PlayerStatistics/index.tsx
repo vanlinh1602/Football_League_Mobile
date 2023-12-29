@@ -12,7 +12,6 @@ import { ImageBackground } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
 
-import ListComments from '../../features/search/components/ListComments';
 import StatisticCard from '../../features/Statistic/components/StatisticCard/StatisticTable';
 import { calculatePlayerStatistic } from '../../lib/common';
 import { AntDesign, Fontisto } from '../../lib/icons';
@@ -35,7 +34,6 @@ const PlayerStatictics = ({ navigation, route }: Props) => {
     selectTeam(state, player.team),
   );
   const events = useSelector(selectEvents);
-  const [, setComment] = useState('');
   const statisticPlayer = useMemo(() => {
     return calculatePlayerStatistic(id, matches, events ?? {});
   }, [id, matches, events]);
