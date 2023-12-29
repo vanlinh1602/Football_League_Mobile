@@ -59,9 +59,6 @@ const PlayerStatictics = ({ navigation, route }: Props) => {
             {player.name}
           </Text>
           <Image source={{ uri: team?.logo || ''}} alt="logo" style={S.teamLogo} />
-          <TouchableOpacity style={S.favoriteButton}>
-            <Fontisto name="favorite" size={30} color="black" />
-          </TouchableOpacity>
         </HStack>
       </View>
       <View>
@@ -75,21 +72,6 @@ const PlayerStatictics = ({ navigation, route }: Props) => {
           cornerKick={statisticPlayer.cornerKick}
         />
       </View>
-      <HStack marginBottom={2} marginTop={1}>
-        <Text style={S.playerInfo}>Comment</Text>
-      </HStack>
-      <HStack>
-        <View style={S.commentBox}>
-          <Input
-            size="sm"
-            placeholder="Comment Input"
-            onChangeText={(comment) => setComment(comment)}
-            rounded={15}
-          />
-        </View>
-        <AntDesign style={S.iconComment} name="edit" />
-      </HStack>
-      <ListComments />
     </ScrollView>
   );
 };

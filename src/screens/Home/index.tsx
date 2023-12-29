@@ -31,7 +31,7 @@ const Home = ({ navigation }: Props) => {
         <VStack style={S.container} space={2}>
           <HStack alignItems="center" justifyContent="space-between">
             <HStack alignItems="center" space={3} marginLeft={3}>
-              <Ionicons style={S.icon} name="notifications-outline" />
+              <Ionicons style={S.icon} name="notifications-outline" onPress={() => navigation.navigate('Notification')} />
               <Text style={S.wellcome}>
                 Welcome, <Text color="yellow.400">{user?.name || 'Guest'}</Text>
               </Text>

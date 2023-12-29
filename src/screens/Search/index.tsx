@@ -26,25 +26,7 @@ const Search = ({ navigation }: Props) => {
     <ImageBackground style={S.background} source={images.homeBackgound}>
       <ScrollView mb={70}>
         <VStack space={4} alignItems="center">
-          <Input
-            marginTop={2}
-            fontSize={16}
-            paddingX={5}
-            borderColor="#black"
-            backgroundColor="white"
-            focusOutlineColor="#5A4CBB"
-            InputLeftElement={
-              <AntDesign
-                style={{ marginLeft: 10 }}
-                name="search1"
-                size={20}
-                color="black"
-              />
-            }
-            width="96"
-            variant="rounded"
-            placeholder="Search Leagues, Team, Player"
-          />
+          <Text style={S.title1}>Choose to search</Text>
           <Text style={S.title}>Categories</Text>
           <VStack space={3}>
             {chunk(categories, 2).map((group, gIndex) => (

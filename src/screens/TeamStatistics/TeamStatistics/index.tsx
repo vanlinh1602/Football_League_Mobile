@@ -52,9 +52,6 @@ const TeamStatictics = ({ navigation, route }: Props) => {
             alt="logo"
             style={S.teamLogo}
           />
-          <TouchableOpacity style={S.favoriteButton}>
-            <Fontisto name="favorite" size={30} color="black" />
-          </TouchableOpacity>
         </HStack>
         <HStack style={S.leagueTeamPlaying}>
           <Select
@@ -96,21 +93,6 @@ const TeamStatictics = ({ navigation, route }: Props) => {
             cornerKick={data.cornerKick}
           />
         </View>
-        <HStack marginBottom={2} marginTop={1}>
-          <Text style={S.playerInfo}>Comment</Text>
-        </HStack>
-        <HStack>
-          <View style={S.commentBox}>
-            <Input
-              size="sm"
-              placeholder="Comment Input"
-              onChangeText={(comment) => setComment(comment)}
-              rounded={15}
-            />
-          </View>
-          <AntDesign style={S.iconComment} name="edit" />
-        </HStack>
-        <ListComments />
       </ScrollView>
     </View>
   );

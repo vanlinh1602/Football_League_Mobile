@@ -65,8 +65,7 @@ const Statistic = ({ navigation }: Props) => {
               Statistic
             </Text>
             <HStack justifyContent="flex-end" space={3}>
-              <Ionicons name="search" color="#fff" size={30} />
-              <Ionicons name="notifications" color="#fff" size={30} />
+              <Ionicons name="notifications" color="#fff" size={30} onPress={() => navigation.navigate('Notification')}/>
             </HStack>
           </HStack>
           <Text color="#fff" fontSize={24} pl={5}>
