@@ -60,6 +60,7 @@ const TodayMatch = ({ navigation, route }: Props) => {
   };
 
   const handleNotification = async () => {
+    if (!user?.uid) return Alert.alert('Please login to use this feature');
     if (isNotify) {
       const notify = notification?.find((item) => item.data.id === match!.id);
       await cancelNotification(notify?.id ?? '');

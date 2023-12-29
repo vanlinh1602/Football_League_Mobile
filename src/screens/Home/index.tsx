@@ -1,6 +1,6 @@
 import { HStack, Image, ScrollView, Text, VStack } from 'native-base';
 import React from 'react';
-import { ImageBackground } from 'react-native';
+import { Alert, ImageBackground } from 'react-native';
 import { TouchableOpacity } from 'react-native';
 import { useSelector } from 'react-redux';
 
@@ -31,7 +31,16 @@ const Home = ({ navigation }: Props) => {
         <VStack style={S.container} space={2}>
           <HStack alignItems="center" justifyContent="space-between">
             <HStack alignItems="center" space={3} marginLeft={3}>
-              <Ionicons style={S.icon} name="notifications-outline" />
+              <TouchableOpacity
+                onPress={() => {
+                  if (user?.uid) {
+                    navigation.navigate('Notification');
+                  } else {
+                    Alert.alert('Please login to use this feature');
+                  }
+                }}>
+                <Ionicons style={S.icon} name="notifications-outline" />
+              </TouchableOpacity>
               <Text style={S.wellcome}>
                 Welcome, <Text color="yellow.400">{user?.name || 'Guest'}</Text>
               </Text>
