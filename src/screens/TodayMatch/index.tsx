@@ -77,7 +77,7 @@ const TodayMatch = ({ navigation, route }: Props) => {
       const title = `${teamA?.name} vs ${teamB?.name}`;
       const time = match!.date;
 
-      const notyfiId = await createNotification(title, body, moment.now());
+      const notyfiId = await createNotification(title, body, time);
 
       const notify: Notification = {
         id: notyfiId,
