@@ -10,7 +10,7 @@ import {
   VStack,
 } from 'native-base';
 import React, { useState } from 'react';
-import { TouchableOpacity } from 'react-native';
+import { Alert, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import ListComments from '../../features/search/components/ListComments';
@@ -56,6 +56,7 @@ const LeaguesInfo = ({ navigation, route }: Props) => {
   };
 
   const handleSaveLeague = () => {
+    if (!user?.uid) return Alert.alert('Please login to use this feature');
     if (leagueFavorite?.includes(leagueId)) {
       dispatch(
         userActions.updateUserData({
