@@ -11,7 +11,7 @@ import {
   VStack,
 } from 'native-base';
 import React, { useState } from 'react';
-import { TouchableOpacity } from 'react-native';
+import { Alert, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 import ListComments from '../../features/search/components/ListComments';
@@ -55,6 +55,7 @@ const TeamInfo = ({ navigation, route }: Props) => {
   };
 
   const handleSaveTeam = () => {
+    if (!user?.uid) return Alert.alert('Please login to use this feature');
     if (teamFavorite?.includes(teamId)) {
       dispatch(
         userActions.updateUserData({
